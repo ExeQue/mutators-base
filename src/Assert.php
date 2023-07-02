@@ -40,4 +40,13 @@ class Assert extends WebmozartAssert
             get_debug_type($value)
         ));
     }
+
+    public static function allStringable($values, string $message = ''): void
+    {
+        self::isIterable($values, $message);
+
+        foreach ($values as $value) {
+            self::stringable($value, $message);
+        }
+    }
 }
