@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace ExeQue\Mutators;
-
 
 use ExeQue\Mutators\Concerns\ResolvesMutators;
 

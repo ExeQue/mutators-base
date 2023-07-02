@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-
 namespace Tests\Unit;
 
 use ExeQue\Mutators\CallbackMutator;
 use ExeQue\Mutators\CompoundMutator;
 use ExeQue\Mutators\Exceptions\InvalidMutatorException;
 
-test('executes mutators in order', function() {
-    $callableObject = new class {
+test('executes mutators in order', function () {
+    $callableObject = new class
+    {
         public function __invoke($value): string
         {
             return $value . 'ral';
@@ -23,13 +23,13 @@ test('executes mutators in order', function() {
     };
 
     $mutators = [
-        new CallbackMutator(fn($value) => $value . 'there,'),
-        fn($value) => $value . ' Gene',
+        new CallbackMutator(fn ($value) => $value . 'there,'),
+        fn ($value) => $value . ' Gene',
         $callableObject,
         [
-            fn($value) => $value . ' Ken',
-            [$callableObject, 'call']
-        ]
+            fn ($value) => $value . ' Ken',
+            [$callableObject, 'call'],
+        ],
     ];
 
     $mutator = CompoundMutator::make($mutators);
@@ -39,6 +39,6 @@ test('executes mutators in order', function() {
 
 test('fails if given an invalid mutator input', function () {
     $mutator = CompoundMutator::make([
-        'foo'
+        'foo',
     ]);
 })->throws(InvalidMutatorException::class);

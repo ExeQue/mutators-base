@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace ExeQue\Mutators\Concerns;
-
 
 use ExeQue\Mutators\Exceptions\InvalidArgumentException;
 use Psr\Http\Message\MessageInterface;

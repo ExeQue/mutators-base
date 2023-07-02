@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace ExeQue\Mutators\Concerns;
-
 
 use ExeQue\Mutators\CallbackMutator;
 use ExeQue\Mutators\CompoundMutator;
@@ -20,7 +18,7 @@ trait ResolvesMutators
             return $mutator;
         }
 
-        if (!is_string($mutator) && is_callable($mutator)) {
+        if (! is_string($mutator) && is_callable($mutator)) {
             return new CallbackMutator($mutator);
         }
 
@@ -36,6 +34,6 @@ trait ResolvesMutators
 
     protected function resolveMutators(array $mutators): array
     {
-        return array_map(fn($mutator) => $this->resolveMutator($mutator), $mutators);
+        return array_map(fn ($mutator) => $this->resolveMutator($mutator), $mutators);
     }
 }

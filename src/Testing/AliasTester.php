@@ -2,26 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Tests\Asserts;
+namespace ExeQue\Mutators\Testing;
 
 use ExeQue\Mutators\Alias;
 use PHPUnit\Framework\Assert;
 use ReflectionClass;
 
-trait AssertsOnAliases
+class AliasTester
 {
-    public function assertAliasContainsInstanceOf(Alias $alias, string $class, string $message = ''): void
+    public static function assertAliasContainsInstanceOf(Alias $alias, string $class, string $message = ''): void
     {
         $reflector = new ReflectionClass($alias);
         $property  = $reflector->getParentClass()->getProperty('mutator');
 
-        Assert::assertInstanceOf($class, $property->getValue($alias), $message);
+        Assert::assertInstanceOf($class, $property->getValue($alias), $message ?: "Alias does not contain instance of {$class}");
     }
 
-    public function assertOnAliasContainingClass(Alias $alias, callable $callback)
+    public static function assertOnAliasContainingClass(Alias $alias, callable $callback): void
     {
         $callback = $callback(...);
-        $callback->bindTo($this);
 
         $reflector = new ReflectionClass($alias);
         $property  = $reflector->getParentClass()->getProperty('mutator');

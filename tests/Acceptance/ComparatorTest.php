@@ -10,5 +10,6 @@ use ReflectionClass;
 test('method __invoke must be final', function () {
     $reflector = new ReflectionClass(Comparator::class);
 
-    expect($reflector->getMethod('mutate')->isFinal())->toBeTrue();
+    expect($reflector->getMethod('__invoke')->isFinal())->toBeTrue()
+        ->and($reflector->getMethod('mutate')->isFinal())->toBeTrue();
 });
