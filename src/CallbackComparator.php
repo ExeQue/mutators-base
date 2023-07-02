@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace ExeQue\Mutators;
 
 /**
- * Mutate a value using a callback.
+ * Compare a value using a callback.
  *
  * The callback can accept a single argument and return a value
+ * (any non-boolean values will be cast to a boolean value).
  *
  * @author Morten Harders <mmh@harders-it.dk>
  */
-class CallbackMutator extends Mutator
+class CallbackComparator extends Comparator
 {
     private $callback;
 
@@ -25,8 +26,8 @@ class CallbackMutator extends Mutator
         return new self($callback);
     }
 
-    public function mutate(mixed $value): mixed
+    protected function compare(mixed $value): bool
     {
-        return call_user_func($this->callback, $value);
+        return (bool)call_user_func($this->callback, $value);
     }
 }

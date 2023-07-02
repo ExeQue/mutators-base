@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace ExeQue\Mutators\Testing;
 
 use ExeQue\Mutators\MutatorInterface;
+use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
+use PHPUnit\Framework\Attributes\IgnoreClassForCodeCoverage;
 use ReflectionClass;
 use ReflectionIntersectionType;
 use ReflectionMethod;
@@ -13,6 +15,8 @@ use ReflectionParameter;
 use ReflectionUnionType;
 use Spatie\StructureDiscoverer\Discover;
 
+#[CodeCoverageIgnore]
+#[IgnoreClassForCodeCoverage(Tester::class)]
 class Tester
 {
     public static function runAll(string $directory)

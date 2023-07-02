@@ -6,8 +6,12 @@ namespace ExeQue\Mutators\Testing;
 
 use ExeQue\Mutators\Alias;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
+use PHPUnit\Framework\Attributes\IgnoreClassForCodeCoverage;
 use ReflectionClass;
 
+#[CodeCoverageIgnore]
+#[IgnoreClassForCodeCoverage(AliasTester::class)]
 class AliasTester
 {
     public static function assertAliasContainsInstanceOf(Alias $alias, string $class, string $message = ''): void
