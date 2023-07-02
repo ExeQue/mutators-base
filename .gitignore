@@ -3,3 +3,4 @@
 .phpunit.cache
 .phpunit.coverage
 vendor
+composer.lock
