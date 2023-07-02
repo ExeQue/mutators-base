@@ -6,6 +6,7 @@ namespace ExeQue\Mutators;
 
 use ExeQue\Mutators\Exceptions\InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
+use Stringable;
 use Webmozart\Assert\Assert as WebmozartAssert;
 
 /**
@@ -26,5 +27,17 @@ class Assert extends WebmozartAssert
         }
 
         self::reportInvalidArgument(vsprintf($message, $values));
+    }
+
+    public static function stringable(mixed$value, string $message = ''): void
+    {
+        if(is_string($value) || is_null($value) || is_numeric($value) || $value instanceof Stringable) {
+            return;
+        }
+
+        self::reportInvalidArgument($message ?: sprintf(
+            'Expected a stringable value. Got: %s',
+            get_debug_type($value)
+        ));
     }
 }
