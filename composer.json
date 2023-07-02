@@ -1,0 +1,38 @@
+{
+    "name": "exeque/mutators-base",
+    "description": "Data mutations for PHP",
+    "type": "library",
+    "require": {
+        "php": "^8.1",
+        "webmozart/assert": "^1.11"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.10",
+        "pestphp/pest": "^2.8",
+        "mockery/mockery": "^1.6",
+        "spatie/php-structure-discoverer": "^1.1",
+        "psr/http-message": "^2.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ExeQue\\Mutators\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Morten Harders",
+            "email": "mmh@harders-it.dk"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}

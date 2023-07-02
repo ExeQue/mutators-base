@@ -1,0 +1,25 @@
+{
+  "preset": "laravel",
+  "rules": {
+    "binary_operator_spaces": {
+      "operators": {
+        "=>": "align_single_space_minimal",
+        "=": "align_single_space_minimal"
+      }
+    },
+    "class_attributes_separation": {
+      "elements": {
+        "case": "one"
+      }
+    },
+    "single_trait_insert_per_statement": true,
+    "concat_space": {
+      "spacing": "one"
+    },
+    "explicit_string_variable": true,
+    "no_useless_concat_operator": true,
+    "cast_spaces": {
+      "space": "none"
+    }
+  }
+}

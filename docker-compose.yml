@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  composer:
+    image: composer:latest
+    user: 1000:1000
+    volumes:
+      - ./:/app
+    working_dir: /app
+  php:
+    image: php:8.2-cli
+    build:
+        context: docker/php
+    user: 1000:1000
+    volumes:
+      - ./:/app
+    working_dir: /app
+  pint:
+    extends:
+      service: php
+    entrypoint:
+        - vendor/bin/pint
+  testbench:
+    extends:
+      service: php
+    entrypoint:
+        - vendor/bin/testbench
+  pest:
+    extends:
+      service: php
+    environment:
+      - XDEBUG_MODE=coverage
+    entrypoint:
+        - vendor/bin/pest
+        - --coverage-html
+        - .phpunit.coverage
+        - --profile
