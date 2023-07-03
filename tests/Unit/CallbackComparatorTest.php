@@ -12,4 +12,4 @@ test('call the callback when mutating', function () {
     });
 
     expect($mutator->mutate('foo'))->toBe(true);
-})->covers(CallbackComparator::class);
+});

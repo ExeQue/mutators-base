@@ -11,4 +11,4 @@ test('invokes mutate method when invoked as a callable', function () {
     $mutator = Mockery::mock(Mutator::class)->expects('mutate')->once()->getMock();
 
     $mutator('foo');
-})->covers(Mutator::class);
+});

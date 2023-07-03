@@ -20,7 +20,7 @@ test('resolves string input', function (mixed $input, string $expected) {
     };
 
     expect($implementation->resolveStringInput($input))->toBe($expected);
-})->covers(ResolvesStringInputs::class)->with(function () {
+})->with(function () {
     return [
         'string' => [
             'input'  => 'foo',

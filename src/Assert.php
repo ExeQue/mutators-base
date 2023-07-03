@@ -29,9 +29,9 @@ class Assert extends WebmozartAssert
         self::reportInvalidArgument(vsprintf($message, $values));
     }
 
-    public static function stringable(mixed$value, string $message = ''): void
+    public static function stringable(mixed $value, string $message = ''): void
     {
-        if(is_string($value) || is_null($value) || is_numeric($value) || $value instanceof Stringable) {
+        if (is_string($value) || is_null($value) || is_numeric($value) || $value instanceof Stringable) {
             return;
         }
 

@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace ExeQue\Mutators\Data;
 
-enum Direction
+enum SortDirection
 {
-    case Left;
+    case Asc;
 
-    case Right;
-
-    case Both;
+    case Desc;
 }
