@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Mutators\Concerns\Validation;
+namespace ExeQue\Remix\Concerns\Validation;
 
-use ExeQue\Mutators\Assert;
+use ExeQue\Remix\Assert;
 
 /**
  * @internal

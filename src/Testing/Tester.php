@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Mutators\Testing;
+namespace ExeQue\Remix\Testing;
 
-use ExeQue\Mutators\MutatorInterface;
+use ExeQue\Remix\Compare\ComparatorInterface;
+use ExeQue\Remix\Mutate\MutatorInterface;
 use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
 use PHPUnit\Framework\Attributes\IgnoreClassForCodeCoverage;
 use ReflectionClass;
@@ -15,26 +16,34 @@ use ReflectionParameter;
 use ReflectionUnionType;
 use Spatie\StructureDiscoverer\Discover;
 
+/**
+ * Used for running common architectural tests on mutators and comparators.
+ *
+ * For use with `root` library and any plugins to ensure that they are following the correct architecture.
+ *
+ * @author Morten Harders <mmh@harders-it.dk>
+ */
 #[CodeCoverageIgnore]
 #[IgnoreClassForCodeCoverage(Tester::class)]
 class Tester
 {
-    public static function runAll(string $directory)
+    public static function runAll(string $directory): void
     {
         self::testDocblock($directory);
         self::testMakeMethod($directory);
         self::testHasNoOtherInstancedPublicMethods($directory);
     }
 
-    public static function locateMutators(string $directory, callable $filter = null): array
+    public static function locateBoth(string $directory): array
     {
-        if ($filter === null) {
-            $filter = static fn () => true;
-        }
+        return [...self::locateMutators($directory), ...self::locateComparators($directory)];
+    }
 
+    public static function locateMutators(string $directory): array
+    {
         $classes = Discover::in($directory)->classes()->getWithoutCache();
 
-        return array_filter($classes, function (string $class) use ($filter) {
+        return array_filter($classes, function (string $class) {
             $reflector = new ReflectionClass($class);
 
             if ($reflector->isAbstract() || $reflector->isInterface()) {
@@ -45,7 +54,22 @@ class Tester
                 return false;
             }
 
-            if (! $filter($reflector, $class)) {
+            return true;
+        });
+    }
+
+    public static function locateComparators(string $directory): array
+    {
+        $classes = Discover::in($directory)->classes()->getWithoutCache();
+
+        return array_filter($classes, function (string $class) {
+            $reflector = new ReflectionClass($class);
+
+            if ($reflector->isAbstract() || $reflector->isInterface()) {
+                return false;
+            }
+
+            if (! in_array(ComparatorInterface::class, $reflector->getInterfaceNames(), true)) {
                 return false;
             }
 
@@ -61,7 +85,7 @@ class Tester
             $docblock = $reflection->getDocComment();
 
             expect($docblock)->toBeString('Docblock is missing');
-        })->with(self::locateMutators($directory));
+        })->with(self::locateBoth($directory));
     }
 
     public static function testMakeMethod(string $directory): void
@@ -118,7 +142,7 @@ class Tester
                 ->and($make->isStatic())->toBeTrue('Expected make method to be static.')
                 ->and($make->getReturnType()?->getName())
                 ->toBe('self', 'Expected make method to return instance of implementer.');
-        })->with(self::locateMutators($directory));
+        })->with(self::locateBoth($directory));
     }
 
     public static function locateMakeMethod(ReflectionClass $reflector): ?ReflectionMethod
@@ -152,13 +176,21 @@ class Tester
                 return ! $method->isStatic();
             });
 
-            $methods = array_filter($methods, function (ReflectionMethod $method) {
-                return ! in_array($method->getName(), ['__construct', '__invoke', 'mutate'], true);
-            });
+            if ($reflector->implementsInterface(MutatorInterface::class)) {
+                $methods = array_filter($methods, function (ReflectionMethod $method) {
+                    return ! in_array($method->getName(), ['__construct', '__invoke', 'mutate'], true);
+                });
+            }
+
+            if ($reflector->implementsInterface(ComparatorInterface::class)) {
+                $methods = array_filter($methods, function (ReflectionMethod $method) {
+                    return ! in_array($method->getName(), ['__construct', '__invoke', 'check'], true);
+                });
+            }
 
             $methods = array_map(static fn (ReflectionMethod $method) => $method->getName(), $methods);
 
             expect($methods)->toBeEmpty('Expected class to have no other instanced public methods: ' . implode(', ', $methods));
-        })->with(self::locateMutators($directory));
+        })->with(self::locateBoth($directory));
     }
 }

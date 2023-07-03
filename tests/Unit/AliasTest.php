@@ -4,30 +4,28 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use ExeQue\Mutators\Alias;
-use ExeQue\Mutators\Mutator;
+use ExeQue\Remix\Compare\Comparator;
+use ExeQue\Remix\Compare\ComparatorAlias;
+use ExeQue\Remix\Mutate\Mutator;
+use ExeQue\Remix\Mutate\MutatorAlias;
 use Mockery;
-use ReflectionClass;
 
 test('calls wrapped mutator', function () {
     $mutator = Mockery::mock(Mutator::class)->expects('mutate')->once()->andReturn('foo')->getMock();
 
-    $implementation = new class($mutator) extends Alias
+    $implementation = new class($mutator) extends MutatorAlias
     {
     };
 
     expect($implementation->mutate('bar'))->toBe('foo');
 });
 
-test('does not replace wrapped instance', function () {
-    $mutator = Mockery::mock(Mutator::class);
+test('calls wrapped comparator', function () {
+    $comparator = Mockery::mock(Comparator::class)->expects('check')->once()->andReturn(true)->getMock();
 
-    $implementation = new class($mutator) extends Alias
+    $implementation = new class($comparator) extends ComparatorAlias
     {
     };
 
-    $reflector = new ReflectionClass($implementation);
-    $property  = $reflector->getParentClass()->getProperty('mutator');
-
-    expect($property->getValue($implementation))->toBe($mutator);
+    expect($implementation->check(''))->toBe(true);
 });

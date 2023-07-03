@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Mutators\Concerns;
+namespace ExeQue\Remix\Concerns;
 
-use ExeQue\Mutators\Exceptions\InvalidArgumentException;
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamInterface;
 use Stringable;

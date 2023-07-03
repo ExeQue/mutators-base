@@ -2,17 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Mutators\Concerns;
+namespace ExeQue\Remix\Concerns;
 
-use ExeQue\Mutators\CallbackComparator;
-use ExeQue\Mutators\ComparatorInterface;
-use ExeQue\Mutators\Exceptions\InvalidComparatorException;
-use ExeQue\Mutators\Logical\All;
-use ExeQue\Mutators\MutatorInterface;
+use ExeQue\Remix\Compare\CallbackComparator;
+use ExeQue\Remix\Compare\ComparatorInterface;
+use ExeQue\Remix\Compare\Logical\All;
+use ExeQue\Remix\Exceptions\InvalidComparatorException;
 
 trait ResolvesComparators
 {
-    protected function resolveComparator(mixed $comparator): MutatorInterface
+    protected function resolveComparator(mixed $comparator): ComparatorInterface
     {
         if (is_bool($comparator)) {
             $comparator = static fn () => $comparator;

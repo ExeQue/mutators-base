@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Concerns\Definitions;
 
-use ExeQue\Mutators\Concerns\Definitions\UsesEncoding;
-use ExeQue\Mutators\Exceptions\InvalidArgumentException;
+use ExeQue\Remix\Concerns\Definitions\UsesEncoding;
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 
 test('outputs string encoding if value is set when calling getEncoding', function () {
     $instance = createUsesEncodingInstance();

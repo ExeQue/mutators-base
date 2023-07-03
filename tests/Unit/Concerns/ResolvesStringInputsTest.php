@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Concerns;
 
-use ExeQue\Mutators\Concerns\ResolvesStringInputs;
-use ExeQue\Mutators\Exceptions\InvalidArgumentException;
+use ExeQue\Remix\Concerns\ResolvesStringInputs;
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use Mockery;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamInterface;

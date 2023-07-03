@@ -3,7 +3,7 @@
  * @author Morten Harders <mmh@harders-it.dk>
  */
 
-namespace ExeQue\Mutators\Data;
+namespace ExeQue\Remix\Data;
 
 enum KeyCase
 {

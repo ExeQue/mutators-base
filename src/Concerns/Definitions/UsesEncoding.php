@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Mutators\Concerns\Definitions;
+namespace ExeQue\Remix\Concerns\Definitions;
 
-use ExeQue\Mutators\Concerns\Validation\ValidatesEncoding;
+use ExeQue\Remix\Concerns\Validation\ValidatesEncoding;
 
 /**
  * @internal

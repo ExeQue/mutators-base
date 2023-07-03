@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Mutators;
+namespace ExeQue\Remix;
 
-use ExeQue\Mutators\Exceptions\InvalidArgumentException;
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
 use Stringable;
 use Webmozart\Assert\Assert as WebmozartAssert;
@@ -20,6 +20,9 @@ class Assert extends WebmozartAssert
         throw new InvalidArgumentException($message);
     }
 
+    /**
+     * @throws InvalidArgumentException
+     */
     public static function report(string $message, ...$values): void
     {
         foreach ($values as $i => $value) {
@@ -47,6 +50,27 @@ class Assert extends WebmozartAssert
 
         foreach ($values as $value) {
             self::stringable($value, $message);
+        }
+    }
+
+    public static function intOrFloat(mixed $value, string $message = ''): void
+    {
+        if (is_int($value) || is_float($value)) {
+            return;
+        }
+
+        self::reportInvalidArgument($message ?: sprintf(
+            'Expected an integer or float. Got: %s',
+            get_debug_type($value)
+        ));
+    }
+
+    public static function allIntOrFloat($values, string $message = ''): void
+    {
+        self::isIterable($values, $message);
+
+        foreach ($values as $value) {
+            self::intOrFloat($value, $message);
         }
     }
 }

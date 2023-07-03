@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Acceptance;
 
-use ExeQue\Mutators\Mutator;
+use ExeQue\Remix\Mutate\Mutator;
 use ReflectionClass;
 
 test('method __invoke must be final', function () {

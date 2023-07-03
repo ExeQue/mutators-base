@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Concerns;
 
-use ExeQue\Mutators\CallbackComparator;
-use ExeQue\Mutators\Concerns\HasMultipleComparators;
+use ExeQue\Remix\Compare\CallbackComparator;
+use ExeQue\Remix\Concerns\HasMultipleComparators;
 
 test('create using array input using makeFromArray', function () {
     $implementation = new class(true)

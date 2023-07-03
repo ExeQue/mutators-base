@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Concerns;
 
-use ExeQue\Mutators\Concerns\Makes;
+use ExeQue\Remix\Concerns\Makes;
 
 test('returns instance of implementer', function () {
     $implementation = new class

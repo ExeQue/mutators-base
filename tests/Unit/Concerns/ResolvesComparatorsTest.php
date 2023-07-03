@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Concerns;
 
-use ExeQue\Mutators\Comparator;
-use ExeQue\Mutators\Concerns\ResolvesComparators;
-use ExeQue\Mutators\Exceptions\InvalidComparatorException;
-use ExeQue\Mutators\Mutator;
+use ExeQue\Remix\Compare\Comparator;
+use ExeQue\Remix\Concerns\ResolvesComparators;
+use ExeQue\Remix\Exceptions\InvalidComparatorException;
+use ExeQue\Remix\Mutate\Mutator;
 
 test('resolves comparators', function (mixed $input) {
     $implementation = new class()
@@ -28,7 +28,7 @@ test('resolves comparators', function (mixed $input) {
     'instance of ComparatorInterface' => [
         'input' => new class() extends Comparator
         {
-            protected function compare(mixed $value): bool
+            public function check(mixed $value): bool
             {
                 return true;
             }
@@ -49,7 +49,7 @@ test('resolves comparators', function (mixed $input) {
             fn () => true,
             new class() extends Comparator
             {
-                protected function compare(mixed $value): bool
+                public function check(mixed $value): bool
                 {
                     return true;
                 }

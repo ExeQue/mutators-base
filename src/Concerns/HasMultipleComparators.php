@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Mutators\Concerns;
+namespace ExeQue\Remix\Concerns;
 
-use ExeQue\Mutators\Assert;
+use ExeQue\Remix\Assert;
+use ExeQue\Remix\Compare\ComparatorInterface;
 
 trait HasMultipleComparators
 {
     use ResolvesComparators;
 
+    /** @var ComparatorInterface[] */
     private array $comparators;
 
     public function __construct(callable|bool ...$comparators)

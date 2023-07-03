@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Mutators\Concerns;
+namespace ExeQue\Remix\Concerns;
 
-use ExeQue\Mutators\CallbackMutator;
-use ExeQue\Mutators\CompoundMutator;
-use ExeQue\Mutators\Exceptions\InvalidMutatorException;
-use ExeQue\Mutators\MutatorInterface;
+use ExeQue\Remix\Exceptions\InvalidMutatorException;
+use ExeQue\Remix\Mutate\CallbackMutator;
+use ExeQue\Remix\Mutate\CompoundMutator;
+use ExeQue\Remix\Mutate\MutatorInterface;
 use function get_debug_type;
 
 trait ResolvesMutators

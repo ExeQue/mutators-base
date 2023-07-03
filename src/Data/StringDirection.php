@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Mutators\Data;
+namespace ExeQue\Remix\Data;
 
 enum StringDirection
 {

@@ -3,7 +3,9 @@
  * @author Morten Harders <mmh@harders-it.dk>
  */
 
-namespace ExeQue\Mutators\Data;
+namespace ExeQue\Remix\Data;
+
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 
 /**
  * @see https://github.com/jawira/case-converter
@@ -48,4 +50,28 @@ enum StringCase
 
     /** Example: `my.name.is.bond` */
     case Dot;
+
+    public static function from(self|string $case): StringCase
+    {
+        if ($case instanceof self) {
+            return $case;
+        }
+
+        return match (mb_strtolower($case)) {
+            'camel'    => self::Camel,
+            'pascal'   => self::Pascal,
+            'snake'    => self::Snake,
+            'ada'      => self::Ada,
+            'macro'    => self::Macro,
+            'kebab'    => self::Kebab,
+            'train'    => self::Train,
+            'cobol'    => self::Cobol,
+            'lower'    => self::Lower,
+            'upper'    => self::Upper,
+            'title'    => self::Title,
+            'sentence' => self::Sentence,
+            'dot'      => self::Dot,
+            default    => throw new InvalidArgumentException("Unknown string case: {$case}"),
+        };
+    }
 }

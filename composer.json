@@ -1,6 +1,6 @@
 {
-    "name": "exeque/mutators-base",
-    "description": "Data mutations for PHP",
+    "name": "exeque/remix",
+    "description": "ReMix data for PHP",
     "type": "library",
     "require": {
         "php": "^8.1",
@@ -20,7 +20,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "ExeQue\\Mutators\\": "src/"
+            "ExeQue\\Remix\\": "src/"
         }
     },
     "autoload-dev": {

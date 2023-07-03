@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Mutators\Concerns;
+namespace ExeQue\Remix\Concerns;
 
 trait Makes
 {
     public static function make(): self
     {
-        return new static();
+        return new self();
     }
 }

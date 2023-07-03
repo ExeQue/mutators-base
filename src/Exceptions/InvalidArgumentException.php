@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Mutators\Exceptions;
+namespace ExeQue\Remix\Exceptions;
 
 use InvalidArgumentException as VanillaInvalidArgumentException;
 
