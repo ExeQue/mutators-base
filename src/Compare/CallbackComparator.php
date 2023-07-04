@@ -28,6 +28,6 @@ class CallbackComparator extends Comparator
 
     public function check(mixed $value): bool
     {
-        return (bool)call_user_func($this->callback, $value);
+        return (bool)($this->callback)($value);
     }
 }

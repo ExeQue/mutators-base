@@ -6,6 +6,6 @@ namespace ExeQue\Remix\Exceptions;
 
 use InvalidArgumentException as VanillaInvalidArgumentException;
 
-class InvalidArgumentException extends VanillaInvalidArgumentException implements MutatorExceptionInterface
+class InvalidArgumentException extends VanillaInvalidArgumentException implements RemixException
 {
 }

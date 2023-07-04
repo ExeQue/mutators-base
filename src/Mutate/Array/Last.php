@@ -41,7 +41,7 @@ class Last extends Mutator
         for (end($value); ($key = key($value)) !== null; prev($value)) {
             $current = current($value);
 
-            if (call_user_func($this->callback, $current, $key) === true) {
+            if (($this->callback)($current, $key) === true) {
                 return $current;
             }
         }

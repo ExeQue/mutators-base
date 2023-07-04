@@ -20,8 +20,6 @@ abstract class CountableComparator extends Comparator
         }
 
         Assert::report(static::class . ' can only compare countable values. Got: %s', $value);
-
-        return false;
     }
 
     abstract protected function checkCount(int $count): bool;

@@ -6,6 +6,6 @@ namespace ExeQue\Remix\Exceptions;
 
 use LogicException;
 
-class UnreachableException extends LogicException implements MutatorExceptionInterface
+class UnreachableException extends LogicException implements RemixException
 {
 }

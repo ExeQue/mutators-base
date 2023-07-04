@@ -6,6 +6,6 @@ namespace ExeQue\Remix\Exceptions;
 
 use RuntimeException;
 
-class MissingTagException extends RuntimeException implements MutatorExceptionInterface
+class MissingTagException extends RuntimeException implements RemixException
 {
 }

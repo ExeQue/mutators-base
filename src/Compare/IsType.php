@@ -75,7 +75,7 @@ class IsType extends Comparator
 
     public function check(mixed $value): bool
     {
-        return call_user_func($this->callback, $value);
+        return ($this->callback)($value);
     }
 
     private function isClass(string $type): bool

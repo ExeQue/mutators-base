@@ -59,7 +59,7 @@ class At extends Mutator
     private function resolveDefault(array $value): mixed
     {
         if (! is_string($this->default) && is_callable($this->default)) {
-            return call_user_func($this->default, $value, $this->index);
+            return ($this->default)($value, $this->index);
         }
 
         return $this->default;

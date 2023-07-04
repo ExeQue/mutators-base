@@ -6,6 +6,6 @@ namespace ExeQue\Remix\Exceptions;
 
 use LogicException;
 
-class InvalidComparatorException extends LogicException implements MutatorExceptionInterface
+class InvalidComparatorException extends LogicException implements RemixException
 {
 }

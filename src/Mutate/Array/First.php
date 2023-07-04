@@ -40,7 +40,7 @@ class First extends Mutator
         }
 
         foreach ($value as $key => $item) {
-            if (call_user_func($this->callback, $item, $key) === true) {
+            if (($this->callback)($item, $key) === true) {
                 return $item;
             }
         }

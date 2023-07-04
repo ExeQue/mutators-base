@@ -27,6 +27,6 @@ class CallbackMutator extends Mutator
 
     public function mutate(mixed $value): mixed
     {
-        return call_user_func($this->callback, $value);
+        return ($this->callback)($value);
     }
 }

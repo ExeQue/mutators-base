@@ -6,6 +6,7 @@ namespace ExeQue\Remix\Testing;
 
 use ExeQue\Remix\Compare\ComparatorInterface;
 use ExeQue\Remix\Mutate\MutatorInterface;
+use ExeQue\Remix\Serialize\SerializerInterface;
 use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
 use PHPUnit\Framework\Attributes\IgnoreClassForCodeCoverage;
 use ReflectionClass;
@@ -34,9 +35,13 @@ class Tester
         self::testHasNoOtherInstancedPublicMethods($directory);
     }
 
-    public static function locateBoth(string $directory): array
+    public static function locateAll(string $directory): array
     {
-        return [...self::locateMutators($directory), ...self::locateComparators($directory)];
+        return [
+            ...self::locateMutators($directory),
+            ...self::locateComparators($directory),
+            ...self::locateSerializers($directory),
+        ];
     }
 
     public static function locateMutators(string $directory): array
@@ -77,15 +82,34 @@ class Tester
         });
     }
 
+    public static function locateSerializers(string $directory): array
+    {
+        $classes = Discover::in($directory)->classes()->getWithoutCache();
+
+        return array_filter($classes, function (string $class) {
+            $reflector = new ReflectionClass($class);
+
+            if ($reflector->isAbstract() || $reflector->isInterface()) {
+                return false;
+            }
+
+            if (! in_array(SerializerInterface::class, $reflector->getInterfaceNames(), true)) {
+                return false;
+            }
+
+            return true;
+        });
+    }
+
     public static function testDocblock(string $directory): void
     {
-        test('mutator has docblock', function (string $class) {
+        test('class has docblock', function (string $class) {
             $reflection = new ReflectionClass($class);
 
             $docblock = $reflection->getDocComment();
 
-            expect($docblock)->toBeString('Docblock is missing');
-        })->with(self::locateBoth($directory));
+            expect($docblock)->toBeString('Docblock is missing on ' . $class);
+        })->with(self::locateAll($directory));
     }
 
     public static function testMakeMethod(string $directory): void
@@ -93,7 +117,7 @@ class Tester
         test('make method exists', function (string $class) {
             $reflector = new ReflectionClass($class);
 
-            expect(Tester::locateMakeMethod($reflector))->toBeInstanceOf(ReflectionMethod::class, 'Expected class to have a make method');
+            expect(Tester::locateMakeMethod($reflector))->toBeInstanceOf(ReflectionMethod::class, 'Expected class to have a make method on ' . $class);
 
             $make        = $reflector->getMethod('make');
             $constructor = $reflector->getConstructor();
@@ -137,12 +161,12 @@ class Tester
             expect($makeParameters)
                 ->toEqual(
                     $constructorParameters,
-                    'Expected make method to be identical to constructor.'
+                    'Expected make method to be identical to constructor on ' . $class
                 )
-                ->and($make->isStatic())->toBeTrue('Expected make method to be static.')
+                ->and($make->isStatic())->toBeTrue('Expected make method to be static on ' . $class)
                 ->and($make->getReturnType()?->getName())
-                ->toBe('self', 'Expected make method to return instance of implementer.');
-        })->with(self::locateBoth($directory));
+                ->toBe('self', 'Expected make method to return instance of implementer on ' . $class);
+        })->with(self::locateAll($directory));
     }
 
     public static function locateMakeMethod(ReflectionClass $reflector): ?ReflectionMethod
@@ -165,9 +189,9 @@ class Tester
         return $method;
     }
 
-    private static function testHasNoOtherInstancedPublicMethods(string $directory)
+    private static function testHasNoOtherInstancedPublicMethods(string $directory): void
     {
-        test('has no other instanced public methods', function (string $class) {
+        test('has no additional instanced public methods', function (string $class) {
             $reflector = new ReflectionClass($class);
 
             $methods = $reflector->getMethods(ReflectionMethod::IS_PUBLIC);
@@ -188,9 +212,15 @@ class Tester
                 });
             }
 
+            if ($reflector->implementsInterface(SerializerInterface::class)) {
+                $methods = array_filter($methods, function (ReflectionMethod $method) {
+                    return ! in_array($method->getName(), ['__construct', 'encode', 'decode'], true);
+                });
+            }
+
             $methods = array_map(static fn (ReflectionMethod $method) => $method->getName(), $methods);
 
             expect($methods)->toBeEmpty('Expected class to have no other instanced public methods: ' . implode(', ', $methods));
-        })->with(self::locateBoth($directory));
+        })->with(self::locateAll($directory));
     }
 }

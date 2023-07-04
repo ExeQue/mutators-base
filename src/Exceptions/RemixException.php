@@ -6,6 +6,6 @@ namespace ExeQue\Remix\Exceptions;
 
 use Throwable;
 
-interface MutatorExceptionInterface extends Throwable
+interface RemixException extends Throwable
 {
 }
