@@ -21,6 +21,13 @@ trait HasMultipleComparators
         $this->comparators = $this->resolveComparators($comparators);
     }
 
+    public function with(callable|bool ...$comparators): self
+    {
+        $this->comparators = array_merge($this->comparators, $this->resolveComparators($comparators));
+
+        return $this;
+    }
+
     public static function make(callable|bool ...$comparators): self
     {
         return new self(...$comparators);

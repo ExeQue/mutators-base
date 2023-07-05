@@ -8,7 +8,7 @@ use Countable;
 use ExeQue\Remix\Compare\Countable\CountableComparator;
 use Mockery;
 
-test('passes with countable types', function (mixed $input) {
+it('passes with countable types', function (mixed $input) {
     $comparator = new class extends CountableComparator
     {
         protected function checkCount(int $count): bool
@@ -42,7 +42,7 @@ test('passes with countable types', function (mixed $input) {
     ],
 ]);
 
-test('fails if given a non-countable input', function () {
+it('fails if given a non-countable input', function () {
     $comparator = Mockery::mock(CountableComparator::class);
 
     $comparator->check('foo');

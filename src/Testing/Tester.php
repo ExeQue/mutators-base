@@ -103,7 +103,7 @@ class Tester
 
     public static function testDocblock(string $directory): void
     {
-        test('class has docblock', function (string $class) {
+        it('has docblock', function (string $class) {
             $reflection = new ReflectionClass($class);
 
             $docblock = $reflection->getDocComment();
@@ -114,7 +114,7 @@ class Tester
 
     public static function testMakeMethod(string $directory): void
     {
-        test('make method exists', function (string $class) {
+        it('has make method', function (string $class) {
             $reflector = new ReflectionClass($class);
 
             expect(Tester::locateMakeMethod($reflector))->toBeInstanceOf(ReflectionMethod::class, 'Expected class to have a make method on ' . $class);
@@ -191,7 +191,7 @@ class Tester
 
     private static function testHasNoOtherInstancedPublicMethods(string $directory): void
     {
-        test('has no additional instanced public methods', function (string $class) {
+        it('has no additional instanced public methods that does not return self', function (string $class) {
             $reflector = new ReflectionClass($class);
 
             $methods = $reflector->getMethods(ReflectionMethod::IS_PUBLIC);
@@ -218,9 +218,13 @@ class Tester
                 });
             }
 
+            $methods = array_filter($methods, function (ReflectionMethod $method) {
+                return $method->getReturnType()?->getName() !== 'self';
+            });
+
             $methods = array_map(static fn (ReflectionMethod $method) => $method->getName(), $methods);
 
-            expect($methods)->toBeEmpty('Expected class to have no other instanced public methods: ' . implode(', ', $methods));
+            expect($methods)->toBeEmpty('Expected class to have no other instanced public methods without return type `self`: ' . implode(', ', $methods));
         })->with(self::locateAll($directory));
     }
 }

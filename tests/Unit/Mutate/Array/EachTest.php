@@ -6,7 +6,7 @@ namespace Tests\Unit\Mutate\Array;
 
 use ExeQue\Remix\Mutate\Array\Each;
 
-test('executes callback for each element in an array', function () {
+it('executes callback for each element in an array', function () {
     $counter = 0;
     $mutator = Each::make(function () use (&$counter) {
         $counter++;
@@ -17,7 +17,7 @@ test('executes callback for each element in an array', function () {
     expect($counter)->toBe(3);
 });
 
-test('does not modify the array', function () {
+it('does not modify the array', function () {
     $mutator = Each::make(function () {
     });
 
@@ -27,7 +27,7 @@ test('does not modify the array', function () {
     expect($array)->toBe(['foo', 'bar', 'baz']);
 });
 
-test('breaks if callback returns false', function () {
+it('breaks if callback returns false', function () {
     $counter = 0;
     $mutator = Each::make(function () use (&$counter) {
         $counter++;
@@ -40,7 +40,7 @@ test('breaks if callback returns false', function () {
     expect($counter)->toBe(1);
 });
 
-test('provides value and key to callback', function () {
+it('provides value and key to callback', function () {
     $mutator = Each::make(function ($value, $key) {
         expect($value)->toBe('foo')
             ->and($key)->toBe(0);

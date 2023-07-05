@@ -22,14 +22,21 @@ class CompoundMutator extends Mutator
 
     private array $mutators;
 
-    public function __construct(array $mutators)
+    public function __construct(array $mutators = [])
     {
         $this->mutators = $this->resolveMutators($mutators);
     }
 
-    public static function make(array $mutators): self
+    public static function make(array $mutators = []): self
     {
         return new self($mutators);
+    }
+
+    public function with(callable ...$mutators): self
+    {
+        $this->mutators = array_merge($this->mutators, $this->resolveMutators($mutators));
+
+        return $this;
     }
 
     public function mutate(mixed $value): mixed

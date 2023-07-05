@@ -6,7 +6,7 @@ namespace Tests\Unit\Compare\Logical;
 
 use ExeQue\Remix\Compare\Logical\One;
 
-test('only one comparator can be true', function (array $comparators, bool $expected) {
+it('only one comparator can be true', function (array $comparators, bool $expected) {
     $comparator = One::make(...$comparators);
 
     expect($comparator->check(''))->toBe($expected);

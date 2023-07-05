@@ -6,7 +6,7 @@ namespace Tests\Unit\Mutate\String;
 
 use ExeQue\Remix\Mutate\String\Append;
 
-test('appends a string to the end of a string', function () {
+it('appends a string to the end of a string', function () {
     $mutator = Append::make('bar');
 
     expect($mutator->mutate('foo'))->toBe('foobar');

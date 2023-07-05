@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ExeQue\Remix\Concerns;
 
-use ExeQue\Remix\Compare\CallbackComparator;
 use ExeQue\Remix\Compare\ComparatorInterface;
+use ExeQue\Remix\Compare\ComparesUsing;
 use ExeQue\Remix\Compare\Logical\All;
 use ExeQue\Remix\Exceptions\InvalidComparatorException;
 
@@ -22,7 +22,7 @@ trait ResolvesComparators
         }
 
         if (! is_string($comparator) && is_callable($comparator)) {
-            return new CallbackComparator($comparator);
+            return ComparesUsing::make($comparator);
         }
 
         if (is_array($comparator)) {

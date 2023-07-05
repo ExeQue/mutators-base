@@ -25,7 +25,7 @@ class Contains extends StringComparator
         return new self($search, $caseSensitive);
     }
 
-    protected function compareString(string $value): bool
+    protected function checkString(string $value): bool
     {
         if ($this->caseSensitive) {
             return str_contains($value, $this->search);

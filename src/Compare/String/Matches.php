@@ -25,7 +25,7 @@ class Matches extends StringComparator
         return new self($pattern);
     }
 
-    protected function compareString(string $value): bool
+    protected function checkString(string $value): bool
     {
         return preg_match($this->pattern, $value) === 1;
     }

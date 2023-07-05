@@ -7,7 +7,7 @@ namespace Tests\Unit\Mutate\Serialization;
 use ExeQue\Remix\Exceptions\JsonException;
 use ExeQue\Remix\Mutate\Serialization\JsonDecode;
 
-test('decodes the json to a value', function (string $input, mixed $expected) {
+it('decodes the json to a value', function (string $input, mixed $expected) {
     $mutator = JsonDecode::make();
 
     expect($mutator->mutate($input))->toBe($expected);
@@ -42,19 +42,19 @@ test('decodes the json to a value', function (string $input, mixed $expected) {
     ],
 ]);
 
-test('decodes the json to an associative array', function () {
+it('decodes the json to an associative array', function () {
     $mutator = JsonDecode::assoc();
 
     expect($mutator->mutate('{"foo":"bar"}'))->toBe(['foo' => 'bar']);
 });
 
-test('decodes the json to an object', function () {
+it('decodes the json to an object', function () {
     $mutator = JsonDecode::object();
 
     expect($mutator->mutate('{"foo":"bar"}'))->toEqual((object)['foo' => 'bar']);
 });
 
-test('fails if given invalid json', function () {
+it('fails if given invalid json', function () {
     $mutator = JsonDecode::make();
 
     $mutator->mutate("\xB1\x31");

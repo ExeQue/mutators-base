@@ -9,7 +9,7 @@ use ExeQue\Remix\Concerns\ResolvesComparators;
 use ExeQue\Remix\Exceptions\InvalidComparatorException;
 use ExeQue\Remix\Mutate\Mutator;
 
-test('resolves comparators', function (mixed $input) {
+it('resolves comparators', function (mixed $input) {
     $implementation = new class()
     {
         use ResolvesComparators {
@@ -65,7 +65,7 @@ test('resolves comparators', function (mixed $input) {
     ],
 ]);
 
-test('fails to resolve if the given comparator is not supported', function () {
+it('fails to resolve if the given comparator is not supported', function () {
     $implementation = new class()
     {
         use ResolvesComparators {

@@ -8,7 +8,7 @@ use ExeQue\Remix\Compare\String\ContainsAny;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use Stringable;
 
-test('string contains any of the given strings', function (string $input, array $needles, bool $expected) {
+it('string contains any of the given strings', function (string $input, array $needles, bool $expected) {
     $mutator = ContainsAny::make($needles);
 
     expect($mutator->check($input))->toBe($expected);
@@ -35,13 +35,13 @@ test('string contains any of the given strings', function (string $input, array 
     ],
 ]);
 
-test('string contains any of the given strings regardless of casing', function () {
+it('string contains any of the given strings regardless of casing', function () {
     $mutator = ContainsAny::make(['O'], false);
 
     expect($mutator->check('foo'))->toBeTrue();
 });
 
-test('fail if given any non-stringable search value', function (array $search) {
+it('fail if given any non-stringable search value', function (array $search) {
     ContainsAny::make($search);
 })->with([
     'array' => [
@@ -63,7 +63,7 @@ test('fail if given any non-stringable search value', function (array $search) {
     ],
 ])->throws(InvalidArgumentException::class);
 
-test('makes if given any any stringable search value', function (array $search) {
+it('makes if given any any stringable search value', function (array $search) {
     ContainsAny::make($search);
 })->with([
     'string' => [

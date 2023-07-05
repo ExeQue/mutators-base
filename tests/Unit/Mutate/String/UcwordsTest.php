@@ -6,7 +6,7 @@ namespace Tests\Unit\Mutate\String;
 
 use ExeQue\Remix\Mutate\String\Ucwords;
 
-test('converts the first character of each word in a string to uppercase', function (string $input, string $expected) {
+it('converts the first character of each word in a string to uppercase', function (string $input, string $expected) {
     $mutator = Ucwords::make();
 
     expect($mutator->mutate($input))->toBe($expected);

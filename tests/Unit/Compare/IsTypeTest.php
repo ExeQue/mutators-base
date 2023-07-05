@@ -12,7 +12,7 @@ use ExeQue\Remix\Mutate\Array\Reverse;
 use Iterator;
 use stdClass;
 
-test('supports all types', function (string $type, mixed $value) {
+it('supports all types', function (string $type, mixed $value) {
     expect(IsType::make($type)->check($value))->toBeTrue();
 })->with([
     'string'   => ['string', 'foo'],
@@ -20,6 +20,7 @@ test('supports all types', function (string $type, mixed $value) {
     'float'    => ['float', 1.1],
     'bool'     => ['bool', true],
     'scalar'   => ['scalar', 'foo'],
+    'numeric'  => ['numeric', '1.23'],
     'array'    => ['array', []],
     'object'   => ['object', new stdClass()],
     'null'     => ['null', null],
@@ -32,6 +33,6 @@ test('supports all types', function (string $type, mixed $value) {
     'trait'     => [Makes::class, Reverse::make()],
 ]);
 
-test('fails if given unsupported type', function () {
+it('fails if given unsupported type', function () {
     IsType::make('foobar');
 })->throws(InvalidArgumentException::class);

@@ -7,19 +7,19 @@ namespace Tests\Unit\Mutate\String;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\String\Mask;
 
-test('masks matches', function () {
+it('masks matches', function () {
     $mutator = Mask::make('/\w+/');
 
     expect($mutator->mutate('hello there'))->toBe('***** *****');
 });
 
-test('masks nothing if nothing matches pattern', function () {
+it('masks nothing if nothing matches pattern', function () {
     $mutator = Mask::make('/\d+/');
 
     expect($mutator->mutate('foobar'))->toBe('foobar');
 });
 
-test('masks same length as matched pattern', function (string $pattern, string $input, string $expected) {
+it('masks same length as matched pattern', function (string $pattern, string $input, string $expected) {
     $mutator = new Mask($pattern);
 
     expect($mutator->mutate($input))->toBe($expected);
@@ -36,10 +36,10 @@ test('masks same length as matched pattern', function (string $pattern, string $
     ],
 ]);
 
-test('fails if replacement character is not a single character', function () {
+it('fails if replacement character is not a single character', function () {
     Mask::make('/\w+/', 'foo');
 })->throws(InvalidArgumentException::class);
 
-test('fails if replacement character is empty', function () {
+it('fails if replacement character is empty', function () {
     Mask::make('/\w+/', '');
 })->throws(InvalidArgumentException::class);

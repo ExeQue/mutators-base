@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Serialize;
 
-use ExeQue\Remix\Serialize\Json\JsonSerializer;
+use ExeQue\Remix\Serialize\JsonSerializer;
 
-test('decode method returns decoded value', function () {
+it('decode method returns decoded value', function () {
     $serializer = JsonSerializer::make();
 
     expect($serializer->decode('"foo"'))->toBe('foo');
 });
 
-test('encode method returns encoded value', function () {
+it('encode method returns encoded value', function () {
     $serializer = JsonSerializer::make();
 
     expect($serializer->encode('foo'))->toBe('"foo"');
 });
 
-test('value remains unchanged when encoding and decoding', function ($input) {
+it('value remains unchanged when encoding and decoding', function ($input) {
     $serializer = JsonSerializer::make();
 
     expect($serializer->decode($serializer->encode($input)))->toBe($input);
@@ -46,7 +46,7 @@ test('value remains unchanged when encoding and decoding', function ($input) {
     ],
 ]);
 
-test('value remains comparable when decoding and encoding', function ($input, $expected) {
+it('value remains comparable when decoding and encoding', function ($input, $expected) {
     $serializer = JsonSerializer::make();
 
     expect($serializer->encode($serializer->decode($input)))->toBe($expected);

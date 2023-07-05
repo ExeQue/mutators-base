@@ -6,7 +6,7 @@ namespace Tests\Unit\Mutate\String;
 
 use ExeQue\Remix\Mutate\String\Pad;
 
-test('pads string with additional characters', function (string $input, int $length, string $pad, string $expected) {
+it('pads string with additional characters', function (string $input, int $length, string $pad, string $expected) {
     $mutator = Pad::make($length, $pad);
 
     expect($mutator->mutate($input))->toBe($expected);
@@ -25,7 +25,7 @@ test('pads string with additional characters', function (string $input, int $len
     ],
 ]);
 
-test('alias matches direction', function (string $method, string $input, string $expected) {
+it('matches direction', function (string $method, string $input, string $expected) {
     $mutator = Pad::$method(6, ' ');
 
     expect($mutator->mutate($input))->toBe($expected);

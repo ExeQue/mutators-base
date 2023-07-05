@@ -11,7 +11,7 @@ namespace ExeQue\Remix\Mutate;
  *
  * @author Morten Harders <mmh@harders-it.dk>
  */
-class CallbackMutator extends Mutator
+class MutatesUsing extends Mutator
 {
     private $callback;
 

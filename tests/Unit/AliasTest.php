@@ -10,7 +10,7 @@ use ExeQue\Remix\Mutate\Mutator;
 use ExeQue\Remix\Mutate\MutatorAlias;
 use Mockery;
 
-test('calls wrapped mutator', function () {
+it('calls wrapped mutator', function () {
     $mutator = Mockery::mock(Mutator::class)->expects('mutate')->once()->andReturn('foo')->getMock();
 
     $implementation = new class($mutator) extends MutatorAlias
@@ -20,7 +20,7 @@ test('calls wrapped mutator', function () {
     expect($implementation->mutate('bar'))->toBe('foo');
 });
 
-test('calls wrapped comparator', function () {
+it('calls wrapped comparator', function () {
     $comparator = Mockery::mock(Comparator::class)->expects('check')->once()->andReturn(true)->getMock();
 
     $implementation = new class($comparator) extends ComparatorAlias

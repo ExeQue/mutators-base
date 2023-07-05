@@ -6,7 +6,7 @@ namespace ExeQue\Remix\Compare\String;
 
 abstract class LengthComparator extends StringComparator
 {
-    final protected function compareString(string $value): bool
+    final protected function checkString(string $value): bool
     {
         return $this->compareLength(mb_strlen($value));
     }

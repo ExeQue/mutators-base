@@ -29,7 +29,7 @@ class ContainsAny extends StringComparator
         return new self($search, $caseSensitive);
     }
 
-    protected function compareString(string $value): bool
+    protected function checkString(string $value): bool
     {
         foreach ($this->search as $search) {
             if ($this->caseSensitive) {

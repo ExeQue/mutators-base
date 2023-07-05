@@ -25,11 +25,16 @@ class Assert extends WebmozartAssert
      */
     public static function report(string $message, ...$values): void
     {
+        self::reportInvalidArgument(self::format($message, ...$values));
+    }
+
+    public static function format(string $message, ...$values): string
+    {
         foreach ($values as $i => $value) {
             $values[$i] = self::valueToString($value);
         }
 
-        self::reportInvalidArgument(vsprintf($message, $values));
+        return vsprintf($message, $values);
     }
 
     public static function stringable(mixed $value, string $message = ''): void

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Mutate;
 
-use ExeQue\Remix\Mutate\CallbackMutator;
+use ExeQue\Remix\Mutate\MutatesUsing;
 
-test('call the callback when mutating', function () {
-    $mutator = CallbackMutator::make(function ($value) {
+it('call the callback when mutating', function () {
+    $mutator = MutatesUsing::make(function ($value) {
         return $value . 'bar';
     });
 

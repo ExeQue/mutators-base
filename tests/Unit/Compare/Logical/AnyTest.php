@@ -7,7 +7,7 @@ namespace Tests\Unit\Compare\Logical;
 use ExeQue\Remix\Compare\Logical\Any;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 
-test('at least one comparator must be truthful', function () {
+it('at least one comparator must be truthful', function () {
     $comparator = Any::make(
         fn () => false,
         fn () => false,
@@ -18,7 +18,7 @@ test('at least one comparator must be truthful', function () {
     expect($comparator->check(''))->toBeTrue();
 });
 
-test('outputs false if all comparators are false', function () {
+it('outputs false if all comparators are false', function () {
     $comparator = Any::make(
         fn () => false,
         fn () => false,
@@ -29,6 +29,6 @@ test('outputs false if all comparators are false', function () {
     expect($comparator->check(''))->toBeFalse();
 });
 
-test('fails if comparators is empty', function () {
+it('fails if comparators is empty', function () {
     new Any();
 })->throws(InvalidArgumentException::class);

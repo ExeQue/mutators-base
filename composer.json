@@ -14,7 +14,9 @@
         "pestphp/pest": "^2.8",
         "mockery/mockery": "^1.6",
         "spatie/php-structure-discoverer": "^1.1",
-        "pestphp/pest-plugin-faker": "^2.0"
+        "pestphp/pest-plugin-faker": "^2.0",
+        "ext-openssl": "*",
+        "symfony/var-dumper": "^6.3"
     },
     "license": "MIT",
     "autoload": {

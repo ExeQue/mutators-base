@@ -6,7 +6,7 @@ namespace Tests\Unit\Mutate\String;
 
 use ExeQue\Remix\Mutate\String\Reverse;
 
-test('reverses input', function (string $input, string $expected) {
+it('reverses input', function (string $input, string $expected) {
     $mutator = Reverse::make();
 
     expect($mutator->mutate($input))->toBe($expected);

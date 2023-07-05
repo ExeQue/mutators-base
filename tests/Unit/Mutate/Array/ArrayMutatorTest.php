@@ -7,7 +7,7 @@ namespace Tests\Unit\Mutate\Array;
 use ArrayIterator;
 use ExeQue\Remix\Mutate\Array\ArrayMutator;
 
-test('works with iterable instance', function () {
+it('works with iterable instance', function () {
     $instance = new class extends ArrayMutator
     {
         protected function mutateArray(array $array): array
@@ -23,7 +23,7 @@ test('works with iterable instance', function () {
         ->and($instance->mutate($iterator))->toBe($input);
 });
 
-test('preserves keys when used with iterator', function () {
+it('preserves keys when used with iterator', function () {
     $instance = new class extends ArrayMutator
     {
         protected function mutateArray(array $array): array

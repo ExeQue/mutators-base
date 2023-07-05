@@ -7,7 +7,7 @@ namespace Tests\Unit\Compare;
 use ExeQue\Remix\Compare\Same;
 use stdClass;
 
-test('values are identical', function ($one, $two) {
+it('values are identical', function ($one, $two) {
     $comparator = Same::make($one);
 
     expect($comparator->check($two))->toBe(true);
@@ -16,7 +16,7 @@ test('values are identical', function ($one, $two) {
     [[1], [1]],
 ]);
 
-test('values are not identical', function ($one, $two) {
+it('values are not identical', function ($one, $two) {
     $comparator = Same::make($one);
 
     expect($comparator->check($two))->toBe(false);

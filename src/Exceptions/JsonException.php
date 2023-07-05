@@ -6,6 +6,6 @@ namespace ExeQue\Remix\Exceptions;
 
 use JsonException as VanillaJsonException;
 
-class JsonException extends VanillaJsonException implements RemixException
+class JsonException extends VanillaJsonException implements RemixException, SerializationException
 {
 }

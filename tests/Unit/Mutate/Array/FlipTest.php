@@ -6,7 +6,7 @@ namespace Tests\Unit\Mutate\Array;
 
 use ExeQue\Remix\Mutate\Array\Flip;
 
-test('flips keys and values', function () {
+it('flips keys and values', function () {
     $mutator = Flip::make();
 
     expect($mutator->mutate(['foo' => 'bar']))->toBe(['bar' => 'foo']);

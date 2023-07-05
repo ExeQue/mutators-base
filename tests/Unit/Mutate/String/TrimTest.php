@@ -7,31 +7,31 @@ namespace Tests\Unit\Mutate\String;
 use ExeQue\Remix\Data\StringDirection;
 use ExeQue\Remix\Mutate\String\Trim;
 
-test('trims left', function () {
+it('trims left', function () {
     $mutator = Trim::make(StringDirection::Left);
 
     expect($mutator->mutate(' foo '))->toBe('foo ');
 });
 
-test('trims right', function () {
+it('trims right', function () {
     $mutator = Trim::make(StringDirection::Right);
 
     expect($mutator->mutate(' foo '))->toBe(' foo');
 });
 
-test('trims both', function () {
+it('trims both', function () {
     $mutator = Trim::make(StringDirection::Both);
 
     expect($mutator->mutate(' foo '))->toBe('foo');
 });
 
-test('trims both by default', function () {
+it('trims both by default', function () {
     $mutator = Trim::make();
 
     expect($mutator->mutate(' foo '))->toBe('foo');
 });
 
-test('make is identical to constructor', function () {
+it('make is identical to constructor', function () {
     $input              = 'Hello there, General Kenobi. Hello there, Mr. Anderson';
     $madeMutator        = Trim::make(StringDirection::Both);
     $constructedMutator = Trim::make(StringDirection::Both);
@@ -39,7 +39,7 @@ test('make is identical to constructor', function () {
     expect($madeMutator->mutate($input))->toBe($constructedMutator->mutate($input));
 });
 
-test('trims all supported characters', function (string $characters) {
+it('trims all supported characters', function (string $characters) {
     $input = $characters . 'foo' . $characters;
 
     $mutator = Trim::make(StringDirection::Both);
@@ -59,13 +59,13 @@ test('trims all supported characters', function (string $characters) {
     ];
 });
 
-test('trims specified characters', function () {
+it('trims specified characters', function () {
     $mutator = Trim::make(StringDirection::Both, 'o');
 
     expect($mutator->mutate('foo'))->toBe('f');
 });
 
-test('alias matches direction', function (string $method, string $input, string $expected) {
+it('matches direction', function (string $method, string $input, string $expected) {
     $mutator = Trim::$method();
 
     expect($mutator->mutate($input))->toBe($expected);

@@ -7,7 +7,7 @@ namespace Tests\Unit\Concerns\Definitions;
 use ExeQue\Remix\Concerns\Definitions\UsesEncoding;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 
-test('outputs string encoding if value is set when calling getEncoding', function () {
+it('outputs string encoding if value is set when calling getEncoding', function () {
     $instance = createUsesEncodingInstance();
 
     expect($instance->forward('foo æøå'))->toBe('UTF-8');
@@ -22,19 +22,19 @@ test('outputs string encoding if value is set when calling getEncoding', functio
     ],
 ]);
 
-test('outputs stored encoding if value is not set when calling getEncoding', function () {
+it('outputs stored encoding if value is not set when calling getEncoding', function () {
     $instance = createUsesEncodingInstance('ASCII');
 
     expect($instance->forward('foo æøå'))->toBe('ASCII');
 });
 
-test('outputs null if value and stored encoding is both null', function () {
+it('outputs null if value and stored encoding is both null', function () {
     $instance = createUsesEncodingInstance();
 
     expect($instance->forward(null))->toBeNull();
 });
 
-test('throws error if given invalid encoding', function () {
+it('throws error if given invalid encoding', function () {
     $instance = createUsesEncodingInstance('invalid encoding');
 
     $instance->forward('foo');

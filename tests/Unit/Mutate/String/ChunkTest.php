@@ -7,7 +7,7 @@ namespace Tests\Unit\Mutate\String;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\String\Chunk;
 
-test('chunks a string into an array of strings', function () {
+it('chunks a string into an array of strings', function () {
     $mutator = Chunk::make(3);
 
     expect($mutator->mutate('foo'))->toBe(['foo']);
@@ -24,6 +24,6 @@ test('chunks a string into an array of strings', function () {
     ],
 ]);
 
-test('fail on negative size', function () {
+it('fail on negative size', function () {
     new Chunk(-6);
 })->throws(InvalidArgumentException::class);

@@ -63,6 +63,10 @@ class IsType extends Comparator
             $this->callback = fn ($value) => $this->checkIfValueIsResource($value);
         }
 
+        if ($this->isNumeric($type)) {
+            $this->callback = fn ($value) => $this->checkIfValueIsNumeric($value);
+        }
+
         if (! isset($this->callback)) {
             throw new InvalidArgumentException('Invalid type given. Got: ' . $type);
         }
@@ -180,5 +184,15 @@ class IsType extends Comparator
             'text'  => 'string',
             default => $type,
         };
+    }
+
+    private function isNumeric(string $type): bool
+    {
+        return $type === 'numeric';
+    }
+
+    private function checkIfValueIsNumeric($value): bool
+    {
+        return is_numeric($value);
     }
 }

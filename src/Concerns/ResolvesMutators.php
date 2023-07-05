@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ExeQue\Remix\Concerns;
 
 use ExeQue\Remix\Exceptions\InvalidMutatorException;
-use ExeQue\Remix\Mutate\CallbackMutator;
 use ExeQue\Remix\Mutate\CompoundMutator;
+use ExeQue\Remix\Mutate\MutatesUsing;
 use ExeQue\Remix\Mutate\MutatorInterface;
 use function get_debug_type;
 
@@ -19,7 +19,7 @@ trait ResolvesMutators
         }
 
         if (! is_string($mutator) && is_callable($mutator)) {
-            return new CallbackMutator($mutator);
+            return new MutatesUsing($mutator);
         }
 
         if (is_array($mutator)) {
@@ -34,6 +34,6 @@ trait ResolvesMutators
 
     protected function resolveMutators(array $mutators): array
     {
-        return array_map(fn ($mutator) => $this->resolveMutator($mutator), $mutators);
+        return array_values(array_map(fn ($mutator) => $this->resolveMutator($mutator), $mutators));
     }
 }

@@ -7,7 +7,7 @@ namespace Tests\Unit\Concerns;
 use ExeQue\Remix\Data\StringCase;
 use Tests\Fixtures\TakesOnlyStringCasingFixture as Fixture;
 
-test('uses correct casing', function (Fixture $alias, StringCase $case) {
+it('uses correct casing', function (Fixture $alias, StringCase $case) {
     expect($alias->get())->toBe($case);
 })->with([
     'ada'      => fn () => [Fixture::ada(), StringCase::Ada],

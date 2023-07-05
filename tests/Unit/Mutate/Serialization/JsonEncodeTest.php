@@ -7,7 +7,7 @@ namespace Tests\Unit\Mutate\Serialization;
 use ExeQue\Remix\Exceptions\JsonException;
 use ExeQue\Remix\Mutate\Serialization\JsonEncode;
 
-test('encodes the value as json', function (mixed $input, string $expected) {
+it('encodes the value as json', function (mixed $input, string $expected) {
     $mutator = JsonEncode::make();
 
     expect($mutator->mutate($input))->toBe($expected);
@@ -42,7 +42,7 @@ test('encodes the value as json', function (mixed $input, string $expected) {
     ],
 ]);
 
-test('encode the value as json with pretty', function () {
+it('encode the value as json with pretty', function () {
     $mutator = JsonEncode::pretty();
 
     $expected = <<<'JSON'
@@ -54,7 +54,7 @@ JSON;
     expect($mutator->mutate(['foo' => 'bar']))->toBe($expected);
 });
 
-test('fails if given invalid json', function () {
+it('fails if given invalid json', function () {
     $mutator = JsonEncode::make();
 
     $mutator->mutate("\xB1\x31");

@@ -8,23 +8,23 @@ use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\String\Hash;
 use ReflectionClass;
 
-test('hashes using built in algorithms', function (string $algorithm) {
+it('hashes using built in algorithms', function (string $algorithm) {
     $mutator = Hash::make($algorithm);
 
     expect($mutator->mutate('foo'))->toBe(hash($algorithm, 'foo'));
 })->with(hash_algos());
 
-test('hashes using built in algorithms with raw output', function (string $algorithm) {
+it('hashes using built in algorithms with raw output', function (string $algorithm) {
     $mutator = Hash::make($algorithm, true);
 
     expect($mutator->mutate('foo'))->not->toBe(hash($algorithm, 'foo'));
 })->with(hash_algos());
 
-test('fails if algorithm is not supported', function () {
+it('fails if algorithm is not supported', function () {
     Hash::make('foo');
 })->throws(InvalidArgumentException::class, 'Invalid hash algorithm provided. Got: "foo"');
 
-test('alias matches named algorithm', function (Hash $mutator, string $algorithm) {
+it('matches named algorithm', function (Hash $mutator, string $algorithm) {
     $reflector = new ReflectionClass($mutator);
     $property  = $reflector->getProperty('algorithm');
 

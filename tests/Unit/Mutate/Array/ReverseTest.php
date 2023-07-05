@@ -6,7 +6,7 @@ namespace Tests\Unit\Mutate\Array;
 
 use ExeQue\Remix\Mutate\Array\Reverse;
 
-test('reverses array', function () {
+it('reverses array', function () {
     $mutator = Reverse::make();
 
     expect($mutator->mutate(['foo', 'bar']))->toBe(['bar', 'foo']);

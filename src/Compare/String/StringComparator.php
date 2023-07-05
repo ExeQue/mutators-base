@@ -9,12 +9,12 @@ use ExeQue\Remix\Compare\Comparator;
 
 abstract class StringComparator extends Comparator
 {
-    public function check(mixed $value): bool
+    final public function check(mixed $value): bool
     {
         Assert::string($value, 'Value must be a string.');
 
-        return $this->compareString((string)$value);
+        return $this->checkString((string)$value);
     }
 
-    abstract protected function compareString(string $value): bool;
+    abstract protected function checkString(string $value): bool;
 }

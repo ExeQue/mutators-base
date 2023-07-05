@@ -18,6 +18,10 @@ class Wrap extends Mutator
 
     public function mutate(mixed $value): array
     {
-        return (array)$value;
+        if (is_array($value)) {
+            return $value;
+        }
+
+        return [$value];
     }
 }

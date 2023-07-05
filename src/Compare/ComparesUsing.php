@@ -12,7 +12,7 @@ namespace ExeQue\Remix\Compare;
  *
  * @author Morten Harders <mmh@harders-it.dk>
  */
-class CallbackComparator extends Comparator
+class ComparesUsing extends Comparator
 {
     private $callback;
 

@@ -6,7 +6,7 @@ namespace Tests\Unit\Concerns;
 
 use ExeQue\Remix\Concerns\Makes;
 
-test('returns instance of implementer', function () {
+it('returns instance of implementer', function () {
     $implementation = new class
     {
         use Makes;

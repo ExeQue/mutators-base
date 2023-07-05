@@ -7,7 +7,7 @@ namespace Tests\Unit\Data;
 use ExeQue\Remix\Data\StringCase;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 
-test('fetches casing from string input', function (string $caseAlias) {
+it('fetches casing from string input', function (string $caseAlias) {
     StringCase::from($caseAlias);
 })->throwsNoExceptions()->with([
     'camel'    => 'camel',
@@ -38,6 +38,6 @@ test('fetches casing from string input', function (string $caseAlias) {
     'DOT'      => 'DOT',
 ]);
 
-test('fails when fetching casing from invalid string input', function () {
+it('fails when fetching casing from invalid string input', function () {
     StringCase::from('foobar');
 })->throws(InvalidArgumentException::class);

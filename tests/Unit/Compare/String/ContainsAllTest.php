@@ -8,7 +8,7 @@ use ExeQue\Remix\Compare\String\ContainsAll;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use Stringable;
 
-test('string contains all of the given strings', function (string $input, array $needles, bool $expected) {
+it('string contains all of the given strings', function (string $input, array $needles, bool $expected) {
     $mutator = ContainsAll::make($needles);
 
     expect($mutator->check($input))->toBe($expected);
@@ -35,19 +35,19 @@ test('string contains all of the given strings', function (string $input, array 
     ],
 ]);
 
-test('string contains all of the given strings regardless of casing', function () {
+it('string contains all of the given strings regardless of casing', function () {
     $mutator = ContainsAll::make(['O', 'F'], false);
 
     expect($mutator->check('foo'))->toBeTrue();
 });
 
-test('string does not contain all of the given strings regardless of casing', function () {
+it('string does not contain all of the given strings regardless of casing', function () {
     $mutator = ContainsAll::make(['B', 'Q'], false);
 
     expect($mutator->check('foo'))->toBeFalse();
 });
 
-test('fail if given any non-stringable search value', function (array $search) {
+it('fail if given any non-stringable search value', function (array $search) {
     ContainsAll::make($search);
 })->with([
     'array' => [
@@ -69,7 +69,7 @@ test('fail if given any non-stringable search value', function (array $search) {
     ],
 ])->throws(InvalidArgumentException::class);
 
-test('makes if given any any stringable search value', function (array $search) {
+it('makes if given any any stringable search value', function (array $search) {
     ContainsAll::make($search);
 })->with(function () {
     $stringable = new class implements Stringable

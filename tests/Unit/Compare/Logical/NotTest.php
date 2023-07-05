@@ -6,7 +6,7 @@ namespace Tests\Unit\Compare\Logical;
 
 use ExeQue\Remix\Compare\Logical\Not;
 
-test('inverts comparator', function (mixed $comparator, mixed $expected) {
+it('inverts comparator', function (mixed $comparator, mixed $expected) {
     $comparator = Not::make($comparator);
 
     expect($comparator->check('foo'))->toBe($expected);
