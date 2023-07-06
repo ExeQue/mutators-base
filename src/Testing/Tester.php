@@ -15,8 +15,6 @@ use ReflectionParameter;
 use ReflectionUnionType;
 use Spatie\StructureDiscoverer\Discover;
 
-
-
 class Tester
 {
     public static function runAll(string $directory): void
