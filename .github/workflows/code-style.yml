@@ -40,4 +40,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+          author_email: ${{ github.actor }}@users.noreply.github.com
+          author_name: ${{ github.actor }}
           message: "Pint: Updated code style"
