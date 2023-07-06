@@ -4,5 +4,6 @@
 .phpunit.coverage
 .infection.log.html
 .doctum.cache
+docs
 vendor
 composer.lock
