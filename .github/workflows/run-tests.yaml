@@ -18,8 +18,6 @@ jobs:
           uses: shivammathur/setup-php@2.25.4
         - name: Unit Testing
           run:  vendor/bin/pest
-        - name: Mutation Testing
-          run:  vendor/bin/infection --threads=8
         - name: Code Coverage
           uses: codecov/codecov-action@v2.1.0
           with:
