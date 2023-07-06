@@ -1,0 +1,23 @@
+
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+        branches: [ main ]
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Setup PHP Action
+          uses: shivammathur/setup-php@2.25.4
+        - name: Unit Testing
+          run: vendor/bin/pest --coverage --coverage-html .phpunit.coverage --profile
+        - name: Mutation Testing
+          run: vendor/bin/infection --threads=8
+        - name: Code Coverage
+          uses: codecov/codecov-action@v2.1.0
+          with:
+              file: .phpunit.coverage/coverage.xml
+              fail_ci_if_error: true
