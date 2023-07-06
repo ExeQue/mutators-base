@@ -41,5 +41,5 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
-        author_name: [CI] Pint
+        author_name: "[CI] Pint"
         message: "Pint: Updated code style"
