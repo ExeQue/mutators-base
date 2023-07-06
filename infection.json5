@@ -11,5 +11,8 @@
     "mutators": {
         "@default": true,
     },
+    "logs": {
+        "html": ".infection.log.html"
+    },
     "testFramework": "pest",
 }
