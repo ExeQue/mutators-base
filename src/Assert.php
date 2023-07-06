@@ -5,14 +5,12 @@ declare(strict_types=1);
 namespace ExeQue\Remix;
 
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
-use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
 use Stringable;
 use Webmozart\Assert\Assert as WebmozartAssert;
 
 /**
  * @internal
  */
-#[CodeCoverageIgnore(self::class)]
 class Assert extends WebmozartAssert
 {
     protected static function reportInvalidArgument($message): void

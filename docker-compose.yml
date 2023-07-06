@@ -35,3 +35,9 @@ services:
         - --coverage-html
         - .phpunit.coverage
         - --profile
+  infection:
+    extends:
+      service: php
+    entrypoint:
+        - vendor/bin/infection
+        - --threads=8

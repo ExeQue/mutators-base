@@ -16,7 +16,8 @@
         "spatie/php-structure-discoverer": "^1.1",
         "pestphp/pest-plugin-faker": "^2.0",
         "ext-openssl": "*",
-        "symfony/var-dumper": "^6.3"
+        "symfony/var-dumper": "^6.3",
+        "infection/infection": "^0.27.0"
     },
     "license": "MIT",
     "autoload": {

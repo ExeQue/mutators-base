@@ -2,5 +2,6 @@
 .phpunit.result.cache
 .phpunit.cache
 .phpunit.coverage
+.infection.log.html
 vendor
 composer.lock

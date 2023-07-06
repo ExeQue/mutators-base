@@ -7,8 +7,6 @@ namespace ExeQue\Remix\Testing;
 use ExeQue\Remix\Compare\ComparatorInterface;
 use ExeQue\Remix\Mutate\MutatorInterface;
 use ExeQue\Remix\Serialize\SerializerInterface;
-use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
-use PHPUnit\Framework\Attributes\IgnoreClassForCodeCoverage;
 use ReflectionClass;
 use ReflectionIntersectionType;
 use ReflectionMethod;
@@ -17,15 +15,6 @@ use ReflectionParameter;
 use ReflectionUnionType;
 use Spatie\StructureDiscoverer\Discover;
 
-/**
- * Used for running common architectural tests on mutators and comparators.
- *
- * For use with `root` library and any plugins to ensure that they are following the correct architecture.
- *
- * @author Morten Harders <mmh@harders-it.dk>
- */
-#[CodeCoverageIgnore]
-#[IgnoreClassForCodeCoverage(Tester::class)]
 class Tester
 {
     public static function runAll(string $directory): void

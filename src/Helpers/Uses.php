@@ -4,12 +4,6 @@ declare(strict_types=1);
 
 namespace ExeQue\Remix\Helpers;
 
-use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
-
-/**
- * @internal
- */
-#[CodeCoverageIgnore]
 class Uses
 {
     /**
