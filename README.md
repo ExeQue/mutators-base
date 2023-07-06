@@ -1,5 +1,11 @@
 <img src="art/logo.svg" alt="remix logo">
 
+[![Latest Stable Version](https://img.shields.io/packagist/v/exeque/remix)](https://packagist.org/packages/exeque/remix)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ExeQue/remix/tests.yml)](https://github.com/ExeQue/remix/actions/workflows/tests.yml)
+[![Packagist Downloads (custom server)](https://img.shields.io/packagist/dt/exeque/remix)](https://packagist.org/packages/exeque/remix)
+
+
+
 # ReMix - A Library for Reusable Transformers
 ReMix is a powerful and user-friendly library that provides discreet comparators and mutators, 
 allowing you to create reusable transformers for data transformations. 
