@@ -14,6 +14,14 @@ With a focus on ease of use and developer experience,
 ReMix enables you to compose these components in a human-readable format, 
 making your code more maintainable and understandable.
 
+## Installation
+
+Install the latest version with [Composer](https://getcomposer.org/):
+
+```bash
+composer require exeque/remix
+```
+
 ## Key Features
 
 - **Intuitive API:** ReMix offers a clean and intuitive API that allows you to easily combine comparators and mutators to create powerful transformers.
