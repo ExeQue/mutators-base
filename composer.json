@@ -1,6 +1,6 @@
 {
     "name": "exeque/remix",
-    "description": "ReMix data for PHP",
+    "description": "A powerful and user-friendly library that provides discreet comparators and mutators, allowing you to create reusable transformers for data transformations.",
     "type": "library",
     "require": {
         "php": "^8.1",
