@@ -41,3 +41,4 @@ services:
     entrypoint:
         - vendor/bin/infection
         - --threads=8
+        - --logger-html='.infection.log.html'
