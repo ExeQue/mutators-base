@@ -17,7 +17,8 @@
         "pestphp/pest-plugin-faker": "^2.0",
         "ext-openssl": "*",
         "symfony/var-dumper": "^6.3",
-        "infection/infection": "^0.27.0"
+        "infection/infection": "^0.27.0",
+        "code-lts/doctum": "^5.5"
     },
     "license": "MIT",
     "autoload": {

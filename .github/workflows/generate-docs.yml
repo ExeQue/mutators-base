@@ -1,0 +1,36 @@
+name: Code Style
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  tests:
+    name: Run Doctum
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run Doctum
+        uses: sudo-bot/action-doctum@v5
+        with:
+          config-file: doctum.php
+          # parse, render or update
+          method: "update"
+          # (optional) defaults to '--output-format=github --no-ansi --no-progress -v'
+          cli-args: "--output-format=github --no-ansi --no-progress -v"
+
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          author_name: [CI] Doctum
+          message: "Doctum: Updated docs"

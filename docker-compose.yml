@@ -42,3 +42,12 @@ services:
         - vendor/bin/infection
         - --threads=8
         - --logger-html='.infection.log.html'
+  doctum:
+    extends:
+      service: php
+    entrypoint:
+        - php
+        - vendor/bin/doctum.php
+        - update
+        - ./doctum.php
+

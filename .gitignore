@@ -3,5 +3,6 @@
 .phpunit.cache
 .phpunit.coverage
 .infection.log.html
+.doctum.cache
 vendor
 composer.lock
