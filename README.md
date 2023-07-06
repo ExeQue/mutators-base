@@ -22,6 +22,10 @@ Install the latest version with [Composer](https://getcomposer.org/):
 composer require exeque/remix
 ```
 
+## API Documentation
+
+The API documentation is available [here](https://exeque.github.io/remix/).
+
 ## Key Features
 
 - **Intuitive API:** ReMix offers a clean and intuitive API that allows you to easily combine comparators and mutators to create powerful transformers.
