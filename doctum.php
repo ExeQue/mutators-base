@@ -11,8 +11,6 @@ return new Doctum\Doctum(__DIR__ . '/src', [
     'default_opened_level'  => 3,
     'remote_repository'     => new GitHubRemoteRepository('ExeQue/remix', __DIR__),
     'base_url'              => 'https://exeque.github.io/remix/',
-    'theme'                 => 'default',
-    'template_dirs'         => [__DIR__ . '/templates'],
     'include_parent_data'   => true,
     'sort_class_properties' => true,
     'sort_class_methods'    => true,
