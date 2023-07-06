@@ -6,17 +6,12 @@ on:
         branches: [ main ]
 
 jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - name: Install dependencies
-          uses: php-actions/composer@v6
-
     test:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v2
+        - name: Install dependencies
+          uses: php-actions/composer@v6
         - name: Setup PHP Action
           uses: shivammathur/setup-php@2.25.4
         - name: Unit Testing
