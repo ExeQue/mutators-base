@@ -1,4 +1,4 @@
-name: Code Style
+name: "Code Style"
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   tests:
-    name: Run Pint
+    name: "Run Pint"
 
     runs-on: ubuntu-latest
 

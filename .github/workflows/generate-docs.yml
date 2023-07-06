@@ -1,4 +1,4 @@
-name: Code Style
+name: "Generate Docs"
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   tests:
-    name: Run Doctum
+    name: "Run Doctum"
 
     runs-on: ubuntu-latest
 
