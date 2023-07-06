@@ -1,25 +1,19 @@
-
 on:
-    push:
-        branches: [ main ]
-    pull_request:
-        branches: [ main ]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v3
-        - name: Install dependencies
-          uses: php-actions/composer@v6
-          with:
-            php_version: "8.1"
-        - name: Setup PHP Action
-          uses: shivammathur/setup-php@2.25.4
-        - name: Unit Testing
-          run:  vendor/bin/pest
-        - name: Code Coverage
-          uses: codecov/codecov-action@v2.1.0
-          with:
-              file: .phpunit.coverage/coverage.xml
-              fail_ci_if_error: true
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: "8.1"
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@2.25.4
+      - name: Unit Testing
+        run: vendor/bin/pest
