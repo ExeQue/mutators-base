@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ExeQue\Remix\Mutate\Serialization;
 
-use ExeQue\Remix\Assert;
 use ExeQue\Remix\Concerns\Makes;
+use ExeQue\Remix\Concerns\ResolvesStringInput;
 use ExeQue\Remix\Mutate\Mutator;
 
 /**
@@ -18,10 +18,12 @@ use ExeQue\Remix\Mutate\Mutator;
 class Base64Encode extends Mutator
 {
     use Makes;
+    use ResolvesStringInput;
+
     public function mutate(mixed $value): string
     {
-        Assert::stringable($value, 'Value must be a stringable value');
+        $value = $this->resolveStringInput($value);
 
-        return base64_encode((string)$value);
+        return base64_encode($value);
     }
 }

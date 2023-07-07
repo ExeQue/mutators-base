@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ExeQue\Remix\Mutate\Serialization;
 
+use ExeQue\Remix\Concerns\ResolvesStringInput;
 use ExeQue\Remix\Exceptions\JsonException;
 use ExeQue\Remix\Mutate\Mutator;
 use JsonException as VanillaJsonException;
@@ -19,6 +20,8 @@ use JsonException as VanillaJsonException;
  */
 class JsonDecode extends Mutator
 {
+    use ResolvesStringInput;
+
     private ?bool $associative;
     private int $flags;
     private int $depth;
@@ -65,6 +68,8 @@ class JsonDecode extends Mutator
 
     public function mutate(mixed $value): mixed
     {
+        $value = $this->resolveStringInput($value);
+
         try {
             return json_decode($value, $this->associative, $this->depth, $this->flags);
         } catch (VanillaJsonException $exception) {

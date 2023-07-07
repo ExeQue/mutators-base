@@ -41,9 +41,9 @@ class Assert extends WebmozartAssert
             return;
         }
 
-        self::reportInvalidArgument($message ?: sprintf(
-            'Expected a stringable value. Got: %s',
-            get_debug_type($value)
+        self::reportInvalidArgument(sprintf(
+            $message ?: 'Expected a stringable value. Got: %s',
+            self::valueToString($value)
         ));
     }
 
@@ -62,9 +62,9 @@ class Assert extends WebmozartAssert
             return;
         }
 
-        self::reportInvalidArgument($message ?: sprintf(
-            'Expected an integer or float. Got: %s',
-            get_debug_type($value)
+        self::reportInvalidArgument(sprintf(
+            $message ?: 'Expected an integer or float. Got: %s',
+            self::valueToString($value)
         ));
     }
 
@@ -74,6 +74,16 @@ class Assert extends WebmozartAssert
 
         foreach ($values as $value) {
             self::intOrFloat($value, $message);
+        }
+    }
+
+    public static function traitExists(string $trait, string $message = ''): void
+    {
+        if (! trait_exists($trait)) {
+            self::reportInvalidArgument(sprintf(
+                $message ?: 'Expected trait to exist. Got: %s',
+                self::valueToString($trait)
+            ));
         }
     }
 }

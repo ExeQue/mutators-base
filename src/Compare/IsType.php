@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ExeQue\Remix\Compare;
 
 use Closure;
+use ExeQue\Remix\Assert;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Helpers\Uses;
 
@@ -17,9 +18,10 @@ use ExeQue\Remix\Helpers\Uses;
  * - `bool`
  * - `string`
  * - `scalar`
+ * - `numeric`
+ * - `null`
  * - `array`
  * - `object`
- * - `null`
  * - `resource`
  * - `callable`
  * - `iterable`
@@ -52,6 +54,10 @@ class IsType extends Comparator
             $this->callback = fn ($value) => $this->checkIfValueIsBuiltIn($value, $type);
         }
 
+        if ($this->isNumeric($type)) {
+            $this->callback = fn ($value) => $this->checkIfValueIsNumeric($value);
+        }
+
         if ($this->isNull($type)) {
             $this->callback = fn ($value) => $this->checkIfValueIsNull($value);
         }
@@ -68,10 +74,6 @@ class IsType extends Comparator
             $this->callback = fn ($value) => $this->checkIfValueIsResource($value);
         }
 
-        if ($this->isNumeric($type)) {
-            $this->callback = fn ($value) => $this->checkIfValueIsNumeric($value);
-        }
-
         if (! isset($this->callback)) {
             throw new InvalidArgumentException('Invalid type given. Got: ' . $type);
         }
@@ -85,6 +87,87 @@ class IsType extends Comparator
     public static function make(string $type): self
     {
         return new self($type);
+    }
+
+    public static function int(): self
+    {
+        return self::make('int');
+    }
+
+    public static function float(): self
+    {
+        return self::make('float');
+    }
+
+    public static function bool(): self
+    {
+        return self::make('bool');
+    }
+
+    public static function string(): self
+    {
+        return self::make('string');
+    }
+
+    public static function scalar(): self
+    {
+        return self::make('scalar');
+    }
+
+    public static function numeric(): self
+    {
+        return self::make('numeric');
+    }
+
+    public static function null(): self
+    {
+        return self::make('null');
+    }
+
+    public static function array(): self
+    {
+        return self::make('array');
+    }
+
+    public static function object(): self
+    {
+        return self::make('object');
+    }
+
+    public static function resource(): self
+    {
+        return self::make('resource');
+    }
+
+    public static function callable(): self
+    {
+        return self::make('callable');
+    }
+
+    public static function iterable(): self
+    {
+        return self::make('iterable');
+    }
+
+    public static function class(string $class): self
+    {
+        Assert::classExists($class, "Class {$class} does not exist. Got: %s");
+
+        return self::make($class);
+    }
+
+    public static function interface(string $interface): self
+    {
+        Assert::interfaceExists($interface, "Interface {$interface} does not exist. Got: %s");
+
+        return self::make($interface);
+    }
+
+    public static function trait(string $trait): self
+    {
+        Assert::traitExists($trait, "Trait {$trait} does not exist. Got: %s");
+
+        return self::make($trait);
     }
 
     public function check(mixed $value): bool

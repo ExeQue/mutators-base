@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace ExeQue\Remix\Mutate\String;
 
+use ExeQue\Remix\Concerns\ResolvesStringInput;
 use ExeQue\Remix\Mutate\Mutator;
-use Webmozart\Assert\Assert;
 
 abstract class StringMutator extends Mutator
 {
+    use ResolvesStringInput;
+
     final public function mutate(mixed $value): string
     {
-        Assert::string($value, 'Value must be a string.');
+        $value = $this->resolveStringInput($value);
 
         return $this->mutateString($value);
     }
