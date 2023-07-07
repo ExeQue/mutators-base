@@ -30,7 +30,7 @@ trait ResolvesComparators
         }
 
         throw new InvalidComparatorException(sprintf(
-            'Invalid comparator - must be a non-string callable, array or instance of MutatorInterface. Got: %s',
+            'Invalid comparator - must be a non-string callable, array or instance of ComparatorInterface. Got: %s',
             get_debug_type($comparator)
         ));
     }
