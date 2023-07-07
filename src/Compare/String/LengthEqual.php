@@ -18,7 +18,7 @@ class LengthEqual extends LengthComparator
     private ComparatorInterface $comparator;
 
     /**
-     * @param int $length Length to compare to
+     * @param  int  $length Length to compare to
      */
     public function __construct(int $length)
     {
@@ -28,7 +28,7 @@ class LengthEqual extends LengthComparator
     }
 
     /**
-     * @param int $length Length to compare to
+     * @param  int  $length Length to compare to
      */
     public static function make(int $length): self
     {

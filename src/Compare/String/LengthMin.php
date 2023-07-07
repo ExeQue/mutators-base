@@ -20,8 +20,8 @@ class LengthMin extends LengthComparator
     private ComparatorInterface $comparator;
 
     /**
-     * @param int $length Minimum length
-     * @param bool $inclusive Whether to include the minimum in the comparison
+     * @param  int  $length Minimum length
+     * @param  bool  $inclusive Whether to include the minimum in the comparison
      */
     public function __construct(int $length, bool $inclusive = true)
     {
@@ -31,8 +31,8 @@ class LengthMin extends LengthComparator
     }
 
     /**
-     * @param int $length Minimum length
-     * @param bool $inclusive Whether to include the minimum in the comparison
+     * @param  int  $length Minimum length
+     * @param  bool  $inclusive Whether to include the minimum in the comparison
      */
     public static function make(int $length, bool $inclusive = true): self
     {

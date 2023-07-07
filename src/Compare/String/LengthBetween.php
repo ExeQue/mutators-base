@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace ExeQue\Remix\Compare\String;
 
-use ExeQue\Remix\Assert;
 use ExeQue\Remix\Compare\ComparatorInterface;
-use ExeQue\Remix\Compare\Logical\All;
 use ExeQue\Remix\Compare\Number\Between;
-use ExeQue\Remix\Compare\Number\Max;
-use ExeQue\Remix\Compare\Number\Min;
 
 /**
  * Checks if the length of a string is between a given minimum and maximum.

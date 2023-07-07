@@ -17,7 +17,7 @@ class ComparesUsing extends Comparator
     private $callback;
 
     /**
-     * @param callable $callback The callback to use for comparison
+     * @param  callable  $callback The callback to use for comparison
      */
     public function __construct(callable $callback)
     {
@@ -25,7 +25,7 @@ class ComparesUsing extends Comparator
     }
 
     /**
-     * @param callable $callback The callback to use for comparison
+     * @param  callable  $callback The callback to use for comparison
      */
     public static function make(callable $callback): self
     {

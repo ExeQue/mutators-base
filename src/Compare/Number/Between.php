@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace ExeQue\Remix\Compare\Number;
-
 
 use ExeQue\Remix\Assert;
 use ExeQue\Remix\Compare\Logical\All;

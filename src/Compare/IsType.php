@@ -34,7 +34,7 @@ class IsType extends Comparator
     private Closure $callback;
 
     /**
-     * @param string $type The type to check for
+     * @param  string  $type The type to check for
      *
      * @throws InvalidArgumentException If the given type is not supported
      */
@@ -78,7 +78,7 @@ class IsType extends Comparator
     }
 
     /**
-     * @param string $type The type to check for
+     * @param  string  $type The type to check for
      *
      * @throws InvalidArgumentException If the given type is not supported
      */
