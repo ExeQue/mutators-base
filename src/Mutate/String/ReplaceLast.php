@@ -19,8 +19,8 @@ class ReplaceLast extends StringMutator
     private string $replace;
 
     /**
-     * @param string $search The value to search for.
-     * @param string $replace The replacement value.
+     * @param  string  $search The value to search for.
+     * @param  string  $replace The replacement value.
      */
     public function __construct(string $search, string $replace)
     {
@@ -29,8 +29,8 @@ class ReplaceLast extends StringMutator
     }
 
     /**
-     * @param string $search The value to search for.
-     * @param string $replace The replacement value.
+     * @param  string  $search The value to search for.
+     * @param  string  $replace The replacement value.
      */
     public static function make(string $search, string $replace): self
     {

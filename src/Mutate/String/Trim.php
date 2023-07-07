@@ -21,8 +21,8 @@ class Trim extends StringMutator
     private string $characters;
 
     /**
-     * @param StringDirection $direction The direction to trim (default: StringDirection::Both).
-     * @param string|null $characters The characters to trim (default: ` \t\n\r\0\x0B`).
+     * @param  StringDirection  $direction The direction to trim (default: StringDirection::Both).
+     * @param  string|null  $characters The characters to trim (default: ` \t\n\r\0\x0B`).
      */
     public function __construct(StringDirection $direction = StringDirection::Both, string $characters = null)
     {
@@ -31,8 +31,8 @@ class Trim extends StringMutator
     }
 
     /**
-     * @param StringDirection $direction The direction to trim (default: StringDirection::Both).
-     * @param string|null $characters The characters to trim (default: ` \t\n\r\0\x0B`).
+     * @param  StringDirection  $direction The direction to trim (default: StringDirection::Both).
+     * @param  string|null  $characters The characters to trim (default: ` \t\n\r\0\x0B`).
      */
     public static function make(StringDirection $direction = StringDirection::Both, string $characters = null): self
     {
@@ -40,7 +40,7 @@ class Trim extends StringMutator
     }
 
     /**
-     * @param string|null $characters The characters to trim (default: ` \t\n\r\0\x0B`).
+     * @param  string|null  $characters The characters to trim (default: ` \t\n\r\0\x0B`).
      */
     public static function left(string $characters = null): self
     {
@@ -48,7 +48,7 @@ class Trim extends StringMutator
     }
 
     /**
-     * @param string|null $characters The characters to trim (default: ` \t\n\r\0\x0B`).
+     * @param  string|null  $characters The characters to trim (default: ` \t\n\r\0\x0B`).
      */
     public static function right(string $characters = null): self
     {
@@ -56,7 +56,7 @@ class Trim extends StringMutator
     }
 
     /**
-     * @param string|null $characters The characters to trim (default: ` \t\n\r\0\x0B`).
+     * @param  string|null  $characters The characters to trim (default: ` \t\n\r\0\x0B`).
      */
     public static function both(string $characters = null): self
     {

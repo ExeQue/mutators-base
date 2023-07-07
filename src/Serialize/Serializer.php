@@ -18,7 +18,7 @@ class Serializer implements SerializerInterface
     private Deserialize $decoder;
 
     /**
-     * @param array $options Options to pass to the deserializer.
+     * @param  array  $options Options to pass to the deserializer.
      */
     public function __construct(array $options = [])
     {
@@ -27,7 +27,7 @@ class Serializer implements SerializerInterface
     }
 
     /**
-     * @param array $options Options to pass to the deserializer.
+     * @param  array  $options Options to pass to the deserializer.
      */
     public static function make(array $options = []): self
     {

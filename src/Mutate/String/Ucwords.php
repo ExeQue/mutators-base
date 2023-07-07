@@ -17,7 +17,7 @@ class Ucwords extends StringMutator
     use UsesEncoding;
 
     /**
-     * @param string|null $encoding The encoding to use (optional).
+     * @param  string|null  $encoding The encoding to use (optional).
      */
     public function __construct(string $encoding = null)
     {
@@ -25,7 +25,7 @@ class Ucwords extends StringMutator
     }
 
     /**
-     * @param string|null $encoding The encoding to use (optional).
+     * @param  string|null  $encoding The encoding to use (optional).
      */
     public static function make(string $encoding = null): self
     {

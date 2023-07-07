@@ -20,7 +20,7 @@ class Base64Serializer implements SerializerInterface
     private Base64Decode $decoder;
 
     /**
-     * @param bool $strict Whether to throw an exception when decoding an invalid base64 string (default: true).
+     * @param  bool  $strict Whether to throw an exception when decoding an invalid base64 string (default: true).
      */
     public function __construct(bool $strict = true)
     {
@@ -29,7 +29,7 @@ class Base64Serializer implements SerializerInterface
     }
 
     /**
-     * @param bool $strict Whether to throw an exception when decoding an invalid base64 string (default: true).
+     * @param  bool  $strict Whether to throw an exception when decoding an invalid base64 string (default: true).
      */
     public static function make(bool $strict = true): self
     {
