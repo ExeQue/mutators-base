@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ExeQue\Remix\Concerns;
 
+use ExeQue\Remix\Compare\All;
 use ExeQue\Remix\Compare\ComparatorInterface;
 use ExeQue\Remix\Compare\ComparesUsing;
-use ExeQue\Remix\Compare\Logical\All;
 use ExeQue\Remix\Exceptions\InvalidComparatorException;
 
 trait ResolvesComparators

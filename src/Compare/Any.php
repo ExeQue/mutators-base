@@ -2,28 +2,27 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Remix\Compare\Logical;
+namespace ExeQue\Remix\Compare;
 
-use ExeQue\Remix\Compare\Comparator;
 use ExeQue\Remix\Concerns\HasMultipleComparators;
 
 /**
- * Requires the output of every comparator to be true.
+ * Requires the output of at least one comparator to be true.
  *
  * @author Morten Harders <mmh@harders-it.dk>
  */
-class All extends Comparator
+class Any extends Comparator
 {
     use HasMultipleComparators;
 
     public function check(mixed $value): bool
     {
         foreach ($this->comparators as $comparator) {
-            if (! $comparator->check($value)) {
-                return false;
+            if ($comparator->check($value)) {
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ExeQue\Remix\Compare\Number;
 
 use ExeQue\Remix\Assert;
-use ExeQue\Remix\Compare\Logical\All;
+use ExeQue\Remix\Compare\All;
 
 /**
  * Checks if a number is between a given minimum and maximum.

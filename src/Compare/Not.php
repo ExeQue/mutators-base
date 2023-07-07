@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Remix\Compare\Logical;
+namespace ExeQue\Remix\Compare;
 
-use ExeQue\Remix\Compare\Comparator;
-use ExeQue\Remix\Compare\ComparatorInterface;
 use ExeQue\Remix\Concerns\ResolvesComparators;
 
 /**

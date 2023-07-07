@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Compare\Logical;
+namespace Tests\Unit\Compare;
 
-use ExeQue\Remix\Compare\Logical\One;
+use ExeQue\Remix\Compare\One;
 
 it('only one comparator can be true', function (array $comparators, bool $expected) {
     $comparator = One::make(...$comparators);

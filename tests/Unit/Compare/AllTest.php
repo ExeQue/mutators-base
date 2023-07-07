@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Compare\Logical;
+namespace Tests\Unit\Compare;
 
-use ExeQue\Remix\Compare\Logical\All;
+use ExeQue\Remix\Compare\All;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 
 it('all comparators must be truthful', function () {
