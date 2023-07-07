@@ -18,7 +18,7 @@ class Dump extends Mutator
     private array $args;
 
     /**
-     * @param mixed ...$args Arguments to pass to the dump function _after_ the value.
+     * @param  mixed  ...$args Arguments to pass to the dump function _after_ the value.
      */
     public function __construct(mixed ...$args)
     {
@@ -26,7 +26,7 @@ class Dump extends Mutator
     }
 
     /**
-     * @param mixed ...$args Arguments to pass to the dump function _after_ the value.
+     * @param  mixed  ...$args Arguments to pass to the dump function _after_ the value.
      */
     public static function make(mixed ...$args): self
     {

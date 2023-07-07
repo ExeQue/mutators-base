@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Tests\Unit\Debugging;
 
 use ExeQue\Remix\Debugging\Dump;
@@ -32,6 +31,6 @@ beforeEach(function () {
     });
 });
 
-afterEach(function() {
+afterEach(function () {
     VarDumper::setHandler($this->previousHandler);
 });
