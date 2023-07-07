@@ -17,8 +17,8 @@
         </include>
         <exclude>
             <directory>./src/Testing</directory>
+            <directory>./src/Debugging</directory>
             <file>./src/Assert.php</file>
-            <file>./src/Debugging/Dump.php</file>
         </exclude>
     </source>
 </phpunit>

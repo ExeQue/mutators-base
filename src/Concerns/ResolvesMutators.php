@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace ExeQue\Remix\Concerns;
 
 use ExeQue\Remix\Exceptions\InvalidMutatorException;
-use ExeQue\Remix\Mutate\CompoundMutator;
 use ExeQue\Remix\Mutate\MutatesUsing;
 use ExeQue\Remix\Mutate\MutatorInterface;
+use ExeQue\Remix\Mutate\Sequence;
 use function get_debug_type;
 
 trait ResolvesMutators
@@ -23,7 +23,7 @@ trait ResolvesMutators
         }
 
         if (is_array($mutator)) {
-            return new CompoundMutator($mutator);
+            return new Sequence($mutator);
         }
 
         throw new InvalidMutatorException(sprintf(

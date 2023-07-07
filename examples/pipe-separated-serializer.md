@@ -12,6 +12,16 @@ This mutator does the following:
 5. Joins the values with a pipe separator
 
 ```php
+namespace My\Application;
+
+use ExeQue\Remix\Mutate\Array\Filter;
+use ExeQue\Remix\Mutate\Array\Implode;
+use ExeQue\Remix\Mutate\Array\Map;
+use ExeQue\Remix\Mutate\Convert\ToArray;
+use ExeQue\Remix\Mutate\Convert\ToString;
+use ExeQue\Remix\Mutate\Sequence;
+use ExeQue\Remix\Mutate\String\Trim;
+
 class PipeSeparatedJoiner extends MutatorAlias
 {
     use Makes; // Provides the `make()` method
@@ -19,10 +29,10 @@ class PipeSeparatedJoiner extends MutatorAlias
     public function __construct()
     {
         parent::__construct(
-            new CompoundMutator([ // Run the mutators in sequence
+            new Sequence([ // Run the mutators in sequence
                 ToArray::make(), // Convert input to an array (if it isn't already)
                 Filter::make(), // Remove empty values
-                Map::make(CompoundMutator::make([
+                Map::make(Sequence::make([
                     ToString::make(), // Convert each value to a string
                     Trim::make(), // Trim each value
                 ])),
@@ -42,6 +52,15 @@ This mutator does the following:
 4. Resets the keys
 
 ```php
+namespace My\Application;
+
+use ExeQue\Remix\Mutate\Array\Filter;
+use ExeQue\Remix\Mutate\Array\Map;
+use ExeQue\Remix\Mutate\Array\Values;
+use ExeQue\Remix\Mutate\Sequence;
+use ExeQue\Remix\Mutate\String\Explode;
+use ExeQue\Remix\Mutate\String\Trim;
+
 class PipeSeparatedExploder extends MutatorAlias
 {
     use Makes; // Provides the `make()` method
@@ -49,7 +68,7 @@ class PipeSeparatedExploder extends MutatorAlias
     public function __construct()
     {
         parent::__construct(
-            new CompoundMutator([ // Run the mutators in sequence
+            new Sequence([ // Run the mutators in sequence
                 Explode::make('|'), // Explode the string with a pipe separator
                 Map::make(Trim::make()), // Trim each value
                 Filter::make(), // Remove empty values
@@ -60,7 +79,6 @@ class PipeSeparatedExploder extends MutatorAlias
 }
 ```
 
-
 ### Pipe separated serializer
 
 Use the two previous mutators to create a serializer for encoding and decoding pipe-separated strings.
@@ -69,6 +87,10 @@ This can serve as a reusable serializer for any case where you need to serialize
 Can easily be extended to support other separators (e.g. comma-separated, semicolon-separated, etc. as a fallback when decoding).
 
 ```php
+namespace My\Application;
+
+use ExeQue\Remix\Mutate\MutatorInterface;
+
 class PipeSeparatedSerializer implements SerializerInterface
 {
     private MutatorInterface $encoder;
