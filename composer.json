@@ -2,6 +2,20 @@
     "name": "exeque/remix",
     "description": "A powerful and user-friendly library that provides discreet comparators and mutators, allowing you to create reusable transformers for data transformations.",
     "type": "library",
+    "keywords": [
+        "data",
+        "transform",
+        "transformer",
+        "mutator",
+        "comparator",
+        "remix",
+        "composition",
+        "functional",
+        "arrays",
+        "objects",
+        "strings",
+        "numbers"
+    ],
     "require": {
         "php": "^8.1",
         "jawira/case-converter": "^3.5",
