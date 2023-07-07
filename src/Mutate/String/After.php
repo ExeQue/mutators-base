@@ -14,12 +14,20 @@ class After extends StringMutator
     private string $search;
     private bool $last;
 
+    /**
+     * @param  string  $search The substring to search for.
+     * @param  bool  $last Whether to search for the last occurrence of the substring (default: false).
+     */
     public function __construct(string $search, bool $last = false)
     {
         $this->search = $search;
         $this->last   = $last;
     }
 
+    /**
+     * @param  string  $search The substring to search for.
+     * @param  bool  $last Whether to search for the last occurrence of the substring (default: false).
+     */
     public static function make(string $search, bool $last = false): self
     {
         return new self($search, $last);

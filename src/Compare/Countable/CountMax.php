@@ -21,7 +21,7 @@ class CountMax extends CountableComparator
 
     /**
      * @param  int  $max Maximum count
-     * @param  bool  $inclusive Whether to include the maximum in the comparison
+     * @param  bool  $inclusive Whether to include the maximum in the comparison (default: true)
      */
     public function __construct(int $max, bool $inclusive = true)
     {
@@ -32,7 +32,7 @@ class CountMax extends CountableComparator
 
     /**
      * @param  int  $max Maximum count
-     * @param  bool  $inclusive Whether to include the maximum in the comparison
+     * @param  bool  $inclusive Whether to include the maximum in the comparison (default: true)
      */
     public static function make(int $max, bool $inclusive = true): self
     {

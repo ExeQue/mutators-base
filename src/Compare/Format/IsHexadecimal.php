@@ -17,7 +17,7 @@ class IsHexadecimal extends StringComparator
     private bool $bytes;
 
     /**
-     * @param  bool  $bytes If true, spaces between every byte (2 characters) is required.
+     * @param  bool  $bytes If true, spaces between every byte (2 characters) is required (eg. 00 11 22 33) instead of 00112233. (default: false)
      */
     public function __construct(bool $bytes = false)
     {
@@ -25,7 +25,7 @@ class IsHexadecimal extends StringComparator
     }
 
     /**
-     * @param  bool  $bytes If true, spaces between every byte (2 characters) is required.
+     * @param  bool  $bytes If true, spaces between every byte (2 characters) is required (eg. 00 11 22 33) instead of 00112233. (default: false)
      */
     public static function make(bool $bytes = false): self
     {

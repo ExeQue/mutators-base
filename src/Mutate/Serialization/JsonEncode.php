@@ -22,17 +22,29 @@ class JsonEncode extends Mutator
     private int $flags;
     private int $depth;
 
+    /**
+     * @param  int  $flags Bitmask of JSON encode options. Forces use of JSON_THROW_ON_ERROR (default: 0)
+     * @param  int  $depth The maximum depth (default: 512)
+     */
     public function __construct(int $flags = 0, int $depth = 512)
     {
         $this->flags = $flags | JSON_THROW_ON_ERROR;
         $this->depth = $depth;
     }
 
+    /**
+     * @param  int  $flags Bitmask of JSON encode options. Forces use of JSON_THROW_ON_ERROR (default: 0)
+     * @param  int  $depth The maximum depth (default: 512)
+     */
     public static function make(int $flags = 0, int $depth = 512): self
     {
         return new self($flags, $depth);
     }
 
+    /**
+     * @param  int  $depth The maximum depth (default: 512)
+     * @param  int  $flags Bitmask of JSON encode options. Forces use of JSON_THROW_ON_ERROR and JSON_PRETTY_PRINT (default: 0)
+     */
     public static function pretty(int $flags = 0, int $depth = 512): self
     {
         return new self($flags | JSON_PRETTY_PRINT, $depth);

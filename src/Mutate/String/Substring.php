@@ -20,6 +20,11 @@ class Substring extends StringMutator
     protected int $start;
     protected ?int $length;
 
+    /**
+     * @param int $start The position to start extraction from.
+     * @param int|null $length The number of characters to extract (optional).
+     * @param string|null $encoding The encoding to use (optional).
+     */
     public function __construct(int $start, int $length = null, string $encoding = null)
     {
         $this->start  = $start;
@@ -28,6 +33,11 @@ class Substring extends StringMutator
         $this->setEncoding($encoding);
     }
 
+    /**
+     * @param int $start The position to start extraction from.
+     * @param int|null $length The number of characters to extract (optional).
+     * @param string|null $encoding The encoding to use (optional).
+     */
     public static function make(int $start, int $length = null, string $encoding = null): self
     {
         return new self($start, $length, $encoding);

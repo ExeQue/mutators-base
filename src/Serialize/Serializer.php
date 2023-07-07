@@ -17,12 +17,18 @@ class Serializer implements SerializerInterface
     private Serialize $encoder;
     private Deserialize $decoder;
 
+    /**
+     * @param array $options Options to pass to the deserializer.
+     */
     public function __construct(array $options = [])
     {
         $this->encoder = Serialize::make();
         $this->decoder = Deserialize::make($options);
     }
 
+    /**
+     * @param array $options Options to pass to the deserializer.
+     */
     public static function make(array $options = []): self
     {
         return new self($options);

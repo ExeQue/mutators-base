@@ -19,6 +19,10 @@ class Chunk extends Mutator
 
     private int $size;
 
+    /**
+     * @param  int  $size The size of each chunk.
+     * @param  string|null  $encoding The encoding to use (optional).
+     */
     public function __construct(int $size, string $encoding = null)
     {
         Assert::greaterThan($size, 0, 'Size must be greater than 0.');
@@ -27,6 +31,10 @@ class Chunk extends Mutator
         $this->setEncoding($encoding);
     }
 
+    /**
+     * @param  int  $size The size of each chunk.
+     * @param  string|null  $encoding The encoding to use (optional).
+     */
     public static function make(int $size, string $encoding = null): self
     {
         return new self($size, $encoding);

@@ -15,11 +15,17 @@ class Only extends ArrayMutator
 {
     private array $keys;
 
+    /**
+     * @param  array|string  $keys The keys to retrieve
+     */
     public function __construct(array|string $keys)
     {
         $this->keys = (array)$keys;
     }
 
+    /**
+     * @param  array|string  $keys The keys to retrieve
+     */
     public static function make(array|string $keys): self
     {
         return new self($keys);

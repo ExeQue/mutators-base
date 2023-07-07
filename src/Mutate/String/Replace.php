@@ -17,6 +17,11 @@ class Replace extends StringMutator
     private string|array $replace;
     private bool $caseSensitive;
 
+    /**
+     * @param array|string $search The value(s) to search for.
+     * @param array|string $replace The replacement value(s).
+     * @param bool $caseSensitive Whether to perform a case-sensitive search (default: true).
+     */
     public function __construct(array|string $search, array|string $replace, bool $caseSensitive = true)
     {
         $this->search        = $search;
@@ -24,6 +29,11 @@ class Replace extends StringMutator
         $this->caseSensitive = $caseSensitive;
     }
 
+    /**
+     * @param array|string $search The value(s) to search for.
+     * @param array|string $replace The replacement value(s).
+     * @param bool $caseSensitive Whether to perform a case-sensitive search (default: true).
+     */
     public static function make(array|string $search, array|string $replace, bool $caseSensitive = true): self
     {
         return new self($search, $replace, $caseSensitive);

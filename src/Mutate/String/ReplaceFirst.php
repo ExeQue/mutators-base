@@ -18,12 +18,20 @@ class ReplaceFirst extends StringMutator
     private string $search;
     private string $replace;
 
+    /**
+     * @param string $search The value to search for.
+     * @param string $replace The replacement value.
+     */
     public function __construct(string $search, string $replace)
     {
         $this->search  = $search;
         $this->replace = $replace;
     }
 
+    /**
+     * @param string $search The value to search for.
+     * @param string $replace The replacement value.
+     */
     public static function make(string $search, string $replace): self
     {
         return new self($search, $replace);

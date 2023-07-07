@@ -21,7 +21,7 @@ class Between extends NumberComparator
     /**
      * @param  int  $min Minimum
      * @param  int  $max Maximum
-     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison
+     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison (default: true)
      */
     public function __construct(int $min, int $max, bool $inclusive = true)
     {
@@ -38,7 +38,7 @@ class Between extends NumberComparator
     /**
      * @param  int  $min Minimum
      * @param  int  $max Maximum
-     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison
+     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison (default: true)
      */
     public static function make(int $min, int $max, bool $inclusive = true): self
     {

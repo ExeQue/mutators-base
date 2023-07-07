@@ -15,8 +15,8 @@ class Contains extends StringComparator
     private bool $caseSensitive;
 
     /**
-     * @param  string  $search The string to search for.
-     * @param  bool  $caseSensitive Whether to perform a case-sensitive search.
+     * @param  string  $search The string to search for
+     * @param  bool  $caseSensitive Whether to perform a case-sensitive search (default: true)
      */
     public function __construct(string $search, bool $caseSensitive = true)
     {
@@ -25,8 +25,8 @@ class Contains extends StringComparator
     }
 
     /**
-     * @param  string  $search The string to search for.
-     * @param  bool  $caseSensitive Whether to perform a case sensitive search.
+     * @param  string  $search The string to search for
+     * @param  bool  $caseSensitive Whether to perform a case-sensitive search (default: true)
      */
     public static function make(string $search, bool $caseSensitive = true): self
     {

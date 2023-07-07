@@ -15,6 +15,7 @@ use ExeQue\Remix\Mutate\Mutator;
 class ToObject extends Mutator
 {
     use Makes;
+
     public function mutate(mixed $value): object
     {
         return (object)$value;

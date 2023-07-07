@@ -19,11 +19,17 @@ class Deserialize extends Mutator
 {
     private array $options;
 
+    /**
+     * @param  array  $options Options to pass to unserialize()
+     */
     public function __construct(array $options = [])
     {
         $this->options = $options;
     }
 
+    /**
+     * @param  array  $options Options to pass to unserialize()
+     */
     public static function make(array $options = []): self
     {
         return new self($options);

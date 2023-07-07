@@ -22,6 +22,11 @@ class When extends Mutator
     private MutatorInterface $then;
     private ?MutatorInterface $otherwise = null;
 
+    /**
+     * @param callable|bool $condition The condition to check - If a callable is provided, it will be called with the value to check as the first argument.
+     * @param callable|array $then The mutator to execute if the condition is true.
+     * @param callable|array|null $otherwise The mutator to execute if the condition is false (optional).
+     */
     public function __construct(callable|bool $condition, callable|array $then, callable|array $otherwise = null)
     {
         $this->condition = $this->resolveComparator($condition);
@@ -32,6 +37,11 @@ class When extends Mutator
         }
     }
 
+    /**
+     * @param callable|bool $condition The condition to check - If a callable is provided, it will be called with the value to check as the first argument.
+     * @param callable|array $then The mutator to execute if the condition is true.
+     * @param callable|array|null $otherwise The mutator to execute if the condition is false (optional).
+     */
     public static function make(callable|bool $condition, callable|array $then, callable|array $otherwise = null): self
     {
         return new self($condition, $then, $otherwise);

@@ -21,7 +21,7 @@ class LengthMax extends LengthComparator
 
     /**
      * @param  int  $length Maximum length
-     * @param  bool  $inclusive Whether to include the maximum in the comparison
+     * @param  bool  $inclusive Whether to include the maximum in the comparison (default: true)
      */
     public function __construct(int $length, bool $inclusive = true)
     {
@@ -32,7 +32,7 @@ class LengthMax extends LengthComparator
 
     /**
      * @param  int  $length Maximum length
-     * @param  bool  $inclusive Whether to include the maximum in the comparison
+     * @param  bool  $inclusive Whether to include the maximum in the comparison (default: true)
      */
     public static function make(int $length, bool $inclusive = true): self
     {

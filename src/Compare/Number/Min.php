@@ -18,7 +18,7 @@ class Min extends NumberComparator
 
     /**
      * @param  int  $min The minimum value
-     * @param  bool  $inclusive Whether to include the minimum value
+     * @param  bool  $inclusive Whether to include the minimum value (default: true)
      */
     public function __construct(int $min, bool $inclusive = true)
     {
@@ -28,7 +28,7 @@ class Min extends NumberComparator
 
     /**
      * @param  int  $min The minimum value
-     * @param  bool  $inclusive Whether to include the minimum value
+     * @param  bool  $inclusive Whether to include the minimum value (default: true)
      */
     public static function make(int $min, bool $inclusive = true): self
     {

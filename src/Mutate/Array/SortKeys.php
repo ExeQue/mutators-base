@@ -18,12 +18,20 @@ class SortKeys extends ArrayMutator
     private SortDirection $direction;
     private int $flags;
 
+    /**
+     * @param  SortDirection  $direction The direction to sort by (optional, default: SortDirection::Asc)
+     * @param  int  $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
+     */
     public function __construct(SortDirection $direction = SortDirection::Asc, int $flags = SORT_REGULAR)
     {
         $this->direction = $direction;
         $this->flags     = $flags;
     }
 
+    /**
+     * @param  SortDirection  $direction The direction to sort by (optional, default: SortDirection::Asc)
+     * @param  int  $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
+     */
     public static function make(SortDirection $direction = SortDirection::Asc, int $flags = SORT_REGULAR): self
     {
         return new self($direction, $flags);

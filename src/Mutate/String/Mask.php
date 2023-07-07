@@ -16,6 +16,10 @@ class Mask extends StringMutator
     private string $pattern;
     private string $replacement;
 
+    /**
+     * @param  string  $pattern The regular expression to match.
+     * @param  string  $replacement The replacement character (default: '*').
+     */
     public function __construct(string $pattern, string $replacement = '*')
     {
         $this->validate($replacement, $pattern);
@@ -24,6 +28,10 @@ class Mask extends StringMutator
         $this->replacement = $replacement;
     }
 
+    /**
+     * @param  string  $pattern The regular expression to match.
+     * @param  string  $replacement The replacement character (default: '*').
+     */
     public static function make(string $pattern, string $replacement = '*'): self
     {
         return new self($pattern, $replacement);

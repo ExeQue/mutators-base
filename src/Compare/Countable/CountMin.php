@@ -21,7 +21,7 @@ class CountMin extends CountableComparator
 
     /**
      * @param  int  $min Minimum count
-     * @param  bool  $inclusive Whether to include the minimum in the comparison
+     * @param  bool  $inclusive Whether to include the minimum in the comparison (default: true)
      */
     public function __construct(int $min, bool $inclusive = true)
     {
@@ -32,7 +32,7 @@ class CountMin extends CountableComparator
 
     /**
      * @param  int  $min Minimum count
-     * @param  bool  $inclusive Whether to include the minimum in the comparison
+     * @param  bool  $inclusive Whether to include the minimum in the comparison (default: true)
      */
     public static function make(int $min, bool $inclusive = true): self
     {

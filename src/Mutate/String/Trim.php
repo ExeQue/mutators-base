@@ -20,27 +20,44 @@ class Trim extends StringMutator
     private StringDirection $direction;
     private string $characters;
 
+    /**
+     * @param StringDirection $direction The direction to trim (default: StringDirection::Both).
+     * @param string|null $characters The characters to trim (default: ` \t\n\r\0\x0B`).
+     */
     public function __construct(StringDirection $direction = StringDirection::Both, string $characters = null)
     {
         $this->direction  = $direction;
         $this->characters = $characters ?? $this->resolveDefaultCharacters();
     }
 
+    /**
+     * @param StringDirection $direction The direction to trim (default: StringDirection::Both).
+     * @param string|null $characters The characters to trim (default: ` \t\n\r\0\x0B`).
+     */
     public static function make(StringDirection $direction = StringDirection::Both, string $characters = null): self
     {
         return new self($direction, $characters);
     }
 
+    /**
+     * @param string|null $characters The characters to trim (default: ` \t\n\r\0\x0B`).
+     */
     public static function left(string $characters = null): self
     {
         return new self(StringDirection::Left, $characters);
     }
 
+    /**
+     * @param string|null $characters The characters to trim (default: ` \t\n\r\0\x0B`).
+     */
     public static function right(string $characters = null): self
     {
         return new self(StringDirection::Right, $characters);
     }
 
+    /**
+     * @param string|null $characters The characters to trim (default: ` \t\n\r\0\x0B`).
+     */
     public static function both(string $characters = null): self
     {
         return new self(StringDirection::Both, $characters);

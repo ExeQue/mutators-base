@@ -14,12 +14,20 @@ class Truncate extends StringMutator
     private int $length;
     private string $ellipsis;
 
+    /**
+     * @param int $length The maximum length of the string.
+     * @param string $ellipsis The ellipsis to append to the string if it is truncated (default: '...').
+     */
     public function __construct(int $length, string $ellipsis = '...')
     {
         $this->length   = $length;
         $this->ellipsis = $ellipsis;
     }
 
+    /**
+     * @param int $length The maximum length of the string.
+     * @param string $ellipsis The ellipsis to append to the string if it is truncated (default: '...').
+     */
     public static function make(int $length, string $ellipsis = '...'): self
     {
         return new self($length, $ellipsis);

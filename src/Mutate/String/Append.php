@@ -13,11 +13,17 @@ class Append extends StringMutator
 {
     private string $append;
 
+    /**
+     * @param  string  $append The string to append.
+     */
     public function __construct(string $append)
     {
         $this->append = $append;
     }
 
+    /**
+     * @param  string  $append The string to append.
+     */
     public static function make(string $append): self
     {
         return new self($append);

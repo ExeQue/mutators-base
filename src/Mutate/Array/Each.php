@@ -7,6 +7,8 @@ namespace ExeQue\Remix\Mutate\Array;
 /**
  * Executes callback with each value in array. If callback returns explicit `false`, the loop is broken.
  *
+ * Does _NOT_ mutate the input array - It only iterates over it.
+ *
  * @author Morten Harders <mmh@harders-it.dk>
  */
 class Each extends ArrayMutator
@@ -16,11 +18,17 @@ class Each extends ArrayMutator
      */
     private $callback;
 
+    /**
+     * @param  callable  $callback The callback to execute
+     */
     public function __construct(callable $callback)
     {
         $this->callback = $callback;
     }
 
+    /**
+     * @param  callable  $callback The callback to execute
+     */
     public static function make(callable $callback): self
     {
         return new self($callback);

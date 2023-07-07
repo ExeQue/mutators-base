@@ -18,7 +18,7 @@ class Max extends NumberComparator
 
     /**
      * @param  int  $max The maximum value
-     * @param  bool  $inclusive Whether to include the maximum value
+     * @param  bool  $inclusive Whether to include the maximum value (default: true)
      */
     public function __construct(int $max, bool $inclusive = true)
     {
@@ -28,7 +28,7 @@ class Max extends NumberComparator
 
     /**
      * @param  int  $max The maximum value
-     * @param  bool  $inclusive Whether to include the maximum value
+     * @param  bool  $inclusive Whether to include the maximum value (default: true)
      */
     public static function make(int $max, bool $inclusive = true): self
     {

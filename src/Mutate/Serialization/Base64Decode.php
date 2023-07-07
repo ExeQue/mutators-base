@@ -20,11 +20,17 @@ class Base64Decode extends Mutator
 {
     private bool $strict;
 
+    /**
+     * @param  bool  $strict If true, the function will return false if the input contains character from outside the base64 alphabet or if the input contains character sequences that are not valid base64 encodings (e.g. a base64 encoded string from a different encoding or truncated). (default: true)
+     */
     public function __construct(bool $strict = true)
     {
         $this->strict = $strict;
     }
 
+    /**
+     * @param  bool  $strict If true, the function will return false if the input contains character from outside the base64 alphabet or if the input contains character sequences that are not valid base64 encodings (e.g. a base64 encoded string from a different encoding or truncated). (default: true)
+     */
     public static function make(bool $strict = true): self
     {
         return new self($strict);

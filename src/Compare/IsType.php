@@ -12,20 +12,20 @@ use ExeQue\Remix\Helpers\Uses;
  * Check if the value is of a given type. Supports all scalar types, objects, arrays, callables, classes, interfaces and traits.
  *
  * Supports the following types:
- * - int
- * - float
- * - bool
- * - string
- * - scalar
- * - array
- * - object
- * - null
- * - resource
- * - callable
- * - iterable
- * - class (e.g. `MyClass::class`)
- * - interface (e.g. `MyInterface::class`)
- * - trait (e.g. `MyTrait::class`)
+ * - `int`
+ * - `float`
+ * - `bool`
+ * - `string`
+ * - `scalar`
+ * - `array`
+ * - `object`
+ * - `null`
+ * - `resource`
+ * - `callable`
+ * - `iterable`
+ * - `class` (e.g. `MyClass::class`)
+ * - `interface` (e.g. `MyInterface::class`)
+ * - `trait` (e.g. `MyTrait::class`)
  *
  * @author Morten Harders <mmh@harders-it.dk>
  */

@@ -21,6 +21,11 @@ class PositionOf extends Mutator
     protected string $needle;
     protected int $offset = 0;
 
+    /**
+     * @param  string  $needle The substring to search for.
+     * @param  int  $offset The position to start searching from (default: 0).
+     * @param  string|null  $encoding The encoding to use (optional).
+     */
     public function __construct(string $needle, int $offset = 0, string $encoding = null)
     {
         $this->needle = $needle;
@@ -29,6 +34,11 @@ class PositionOf extends Mutator
         $this->setEncoding($encoding);
     }
 
+    /**
+     * @param  string  $needle The substring to search for.
+     * @param  int  $offset The position to start searching from (default: 0).
+     * @param  string|null  $encoding The encoding to use (optional).
+     */
     public static function make(string $needle, int $offset = 0, string $encoding = null): self
     {
         return new self($needle, $offset, $encoding);

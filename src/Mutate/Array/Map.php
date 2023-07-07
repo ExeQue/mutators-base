@@ -15,11 +15,17 @@ class Map extends ArrayMutator
 {
     private $callback;
 
+    /**
+     * @param  callable  $callback The callback to apply to each element
+     */
     public function __construct(callable $callback)
     {
         $this->callback = $callback;
     }
 
+    /**
+     * @param  callable  $callback The callback to apply to each element
+     */
     public static function make(callable $callback): self
     {
         return new self($callback);

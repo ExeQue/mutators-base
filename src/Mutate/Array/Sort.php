@@ -22,6 +22,12 @@ class Sort extends ArrayMutator
     private bool $preserveKeys;
     private int $flags;
 
+    /**
+     * @param  SortDirection  $direction The direction to sort by (optional, default: SortDirection::Asc)
+     * @param  callable|null  $callback The callback to retrieve the value to sort by (optional)
+     * @param  bool  $preserveKeys Whether to preserve key association (default: true)
+     * @param  int  $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
+     */
     public function __construct(SortDirection $direction = SortDirection::Asc, callable $callback = null, bool $preserveKeys = true, int $flags = SORT_REGULAR)
     {
         $this->direction    = $direction;
@@ -30,6 +36,12 @@ class Sort extends ArrayMutator
         $this->flags        = $flags;
     }
 
+    /**
+     * @param  SortDirection  $direction The direction to sort by (optional, default: SortDirection::Asc)
+     * @param  callable|null  $callback The callback to retrieve the value to sort by (optional)
+     * @param  bool  $preserveKeys Whether to preserve key association (default: true)
+     * @param  int  $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
+     */
     public static function make(SortDirection $direction = SortDirection::Asc, callable $callback = null, bool $preserveKeys = true, int $flags = SORT_REGULAR): self
     {
         return new self($direction, $callback, $preserveKeys, $flags);

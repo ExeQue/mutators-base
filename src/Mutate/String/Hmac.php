@@ -19,6 +19,11 @@ class Hmac extends StringMutator
     private string $key;
     private bool $rawOutput;
 
+    /**
+     * @param  string  $algo The algorithm to use.
+     * @param  string  $key The secret key.
+     * @param  bool  $rawOutput Whether to output raw binary data (default: false).
+     */
     public function __construct(string $algo, string $key, bool $rawOutput = false)
     {
         Assert::inArray($algo, hash_algos(), 'Invalid hash algorithm provided. Got: %s');
@@ -28,6 +33,11 @@ class Hmac extends StringMutator
         $this->rawOutput = $rawOutput;
     }
 
+    /**
+     * @param  string  $algo The algorithm to use.
+     * @param  string  $key The secret key.
+     * @param  bool  $rawOutput Whether to output raw binary data (default: false).
+     */
     public static function make(string $algo, string $key, bool $rawOutput = false): self
     {
         return new self($algo, $key, $rawOutput);

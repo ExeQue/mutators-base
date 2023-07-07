@@ -19,12 +19,18 @@ class Base64Serializer implements SerializerInterface
     private Base64Encode $encoder;
     private Base64Decode $decoder;
 
+    /**
+     * @param bool $strict Whether to throw an exception when decoding an invalid base64 string (default: true).
+     */
     public function __construct(bool $strict = true)
     {
         $this->encoder = Base64Encode::make();
         $this->decoder = Base64Decode::make($strict);
     }
 
+    /**
+     * @param bool $strict Whether to throw an exception when decoding an invalid base64 string (default: true).
+     */
     public static function make(bool $strict = true): self
     {
         return new self($strict);

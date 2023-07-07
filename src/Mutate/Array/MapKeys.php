@@ -13,11 +13,17 @@ class MapKeys extends ArrayMutator
 {
     private $callback;
 
+    /**
+     * @param  callable  $callback The callback to apply to each key
+     */
     public function __construct(callable $callback)
     {
         $this->callback = $callback;
     }
 
+    /**
+     * @param  callable  $callback The callback to apply to each key
+     */
     public static function make(callable $callback): self
     {
         return new self($callback);

@@ -19,6 +19,10 @@ class Explode extends Mutator
     private string $delimiter;
     private int $limit;
 
+    /**
+     * @param  string  $delimiter The boundary string.
+     * @param  int  $limit The maximum number of elements to return (optional).
+     */
     public function __construct(string $delimiter, int $limit = PHP_INT_MAX)
     {
         Assert::greaterThanEq($limit, 1, 'Limit must be greater than or equal to 1');
@@ -27,6 +31,10 @@ class Explode extends Mutator
         $this->limit     = $limit;
     }
 
+    /**
+     * @param  string  $delimiter The boundary string.
+     * @param  int  $limit The maximum number of elements to return (optional).
+     */
     public static function make(string $delimiter, int $limit = PHP_INT_MAX): self
     {
         return new self($delimiter, $limit);

@@ -19,6 +19,10 @@ class ToClass extends Mutator
     private string $class;
     private bool $spread;
 
+    /**
+     * @param  string  $class The class to convert to
+     * @param  bool  $spread Whether to spread an array into the constructor or not (default: false)
+     */
     public function __construct(string $class, bool $spread = false)
     {
         Assert::classExists($class, 'Class does not exist: %s');
@@ -27,6 +31,10 @@ class ToClass extends Mutator
         $this->spread = $spread;
     }
 
+    /**
+     * @param  string  $class The class to convert to
+     * @param  bool  $spread Whether to spread an array into the constructor or not (default: false)
+     */
     public static function make(string $class, bool $spread = false): self
     {
         return new self($class, $spread);

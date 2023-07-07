@@ -16,11 +16,17 @@ class Ucwords extends StringMutator
 {
     use UsesEncoding;
 
+    /**
+     * @param string|null $encoding The encoding to use (optional).
+     */
     public function __construct(string $encoding = null)
     {
         $this->setEncoding($encoding);
     }
 
+    /**
+     * @param string|null $encoding The encoding to use (optional).
+     */
     public static function make(string $encoding = null): self
     {
         return new self($encoding);

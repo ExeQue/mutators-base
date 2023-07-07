@@ -18,6 +18,9 @@ class IntToHex extends Mutator
 {
     private int $minLength;
 
+    /**
+     * @param  int  $minLength The minimum length of the resulting string. If the resulting string is shorter than this, it will be padded with zeroes (default: 0)
+     */
     public function __construct(int $minLength = 0)
     {
         Assert::greaterThanEq($minLength, 0, 'Padding must be a positive integer. Got: %s');
@@ -25,6 +28,9 @@ class IntToHex extends Mutator
         $this->minLength = $minLength;
     }
 
+    /**
+     * @param  int  $minLength The minimum length of the resulting string. If the resulting string is shorter than this, it will be padded with zeroes (default: 0)
+     */
     public static function make(int $minLength = 0): self
     {
         return new self($minLength);
