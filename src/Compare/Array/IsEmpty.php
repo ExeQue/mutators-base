@@ -14,6 +14,10 @@ use ExeQue\Remix\Concerns\Makes;
 class IsEmpty extends ArrayComparator
 {
     use Makes;
+
+    /**
+     * Check if the array is empty.
+     */
     protected function checkArray(array $value): bool
     {
         return empty($value);

@@ -9,6 +9,11 @@ use ExeQue\Remix\Compare\Comparator;
 
 abstract class ArrayComparator extends Comparator
 {
+    /**
+     * Compare the input value against the comparator.
+     *
+     * @param  array  $value
+     */
     final public function check(mixed $value): bool
     {
         Assert::isIterable($value, 'Value must be an array. Got: %s');
@@ -20,5 +25,10 @@ abstract class ArrayComparator extends Comparator
         return $this->checkArray($value);
     }
 
+    /**
+     * Compare the array against the comparator.
+     *
+     * @param  array  $value
+     */
     abstract protected function checkArray(array $value): bool;
 }
