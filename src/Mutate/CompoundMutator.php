@@ -22,11 +22,17 @@ class CompoundMutator extends Mutator
 
     private array $mutators;
 
+    /**
+     * @param  array  $mutators The mutators to compound.
+     */
     public function __construct(array $mutators = [])
     {
         $this->mutators = $this->resolveMutators($mutators);
     }
 
+    /**
+     * @param  array  $mutators The mutators to compound.
+     */
     public static function make(array $mutators = []): self
     {
         return new self($mutators);

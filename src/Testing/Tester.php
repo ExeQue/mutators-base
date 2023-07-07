@@ -93,11 +93,29 @@ class Tester
     public static function testDocblock(string $directory): void
     {
         it('has docblock', function (string $class) {
-            $reflection = new ReflectionClass($class);
+            $reflector = new ReflectionClass($class);
 
-            $docblock = $reflection->getDocComment();
+            $constructor = $reflector->getConstructor();
+            $maker       = $reflector->hasMethod('make') ? $reflector->getMethod('make') : null;
 
-            expect($docblock)->toBeString('Docblock is missing on ' . $class);
+            $classDocblock = $reflector->getDocComment();
+
+            expect($classDocblock)->toBeString('Docblock is missing on ' . $class);
+
+            if ($constructor) {
+                $constructorDocblock = $constructor->getDocComment();
+                expect($constructorDocblock)->toBeString('Docblock is missing on ' . $class . '::__construct()');
+            }
+
+            if ($maker) {
+                $makerDocblock = $maker->getDocComment();
+                expect($makerDocblock)->toBeString('Docblock is missing on ' . $class . '::make()');
+            }
+
+            if ($constructor && $maker) {
+                expect($constructorDocblock)
+                    ->toBe($makerDocblock, 'Docblock on ' . $class . '::__construct() and ' . $class . '::make() do not match');
+            }
         })->with(self::locateAll($directory));
     }
 
