@@ -27,8 +27,6 @@ abstract class ArrayComparator extends Comparator
 
     /**
      * Compare the array against the comparator.
-     *
-     * @param  array  $value
      */
     abstract protected function checkArray(array $value): bool;
 }
