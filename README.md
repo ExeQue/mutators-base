@@ -26,6 +26,10 @@ composer require exeque/remix
 
 The API documentation is available [here](https://exeque.github.io/remix/).
 
+## Examples
+
+A few examples are available [here](./examples/_index.md).
+
 ## Key Features
 
 - **Intuitive API:** ReMix offers a clean and intuitive API that allows you to easily combine comparators and mutators to create powerful transformers.

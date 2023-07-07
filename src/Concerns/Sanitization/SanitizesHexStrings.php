@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ExeQue\Remix\Concerns\Sanitization;
 
-use ExeQue\Remix\Testing\Regexp;
+use ExeQue\Remix\Data\Regexp;
 
 trait SanitizesHexStrings
 {

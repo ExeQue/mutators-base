@@ -6,10 +6,10 @@ namespace ExeQue\Remix\Mutate\Convert;
 
 use ExeQue\Remix\Concerns\Makes;
 use ExeQue\Remix\Concerns\Sanitization\SanitizesHexStrings;
+use ExeQue\Remix\Data\Regexp;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\String\StringMutator;
 use ExeQue\Remix\Mutate\String\Truncate;
-use ExeQue\Remix\Testing\Regexp;
 
 /**
  * Converts a string of hexadecimal values to binary string.

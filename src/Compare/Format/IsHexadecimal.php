@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ExeQue\Remix\Compare\Format;
 
 use ExeQue\Remix\Compare\String\StringComparator;
-use ExeQue\Remix\Testing\Regexp;
+use ExeQue\Remix\Data\Regexp;
 
 /**
  * Checks if a string is hexadecimal. Optionally allows spaces between each byte.

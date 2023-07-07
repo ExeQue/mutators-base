@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ExeQue\Remix\Testing;
+namespace ExeQue\Remix\Data;
 
 final class Regexp
 {
