@@ -14,12 +14,20 @@ class Contains extends StringComparator
     private string $search;
     private bool $caseSensitive;
 
+    /**
+     * @param  string  $search The string to search for.
+     * @param  bool  $caseSensitive Whether to perform a case-sensitive search.
+     */
     public function __construct(string $search, bool $caseSensitive = true)
     {
         $this->search        = $search;
         $this->caseSensitive = $caseSensitive;
     }
 
+    /**
+     * @param  string  $search The string to search for.
+     * @param  bool  $caseSensitive Whether to perform a case sensitive search.
+     */
     public static function make(string $search, bool $caseSensitive = true): self
     {
         return new self($search, $caseSensitive);

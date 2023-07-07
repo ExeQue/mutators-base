@@ -15,11 +15,17 @@ class Matches extends StringComparator
 {
     private string $pattern;
 
+    /**
+     * @param string $pattern The regular expression pattern to match against
+     */
     public function __construct(string $pattern)
     {
         $this->pattern = $pattern;
     }
 
+    /**
+     * @param string $pattern The regular expression pattern to match against
+     */
     public static function make(string $pattern): self
     {
         return new self($pattern);

@@ -16,11 +16,17 @@ class IsHexadecimal extends StringComparator
 {
     private bool $bytes;
 
+    /**
+     * @param  bool  $bytes If true, spaces between every byte (2 characters) is required.
+     */
     public function __construct(bool $bytes = false)
     {
         $this->bytes = $bytes;
     }
 
+    /**
+     * @param  bool  $bytes If true, spaces between every byte (2 characters) is required.
+     */
     public static function make(bool $bytes = false): self
     {
         return new self($bytes);

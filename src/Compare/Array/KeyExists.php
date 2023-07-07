@@ -29,9 +29,6 @@ class KeyExists extends ArrayComparator
         return new self($key);
     }
 
-    /**
-     * Check if the array has a given key.
-     */
     protected function checkArray(array $value): bool
     {
         return array_key_exists($this->key, $value);

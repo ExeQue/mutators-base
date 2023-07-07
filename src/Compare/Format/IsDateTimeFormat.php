@@ -18,11 +18,17 @@ class IsDateTimeFormat extends StringComparator
 {
     private string $format;
 
+    /**
+     * @param  string  $format Format to check against (eg. Y-m-d H:i:s)
+     */
     public function __construct(string $format)
     {
         $this->format = $format;
     }
 
+    /**
+     * @param  string  $format Format to check against (eg. Y-m-d H:i:s)
+     */
     public static function make(string $format): self
     {
         return new self($format);

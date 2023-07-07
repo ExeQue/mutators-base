@@ -19,6 +19,10 @@ class CountMax extends CountableComparator
 {
     private ComparatorInterface $comparator;
 
+    /**
+     * @param  int  $max Maximum count
+     * @param  bool  $inclusive Whether to include the maximum in the comparison
+     */
     public function __construct(int $max, bool $inclusive = true)
     {
         Assert::greaterThanEq($max, 0, 'Max must be greater than or equal to %2$s. Got: %s');
@@ -26,6 +30,10 @@ class CountMax extends CountableComparator
         $this->comparator = Max::make($max, $inclusive);
     }
 
+    /**
+     * @param  int  $max Maximum count
+     * @param  bool  $inclusive Whether to include the maximum in the comparison
+     */
     public static function make(int $max, bool $inclusive = true): self
     {
         return new self($max, $inclusive);

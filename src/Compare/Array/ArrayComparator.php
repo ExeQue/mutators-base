@@ -10,7 +10,7 @@ use ExeQue\Remix\Compare\Comparator;
 abstract class ArrayComparator extends Comparator
 {
     /**
-     * Compare the input value against the comparator.
+     * Compare the input array against the comparator.
      *
      * @param  array  $value
      */

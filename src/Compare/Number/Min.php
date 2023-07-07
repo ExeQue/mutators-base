@@ -16,12 +16,20 @@ class Min extends NumberComparator
     private int $min;
     private bool $inclusive;
 
+    /**
+     * @param  int  $min The minimum value
+     * @param  bool  $inclusive Whether to include the minimum value
+     */
     public function __construct(int $min, bool $inclusive = true)
     {
         $this->min       = $min;
         $this->inclusive = $inclusive;
     }
 
+    /**
+     * @param  int  $min The minimum value
+     * @param  bool  $inclusive Whether to include the minimum value
+     */
     public static function make(int $min, bool $inclusive = true): self
     {
         return new self($min, $inclusive);

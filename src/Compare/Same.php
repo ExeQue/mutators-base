@@ -13,11 +13,17 @@ class Same extends Comparator
 {
     private mixed $value;
 
+    /**
+     * @param mixed $value The value to compare against
+     */
     public function __construct(mixed $value)
     {
         $this->value = $value;
     }
 
+    /**
+     * @param mixed $value The value to compare against
+     */
     public static function make(mixed $value): self
     {
         return new self($value);

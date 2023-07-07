@@ -19,11 +19,17 @@ class Not extends Comparator
 
     private ComparatorInterface $comparator;
 
+    /**
+     * @param  callable|bool  $comparator A comparator or a boolean value to invert
+     */
     public function __construct(callable|bool $comparator)
     {
         $this->comparator = $this->resolveComparator($comparator);
     }
 
+    /**
+     * @param  callable|bool  $comparator A comparator or a boolean value to invert
+     */
     public static function make(callable|bool $comparator): self
     {
         return new self($comparator);

@@ -17,6 +17,9 @@ class CountEqual extends CountableComparator
 {
     private ComparatorInterface $comparator;
 
+    /**
+     * @param  int  $size Size to compare to
+     */
     public function __construct(int $size)
     {
         Assert::greaterThanEq($size, 0, 'Size must be greater than or equal to %2$s. Got: %s');
@@ -24,6 +27,9 @@ class CountEqual extends CountableComparator
         $this->comparator = Same::make($size);
     }
 
+    /**
+     * @param  int  $size Size to compare to
+     */
     public static function make(int $size): self
     {
         return new self($size);

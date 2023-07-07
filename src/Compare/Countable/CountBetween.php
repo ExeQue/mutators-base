@@ -7,6 +7,7 @@ namespace ExeQue\Remix\Compare\Countable;
 use ExeQue\Remix\Assert;
 use ExeQue\Remix\Compare\ComparatorInterface;
 use ExeQue\Remix\Compare\Logical\All;
+use ExeQue\Remix\Compare\Number\Between;
 use ExeQue\Remix\Compare\Number\Max;
 use ExeQue\Remix\Compare\Number\Min;
 
@@ -21,16 +22,14 @@ class CountBetween extends CountableComparator
 {
     private ComparatorInterface $comparator;
 
+    /**
+     * @param  int  $min Minimum count
+     * @param  int  $max Maximum count
+     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison
+     */
     public function __construct(int $min, int $max, bool $inclusive = true)
     {
-        Assert::greaterThanEq($min, 0, 'Min must be greater than or equal to %2$s. Got: %s');
-        Assert::greaterThanEq($max, 0, 'Max must be greater than or equal to %2$s. Got: %s');
-        Assert::greaterThanEq($max, $min, 'Max must be greater than or equal to %2$s. Got: %s');
-
-        $this->comparator = All::make(
-            Min::make($min, $inclusive),
-            Max::make($max, $inclusive)
-        );
+        $this->comparator = Between::make($min, $max, $inclusive);
     }
 
     public static function make(int $min, int $max, bool $inclusive = true): self

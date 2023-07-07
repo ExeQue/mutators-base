@@ -16,6 +16,10 @@ class IsJson extends StringComparator
     private int $depth;
     private int $flags;
 
+    /**
+     * @param  int  $depth Maximum depth of the JSON string.
+     * @param  int  $flags Bitmask of JSON decode flags. JSON_THROW_ON_ERROR is not allowed and will be stripped if applied.
+     */
     public function __construct(int $depth = 512, int $flags = 0)
     {
         $this->depth = $depth;
@@ -26,6 +30,10 @@ class IsJson extends StringComparator
         }
     }
 
+    /**
+     * @param  int  $depth Maximum depth of the JSON string.
+     * @param  int  $flags Bitmask of JSON decode flags. JSON_THROW_ON_ERROR is not allowed and will be stripped if applied.
+     */
     public static function make(int $depth = 512, int $flags = 0): self
     {
         return new self($depth, $flags);

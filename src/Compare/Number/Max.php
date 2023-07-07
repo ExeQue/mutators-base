@@ -16,12 +16,20 @@ class Max extends NumberComparator
     private int $max;
     private bool $inclusive;
 
+    /**
+     * @param  int  $max The maximum value
+     * @param  bool  $inclusive Whether to include the maximum value
+     */
     public function __construct(int $max, bool $inclusive = true)
     {
         $this->max       = $max;
         $this->inclusive = $inclusive;
     }
 
+    /**
+     * @param  int  $max The maximum value
+     * @param  bool  $inclusive Whether to include the maximum value
+     */
     public static function make(int $max, bool $inclusive = true): self
     {
         return new self($max, $inclusive);

@@ -16,6 +16,10 @@ class ContainsAny extends StringComparator
     private array $search;
     private bool $caseSensitive;
 
+    /**
+     * @param  array  $search The strings to search for.
+     * @param  bool  $caseSensitive Whether to perform a case-sensitive search.
+     */
     public function __construct(array $search, bool $caseSensitive = true)
     {
         Assert::allStringable($search);
@@ -24,6 +28,10 @@ class ContainsAny extends StringComparator
         $this->caseSensitive = $caseSensitive;
     }
 
+    /**
+     * @param  array  $search The strings to search for.
+     * @param  bool  $caseSensitive Whether to perform a case-sensitive search.
+     */
     public static function make(array $search, bool $caseSensitive = true): self
     {
         return new self($search, $caseSensitive);

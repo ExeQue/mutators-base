@@ -16,11 +16,17 @@ class ComparesUsing extends Comparator
 {
     private $callback;
 
+    /**
+     * @param callable $callback The callback to use for comparison
+     */
     public function __construct(callable $callback)
     {
         $this->callback = $callback;
     }
 
+    /**
+     * @param callable $callback The callback to use for comparison
+     */
     public static function make(callable $callback): self
     {
         return new self($callback);

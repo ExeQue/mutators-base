@@ -33,6 +33,11 @@ class IsType extends Comparator
 {
     private Closure $callback;
 
+    /**
+     * @param string $type The type to check for
+     *
+     * @throws InvalidArgumentException If the given type is not supported
+     */
     public function __construct(string $type)
     {
         if ($this->isTrait($type)) {
@@ -72,6 +77,11 @@ class IsType extends Comparator
         }
     }
 
+    /**
+     * @param string $type The type to check for
+     *
+     * @throws InvalidArgumentException If the given type is not supported
+     */
     public static function make(string $type): self
     {
         return new self($type);

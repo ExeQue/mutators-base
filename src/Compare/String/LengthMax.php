@@ -19,6 +19,10 @@ class LengthMax extends LengthComparator
 {
     private ComparatorInterface $comparator;
 
+    /**
+     * @param int $length Maximum length
+     * @param bool $inclusive Whether to include the maximum in the comparison
+     */
     public function __construct(int $length, bool $inclusive = true)
     {
         Assert::greaterThanEq($length, 0, 'Length must be greater than or equal to %2$s. Got: %s');
@@ -26,6 +30,10 @@ class LengthMax extends LengthComparator
         $this->comparator = Max::make($length, $inclusive);
     }
 
+    /**
+     * @param int $length Maximum length
+     * @param bool $inclusive Whether to include the maximum in the comparison
+     */
     public static function make(int $length, bool $inclusive = true): self
     {
         return new self($length, $inclusive);

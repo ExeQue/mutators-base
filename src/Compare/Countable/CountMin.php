@@ -19,6 +19,10 @@ class CountMin extends CountableComparator
 {
     private ComparatorInterface $comparator;
 
+    /**
+     * @param  int  $min Minimum count
+     * @param  bool  $inclusive Whether to include the minimum in the comparison
+     */
     public function __construct(int $min, bool $inclusive = true)
     {
         Assert::greaterThanEq($min, 0, 'Min must be greater than or equal to %2$s. Got: %s');
@@ -26,6 +30,10 @@ class CountMin extends CountableComparator
         $this->comparator = Min::make($min, $inclusive);
     }
 
+    /**
+     * @param  int  $min Minimum count
+     * @param  bool  $inclusive Whether to include the minimum in the comparison
+     */
     public static function make(int $min, bool $inclusive = true): self
     {
         return new self($min, $inclusive);

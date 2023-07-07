@@ -15,9 +15,6 @@ class IsMap extends ArrayComparator
 {
     use Makes;
 
-    /**
-     * Check if the array is a map.
-     */
     protected function checkArray(array $value): bool
     {
         return ! array_is_list($value);

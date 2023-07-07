@@ -9,6 +9,9 @@ use ExeQue\Remix\Compare\Comparator;
 
 abstract class CountableComparator extends Comparator
 {
+    /**
+     * Compare the input countable against the comparator.
+     */
     final public function check(mixed $value): bool
     {
         if (is_countable($value)) {
@@ -22,6 +25,9 @@ abstract class CountableComparator extends Comparator
         Assert::report(static::class . ' can only compare countable values. Got: %s', $value);
     }
 
+    /**
+     * Compare the count of the input against the comparator.
+     */
     abstract protected function checkCount(int $count): bool;
 
     private function objectHasCountMethod(mixed $value): bool

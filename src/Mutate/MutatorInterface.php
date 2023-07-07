@@ -8,6 +8,8 @@ interface MutatorInterface
 {
     /**
      * Mutate the input value.
+     *
+     * @see self::mutate()
      */
     public function __invoke(mixed $value): mixed;
 

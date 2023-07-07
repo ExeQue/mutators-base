@@ -8,6 +8,8 @@ interface ComparatorInterface
 {
     /**
      * Compare the input value against the comparator.
+     *
+     * @see static::check()
      */
     public function __invoke(mixed $value): bool;
 
