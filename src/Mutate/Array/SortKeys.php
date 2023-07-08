@@ -37,6 +37,26 @@ class SortKeys extends ArrayMutator
         return new self($direction, $flags);
     }
 
+    /**
+     * Sorts the keys of an array in ascending order.
+     *
+     * @param  int  $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
+     */
+    public static function asc(int $flags = SORT_REGULAR): self
+    {
+        return new self(SortDirection::Asc, $flags);
+    }
+
+    /**
+     * Sorts the keys of an array in descending order.
+     *
+     * @param  int  $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
+     */
+    public static function desc(int $flags = SORT_REGULAR): self
+    {
+        return new self(SortDirection::Desc, $flags);
+    }
+
     protected function mutateArray(array $array): array
     {
         if ($this->direction === SortDirection::Asc) {

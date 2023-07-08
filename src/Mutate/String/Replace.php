@@ -39,6 +39,28 @@ class Replace extends StringMutator
         return new self($search, $replace, $caseSensitive);
     }
 
+    /**
+     * Replace all occurrences of the search string (case-sensitive) with the replacement string.
+     *
+     * @param  array|string  $search The value(s) to search for.
+     * @param  array|string  $replace The replacement value(s).
+     */
+    public static function sensitive(array|string $search, array|string $replace): self
+    {
+        return new self($search, $replace, true);
+    }
+
+    /**
+     * Replace all occurrences of the search string (case-insensitive) with the replacement string.
+     *
+     * @param  array|string  $search The value(s) to search for.
+     * @param  array|string  $replace The replacement value(s).
+     */
+    public static function insensitive(array|string $search, array|string $replace): self
+    {
+        return new self($search, $replace, false);
+    }
+
     protected function mutateString(string $value): string
     {
         if (! $this->caseSensitive) {

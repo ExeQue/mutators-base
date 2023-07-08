@@ -47,11 +47,25 @@ class Sort extends ArrayMutator
         return new self($direction, $callback, $preserveKeys, $flags);
     }
 
+    /**
+     * Sorts an array in ascending order.
+     *
+     * @param  callable|null  $callback The callback to retrieve the value to sort by (optional)
+     * @param  bool  $preserveKeys Whether to preserve key association (default: true)
+     * @param  int  $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
+     */
     public static function asc(callable $callback = null, bool $preserveKeys = true, int $flags = SORT_REGULAR): self
     {
         return new self(SortDirection::Asc, $callback, $preserveKeys, $flags);
     }
 
+    /**
+     * Sorts an array in descending order.
+     *
+     * @param  callable|null  $callback The callback to retrieve the value to sort by (optional)
+     * @param  bool  $preserveKeys Whether to preserve key association (default: true)
+     * @param  int  $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
+     */
     public static function desc(callable $callback = null, bool $preserveKeys = true, int $flags = SORT_REGULAR): self
     {
         return new self(SortDirection::Desc, $callback, $preserveKeys, $flags);

@@ -33,6 +33,26 @@ class After extends StringMutator
         return new self($search, $last);
     }
 
+    /**
+     * Retrieves the part of a string after the first occurrence of a given substring.
+     *
+     * @param  string  $search The substring to search for.
+     */
+    public static function first(string $search): self
+    {
+        return new self($search, false);
+    }
+
+    /**
+     * Retrieves the part of a string after the last occurrence of a given substring.
+     *
+     * @param  string  $search The substring to search for.
+     */
+    public static function last(string $search): self
+    {
+        return new self($search, true);
+    }
+
     protected function mutateString(string $value): string
     {
         if (! str_contains($value, $this->search)) {

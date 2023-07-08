@@ -13,9 +13,23 @@ it('retrieves after first', function () {
     expect($mutator->mutate($input))->toBe(', General Kenobi. Hello there, Mr. Anderson');
 });
 
+it('retrieves after first using alias', function () {
+    $input   = 'Hello there, General Kenobi. Hello there, Mr. Anderson';
+    $mutator = After::first('there');
+
+    expect($mutator->mutate($input))->toBe(', General Kenobi. Hello there, Mr. Anderson');
+});
+
 it('retrieves after last', function () {
     $input   = 'Hello there, General Kenobi. Hello there, Mr. Anderson';
     $mutator = After::make('there', true);
+
+    expect($mutator->mutate($input))->toBe(', Mr. Anderson');
+});
+
+it('retrieves after last using alias', function () {
+    $input   = 'Hello there, General Kenobi. Hello there, Mr. Anderson';
+    $mutator = After::last('there');
 
     expect($mutator->mutate($input))->toBe(', Mr. Anderson');
 });
