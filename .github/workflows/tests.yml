@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   tests:
-    name: Run Tests
+    name: Run Tests (Pest)
 
     runs-on: ubuntu-latest
 
@@ -53,7 +53,7 @@ jobs:
         XDEBUG_MODE: coverage
 
   mutations:
-    name: Mutation testing
+    name: Run Tests (Infection)
 
     runs-on: ubuntu-latest
 

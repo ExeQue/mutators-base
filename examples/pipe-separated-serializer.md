@@ -127,3 +127,45 @@ var_dump($encoded); // string(11) "foo|bar|baz"
 $decoded = $serializer->decode('foo|bar|baz');
 var_dump($decoded); // array(3) { [0]=> string(3) "foo" [1]=> string(3) "bar" [2]=> string(3) "baz" }
 ```
+
+## Using vanilla PHP
+
+```php
+// Encode an array to a pipe-separated string
+$input = ['foo', 'bar', 'baz'];
+
+$input = (array)$input; // Convert to array if it isn't already
+$input = array_filter($input); // Remove empty values
+$input = array_map('strval', $input); // Convert each value to a string
+$input = array_map('trim', $input); // Trim each value
+$encoded = implode('|', $input); // Join the values with a pipe separator
+// Or in one line:
+$encoded = implode('|', array_map('trim', array_map('strval', array_filter((array)$input))));
+
+var_dump($encoded); // string(11) "foo|bar|baz"
+
+// Decode a pipe-separated string to an array
+$input = 'foo|bar|baz';
+$input = explode('|', $input); // Explode the string with a pipe separator
+$input = array_map('trim', $input); // Trim each value
+$input = array_filter($input); // Remove empty values
+$decoded = array_values($input); // Reset the keys
+// Or in one line:
+$decoded = array_values(array_filter(array_map('trim', explode('|', $input))));
+
+var_dump($decoded); // array(3) { [0]=> string(3) "foo" [1]=> string(3) "bar" [2]=> string(3) "baz" }
+```
+
+The vanilla approach is (obviously) much more verbose and harder to read. It also doesn't allow for easy reuse of the code.
+
+Downsides of the vanilla approach:
+- It's not easily reusable
+- It's harder to read
+- It's harder to maintain
+- It's harder to debug
+- It's harder to extend to support other separators (e.g. comma-separated, semicolon-separated, etc. as a fallback when decoding)
+- It's harder to unit test
+- It's harder to document
+- One-liners are hard to read (as the actions happen in the opposite order of how they are written)
+
+Each component of the mutator approach is reusable, testable, and easy to read and understand.
