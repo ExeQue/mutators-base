@@ -14,9 +14,21 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        php:
+          - 8.1
+          - 8.2
+
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+
+    - name: Install PHP
+      uses: shivammathur/setup-php@2.25.4
+      with:
+        extensions: mbstring
+        php-version: ${{ matrix.php }}
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
