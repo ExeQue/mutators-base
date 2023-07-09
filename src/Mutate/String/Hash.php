@@ -19,8 +19,8 @@ class Hash extends StringMutator
     private bool $rawOutput;
 
     /**
-     * @param  string  $algorithm The algorithm to use.
-     * @param  bool  $rawOutput Whether to output raw binary data (default: false).
+     * @param string $algorithm The algorithm to use.
+     * @param bool $rawOutput Whether to output raw binary data (default: false).
      */
     public function __construct(string $algorithm, bool $rawOutput = false)
     {
@@ -31,8 +31,8 @@ class Hash extends StringMutator
     }
 
     /**
-     * @param  string  $algorithm The algorithm to use.
-     * @param  bool  $rawOutput Whether to output raw binary data (default: false).
+     * @param string $algorithm The algorithm to use.
+     * @param bool $rawOutput Whether to output raw binary data (default: false).
      */
     public static function make(string $algorithm, bool $rawOutput = false): self
     {
@@ -40,7 +40,7 @@ class Hash extends StringMutator
     }
 
     /**
-     * @param  bool  $rawOutput Whether to output raw binary data (default: false).
+     * @param bool $rawOutput Whether to output raw binary data (default: false).
      */
     public static function crc32(bool $rawOutput = false): self
     {
@@ -48,7 +48,7 @@ class Hash extends StringMutator
     }
 
     /**
-     * @param  bool  $rawOutput Whether to output raw binary data (default: false).
+     * @param bool $rawOutput Whether to output raw binary data (default: false).
      */
     public static function md5(bool $rawOutput = false): self
     {
@@ -56,7 +56,7 @@ class Hash extends StringMutator
     }
 
     /**
-     * @param  bool  $rawOutput Whether to output raw binary data (default: false).
+     * @param bool $rawOutput Whether to output raw binary data (default: false).
      */
     public static function sha1(bool $rawOutput = false): self
     {
@@ -64,7 +64,7 @@ class Hash extends StringMutator
     }
 
     /**
-     * @param  bool  $rawOutput Whether to output raw binary data (default: false).
+     * @param bool $rawOutput Whether to output raw binary data (default: false).
      */
     public static function sha256(bool $rawOutput = false): self
     {
@@ -72,7 +72,7 @@ class Hash extends StringMutator
     }
 
     /**
-     * @param  bool  $rawOutput Whether to output raw binary data (default: false).
+     * @param bool $rawOutput Whether to output raw binary data (default: false).
      */
     public static function sha512(bool $rawOutput = false): self
     {

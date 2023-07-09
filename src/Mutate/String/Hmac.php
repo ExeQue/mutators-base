@@ -20,9 +20,9 @@ class Hmac extends StringMutator
     private bool $rawOutput;
 
     /**
-     * @param  string  $algo The algorithm to use.
-     * @param  string  $key The secret key.
-     * @param  bool  $rawOutput Whether to output raw binary data (default: false).
+     * @param string $algo The algorithm to use.
+     * @param string $key The secret key.
+     * @param bool $rawOutput Whether to output raw binary data (default: false).
      */
     public function __construct(string $algo, string $key, bool $rawOutput = false)
     {
@@ -34,9 +34,9 @@ class Hmac extends StringMutator
     }
 
     /**
-     * @param  string  $algo The algorithm to use.
-     * @param  string  $key The secret key.
-     * @param  bool  $rawOutput Whether to output raw binary data (default: false).
+     * @param string $algo The algorithm to use.
+     * @param string $key The secret key.
+     * @param bool $rawOutput Whether to output raw binary data (default: false).
      */
     public static function make(string $algo, string $key, bool $rawOutput = false): self
     {

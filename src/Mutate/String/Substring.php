@@ -21,9 +21,9 @@ class Substring extends StringMutator
     protected ?int $length;
 
     /**
-     * @param  int  $start The position to start extraction from.
-     * @param  int|null  $length The number of characters to extract (optional).
-     * @param  string|null  $encoding The encoding to use (optional).
+     * @param int $start The position to start extraction from.
+     * @param int|null $length The number of characters to extract (optional).
+     * @param string|null $encoding The encoding to use (optional).
      */
     public function __construct(int $start, int $length = null, string $encoding = null)
     {
@@ -34,9 +34,9 @@ class Substring extends StringMutator
     }
 
     /**
-     * @param  int  $start The position to start extraction from.
-     * @param  int|null  $length The number of characters to extract (optional).
-     * @param  string|null  $encoding The encoding to use (optional).
+     * @param int $start The position to start extraction from.
+     * @param int|null $length The number of characters to extract (optional).
+     * @param string|null $encoding The encoding to use (optional).
      */
     public static function make(int $start, int $length = null, string $encoding = null): self
     {

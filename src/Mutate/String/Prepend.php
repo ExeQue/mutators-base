@@ -14,7 +14,7 @@ class Prepend extends StringMutator
     private string $prepend;
 
     /**
-     * @param  string  $prepend The string to prepend.
+     * @param string $prepend The string to prepend.
      */
     public function __construct(string $prepend)
     {
@@ -22,7 +22,7 @@ class Prepend extends StringMutator
     }
 
     /**
-     * @param  string  $prepend The string to prepend.
+     * @param string $prepend The string to prepend.
      */
     public static function make(string $prepend): self
     {

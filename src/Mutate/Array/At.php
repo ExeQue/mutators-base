@@ -20,8 +20,8 @@ class At extends Mutator
     private mixed $default;
 
     /**
-     * @param  string|int  $index The index to get
-     * @param  mixed|null  $default The default value to return if the index does not exist. Will be called with the array and the index as arguments if it is a callable (defaults to null).
+     * @param string|int $index The index to get
+     * @param mixed|null $default The default value to return if the index does not exist. Will be called with the array and the index as arguments if it is a callable (defaults to null).
      */
     public function __construct(string|int $index, mixed $default = null)
     {
@@ -30,8 +30,8 @@ class At extends Mutator
     }
 
     /**
-     * @param  string|int  $index The index to get
-     * @param  mixed|null  $default The default value to return if the index does not exist. Will be called with the array and the index as arguments if it is a callable (defaults to null).
+     * @param string|int $index The index to get
+     * @param mixed|null $default The default value to return if the index does not exist. Will be called with the array and the index as arguments if it is a callable (defaults to null).
      */
     public static function make(string|int $index, mixed $default = null): self
     {

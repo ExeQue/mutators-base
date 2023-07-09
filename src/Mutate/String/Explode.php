@@ -20,8 +20,8 @@ class Explode extends Mutator
     private int $limit;
 
     /**
-     * @param  string  $delimiter The boundary string.
-     * @param  int  $limit The maximum number of elements to return (optional).
+     * @param string $delimiter The boundary string.
+     * @param int $limit The maximum number of elements to return (optional).
      */
     public function __construct(string $delimiter, int $limit = PHP_INT_MAX)
     {
@@ -32,8 +32,8 @@ class Explode extends Mutator
     }
 
     /**
-     * @param  string  $delimiter The boundary string.
-     * @param  int  $limit The maximum number of elements to return (optional).
+     * @param string $delimiter The boundary string.
+     * @param int $limit The maximum number of elements to return (optional).
      */
     public static function make(string $delimiter, int $limit = PHP_INT_MAX): self
     {

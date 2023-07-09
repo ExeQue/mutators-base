@@ -23,10 +23,10 @@ class PositionOf extends Mutator
     protected int $offset = 0;
 
     /**
-     * @param  string  $needle The substring to search for.
-     * @param  bool  $last Whether to search for the last occurrence of the substring (default: false).
-     * @param  int  $offset The position to start searching from (default: 0).
-     * @param  string|null  $encoding The encoding to use (optional).
+     * @param string $needle The substring to search for.
+     * @param bool $last Whether to search for the last occurrence of the substring (default: false).
+     * @param int $offset The position to start searching from (default: 0).
+     * @param string|null $encoding The encoding to use (optional).
      */
     public function __construct(string $needle, bool $last = false, int $offset = 0, string $encoding = null)
     {
@@ -38,10 +38,10 @@ class PositionOf extends Mutator
     }
 
     /**
-     * @param  string  $needle The substring to search for.
-     * @param  bool  $last Whether to search for the last occurrence of the substring (default: false).
-     * @param  int  $offset The position to start searching from (default: 0).
-     * @param  string|null  $encoding The encoding to use (optional).
+     * @param string $needle The substring to search for.
+     * @param bool $last Whether to search for the last occurrence of the substring (default: false).
+     * @param int $offset The position to start searching from (default: 0).
+     * @param string|null $encoding The encoding to use (optional).
      */
     public static function make(string $needle, bool $last = false, int $offset = 0, string $encoding = null): self
     {

@@ -12,8 +12,7 @@ use Psr\Http\Message\StreamInterface;
 use Stringable;
 
 it('resolves string inputs from values', function (mixed $input) {
-    $implementation = new class
-    {
+    $implementation = new class () {
         use ResolvesStringInput {
             resolveStringInput as public;
         }
@@ -24,8 +23,7 @@ it('resolves string inputs from values', function (mixed $input) {
     $streamInterface  = Mockery::mock(StreamInterface::class)->allows('getContents')->andReturn('foo')->getMock();
     $messageInterface = Mockery::mock(MessageInterface::class)->allows('getBody')->andReturn($streamInterface)->getMock();
     $stringable       = Mockery::mock(Stringable::class)->allows('__toString')->andReturn('foo')->getMock();
-    $toStringObject   = new class
-    {
+    $toStringObject   = new class () {
         public function toString(): string
         {
             return 'foo';
@@ -46,8 +44,7 @@ it('resolves string inputs from values', function (mixed $input) {
 });
 
 it('fails to resolve string inputs from values', function (mixed $input) {
-    $implementation = new class
-    {
+    $implementation = new class () {
         use ResolvesStringInput {
             resolveStringInput as public;
         }
@@ -60,8 +57,7 @@ it('fails to resolve string inputs from values', function (mixed $input) {
 
     return [
         'array'  => fn () => [],
-        'object' => new class
-        {
+        'object' => new class () {
         },
         'callable' => fn () => function () {
         },

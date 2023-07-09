@@ -15,8 +15,8 @@ class Wrap extends StringMutator
     private string $after;
 
     /**
-     * @param  string  $before The prefix to prepend to the string.
-     * @param  string|null  $after The suffix to append to the string (optional, defaults to the prefix).
+     * @param string $before The prefix to prepend to the string.
+     * @param string|null $after The suffix to append to the string (optional, defaults to the prefix).
      */
     public function __construct(string $before, string $after = null)
     {
@@ -25,8 +25,8 @@ class Wrap extends StringMutator
     }
 
     /**
-     * @param  string  $before The prefix to prepend to the string.
-     * @param  string|null  $after The suffix to append to the string (optional, defaults to the prefix).
+     * @param string $before The prefix to prepend to the string.
+     * @param string|null $after The suffix to append to the string (optional, defaults to the prefix).
      */
     public static function make(string $before, string $after = null): self
     {

@@ -14,7 +14,7 @@ class Same extends Comparator
     private mixed $value;
 
     /**
-     * @param  mixed  $value The value to compare against
+     * @param mixed $value The value to compare against
      */
     public function __construct(mixed $value)
     {
@@ -22,7 +22,7 @@ class Same extends Comparator
     }
 
     /**
-     * @param  mixed  $value The value to compare against
+     * @param mixed $value The value to compare against
      */
     public static function make(mixed $value): self
     {

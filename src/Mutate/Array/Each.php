@@ -19,7 +19,7 @@ class Each extends ArrayMutator
     private $callback;
 
     /**
-     * @param  callable  $callback The callback to execute
+     * @param callable $callback The callback to execute
      */
     public function __construct(callable $callback)
     {
@@ -27,7 +27,7 @@ class Each extends ArrayMutator
     }
 
     /**
-     * @param  callable  $callback The callback to execute
+     * @param callable $callback The callback to execute
      */
     public static function make(callable $callback): self
     {

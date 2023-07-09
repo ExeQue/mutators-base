@@ -155,8 +155,7 @@ it('supports countable types', function (mixed $input) {
         'input' => new ArrayIterator([1, 2, 3]),
     ],
     'countable object' => [
-        'input' => new class implements Countable
-        {
+        'input' => new class () implements Countable {
             public function count(): int
             {
                 return 3;
@@ -164,8 +163,7 @@ it('supports countable types', function (mixed $input) {
         },
     ],
     'object with count method' => [
-        'input' => new class
-        {
+        'input' => new class () {
             public function count(): int
             {
                 return 3;

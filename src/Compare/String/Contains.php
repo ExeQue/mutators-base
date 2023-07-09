@@ -18,9 +18,9 @@ class Contains extends StringComparator
     private bool $all;
 
     /**
-     * @param  array|string  $search The string(s) to search for
-     * @param  bool  $caseSensitive Whether to perform a case-sensitive search (default: true)
-     * @param  bool  $all Whether to check if all the search strings are contained in the subject (default: true)
+     * @param array|string $search The string(s) to search for
+     * @param bool $caseSensitive Whether to perform a case-sensitive search (default: true)
+     * @param bool $all Whether to check if all the search strings are contained in the subject (default: true)
      */
     public function __construct(array|string $search, bool $caseSensitive = true, bool $all = true)
     {
@@ -34,9 +34,9 @@ class Contains extends StringComparator
     }
 
     /**
-     * @param  array|string  $search The string(s) to search for
-     * @param  bool  $caseSensitive Whether to perform a case-sensitive search (default: true)
-     * @param  bool  $all Whether to check if all the search strings are contained in the subject (default: true)
+     * @param array|string $search The string(s) to search for
+     * @param bool $caseSensitive Whether to perform a case-sensitive search (default: true)
+     * @param bool $all Whether to check if all the search strings are contained in the subject (default: true)
      */
     public static function make(array|string $search, bool $caseSensitive = true, bool $all = true): self
     {

@@ -20,8 +20,8 @@ class JsonSerializer implements SerializerInterface
     private JsonDecode $decoder;
 
     /**
-     * @param  JsonEncode|null  $encoder The encoder to use (optional, defaults to a new JsonEncode instance).
-     * @param  JsonDecode|null  $decoder The decoder to use (optional, defaults to a new JsonDecode instance).
+     * @param JsonEncode|null $encoder The encoder to use (optional, defaults to a new JsonEncode instance).
+     * @param JsonDecode|null $decoder The decoder to use (optional, defaults to a new JsonDecode instance).
      */
     public function __construct(JsonEncode $encoder = null, JsonDecode $decoder = null)
     {
@@ -30,8 +30,8 @@ class JsonSerializer implements SerializerInterface
     }
 
     /**
-     * @param  JsonEncode|null  $encoder The encoder to use (optional, defaults to a new JsonEncode instance).
-     * @param  JsonDecode|null  $decoder The decoder to use (optional, defaults to a new JsonDecode instance).
+     * @param JsonEncode|null $encoder The encoder to use (optional, defaults to a new JsonEncode instance).
+     * @param JsonDecode|null $decoder The decoder to use (optional, defaults to a new JsonDecode instance).
      */
     public static function make(JsonEncode $encoder = null, JsonDecode $decoder = null): self
     {

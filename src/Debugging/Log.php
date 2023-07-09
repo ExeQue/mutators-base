@@ -32,10 +32,10 @@ class Log extends Mutator
     private array $context;
 
     /**
-     * @param  LoggerInterface|null  $logger  The logger to log to (optional). If not provided, the default logger will be used.
-     * @param  string  $prefix  A prefix to prepend to the logged message (default: '').
-     * @param  string  $level  The log level to use (default: LogLevel::DEBUG).
-     * @param  array  $context  Additional context to pass to the logger (default: []).
+     * @param LoggerInterface|null $logger  The logger to log to (optional). If not provided, the default logger will be used.
+     * @param string $prefix  A prefix to prepend to the logged message (default: '').
+     * @param string $level  The log level to use (default: LogLevel::DEBUG).
+     * @param array $context  Additional context to pass to the logger (default: []).
      */
     public function __construct(LoggerInterface $logger = null, string $prefix = '', string $level = LogLevel::DEBUG, array $context = [])
     {
@@ -46,10 +46,10 @@ class Log extends Mutator
     }
 
     /**
-     * @param  LoggerInterface|null  $logger  The logger to log to (optional). If not provided, the default logger will be used.
-     * @param  string  $prefix  A prefix to prepend to the logged message (default: '').
-     * @param  string  $level  The log level to use (default: LogLevel::DEBUG).
-     * @param  array  $context  Additional context to pass to the logger (default: []).
+     * @param LoggerInterface|null $logger  The logger to log to (optional). If not provided, the default logger will be used.
+     * @param string $prefix  A prefix to prepend to the logged message (default: '').
+     * @param string $level  The log level to use (default: LogLevel::DEBUG).
+     * @param array $context  Additional context to pass to the logger (default: []).
      */
     public static function make(LoggerInterface $logger = null, string $prefix = '', string $level = LogLevel::DEBUG, array $context = []): self
     {

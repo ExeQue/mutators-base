@@ -89,8 +89,7 @@ it('logs a value', function (mixed $input, array $expected) {
             ],
         ],
         'object with __toString' => [
-            'input' => new class
-            {
+            'input' => new class () {
                 public function __toString(): string
                 {
                     return 'foo';
@@ -105,8 +104,7 @@ it('logs a value', function (mixed $input, array $expected) {
             ],
         ],
         'object with JsonSerializable' => [
-            'input' => new class implements JsonSerializable
-            {
+            'input' => new class () implements JsonSerializable {
                 public function jsonSerialize(): array
                 {
                     return ['foo' => 'bar'];
@@ -184,8 +182,7 @@ it('fails if no default logger is set and none is provided', function () {
 })->throws(\InvalidArgumentException::class);
 
 beforeEach(function () {
-    $this->logger = new class extends AbstractLogger
-    {
+    $this->logger = new class () extends AbstractLogger {
         public array $logs = [];
 
         public function log($level, \Stringable|string $message, array $context = []): void

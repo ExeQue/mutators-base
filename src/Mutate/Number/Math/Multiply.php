@@ -16,7 +16,7 @@ class Multiply extends NumberMutator
     private int|float $multiplier;
 
     /**
-     * @param  float|int  $multiplier The multiplier to multiply with.
+     * @param float|int $multiplier The multiplier to multiply with.
      */
     public function __construct(float|int $multiplier)
     {
@@ -24,7 +24,7 @@ class Multiply extends NumberMutator
     }
 
     /**
-     * @param  float|int  $multiplier The multiplier to multiply with.
+     * @param float|int $multiplier The multiplier to multiply with.
      */
     public static function make(float|int $multiplier): self
     {

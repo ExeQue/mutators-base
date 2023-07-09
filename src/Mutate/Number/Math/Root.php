@@ -16,7 +16,7 @@ class Root extends NumberMutator
     private int|float $root;
 
     /**
-     * @param  float|int  $root The root to calculate.
+     * @param float|int $root The root to calculate.
      */
     public function __construct(float|int $root)
     {
@@ -24,7 +24,7 @@ class Root extends NumberMutator
     }
 
     /**
-     * @param  float|int  $root The root to calculate.
+     * @param float|int $root The root to calculate.
      */
     public static function make(float|int $root): self
     {

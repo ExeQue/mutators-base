@@ -13,8 +13,7 @@ test('passes stringable', function (mixed $input) {
     'int'        => 1,
     'float'      => 1.1,
     'null'       => null,
-    'stringable' => new class implements \Stringable
-    {
+    'stringable' => new class () implements \Stringable {
         public function __toString(): string
         {
             return 'foo';
@@ -40,8 +39,7 @@ test('passes allStringable', function () {
         'int'        => 1,
         'float'      => 1.1,
         'null'       => null,
-        'stringable' => new class implements \Stringable
-        {
+        'stringable' => new class () implements \Stringable {
             public function __toString(): string
             {
                 return 'foo';

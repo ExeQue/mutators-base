@@ -14,8 +14,8 @@ use ExeQue\Remix\Mutate\MutatorAlias;
 class Remove extends MutatorAlias
 {
     /**
-     * @param  array|string  $search The value(s) to search for.
-     * @param  bool  $caseSensitive Whether to perform a case-sensitive search (default: true).
+     * @param array|string $search The value(s) to search for.
+     * @param bool $caseSensitive Whether to perform a case-sensitive search (default: true).
      */
     public function __construct(array|string $search, bool $caseSensitive = true)
     {
@@ -23,8 +23,8 @@ class Remove extends MutatorAlias
     }
 
     /**
-     * @param  array|string  $search The value(s) to search for.
-     * @param  bool  $caseSensitive Whether to perform a case-sensitive search (default: true).
+     * @param array|string $search The value(s) to search for.
+     * @param bool $caseSensitive Whether to perform a case-sensitive search (default: true).
      */
     public static function make(array|string $search, bool $caseSensitive = true): self
     {

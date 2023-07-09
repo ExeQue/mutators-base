@@ -14,7 +14,7 @@ class KeyExists extends ArrayComparator
     private string|int $key;
 
     /**
-     * @param  int|string  $key Key to search for.
+     * @param int|string $key Key to search for.
      */
     public function __construct(int|string $key)
     {
@@ -22,7 +22,7 @@ class KeyExists extends ArrayComparator
     }
 
     /**
-     * @param  int|string  $key Key to search for.
+     * @param int|string $key Key to search for.
      */
     public static function make(int|string $key): self
     {

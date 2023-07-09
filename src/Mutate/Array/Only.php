@@ -16,7 +16,7 @@ class Only extends ArrayMutator
     private array $keys;
 
     /**
-     * @param  array|string  $keys The keys to retrieve
+     * @param array|string $keys The keys to retrieve
      */
     public function __construct(array|string $keys)
     {
@@ -24,7 +24,7 @@ class Only extends ArrayMutator
     }
 
     /**
-     * @param  array|string  $keys The keys to retrieve
+     * @param array|string $keys The keys to retrieve
      */
     public static function make(array|string $keys): self
     {

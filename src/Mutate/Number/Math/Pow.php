@@ -14,7 +14,7 @@ class Pow extends NumberMutator
     private int|float $exponent;
 
     /**
-     * @param  float|int  $exponent The exponent to raise to.
+     * @param float|int $exponent The exponent to raise to.
      */
     public function __construct(float|int $exponent)
     {
@@ -22,7 +22,7 @@ class Pow extends NumberMutator
     }
 
     /**
-     * @param  float|int  $exponent The exponent to raise to.
+     * @param float|int $exponent The exponent to raise to.
      */
     public static function make(float|int $exponent): self
     {

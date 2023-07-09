@@ -14,7 +14,7 @@ class Append extends StringMutator
     private string $append;
 
     /**
-     * @param  string  $append The string to append.
+     * @param string $append The string to append.
      */
     public function __construct(string $append)
     {
@@ -22,7 +22,7 @@ class Append extends StringMutator
     }
 
     /**
-     * @param  string  $append The string to append.
+     * @param string $append The string to append.
      */
     public static function make(string $append): self
     {

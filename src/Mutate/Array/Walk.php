@@ -19,7 +19,7 @@ class Walk extends ArrayMutator
     private $callback;
 
     /**
-     * @param  callable  $callback The callback to use for mutation - Must accept the first parameter by reference
+     * @param callable $callback The callback to use for mutation - Must accept the first parameter by reference
      */
     public function __construct(callable $callback)
     {
@@ -29,7 +29,7 @@ class Walk extends ArrayMutator
     }
 
     /**
-     * @param  callable  $callback The callback to use for mutation - Must accept the first parameter by reference
+     * @param callable $callback The callback to use for mutation - Must accept the first parameter by reference
      */
     public static function make(callable $callback): self
     {

@@ -20,9 +20,9 @@ class ReplaceFirst extends StringMutator
     private bool $caseSensitive;
 
     /**
-     * @param  string  $search The value to search for.
-     * @param  string  $replace The replacement value.
-     * @param  bool  $caseSensitive Whether to perform a case-sensitive search (default: true).
+     * @param string $search The value to search for.
+     * @param string $replace The replacement value.
+     * @param bool $caseSensitive Whether to perform a case-sensitive search (default: true).
      */
     public function __construct(string $search, string $replace, bool $caseSensitive = true)
     {
@@ -32,9 +32,9 @@ class ReplaceFirst extends StringMutator
     }
 
     /**
-     * @param  string  $search The value to search for.
-     * @param  string  $replace The replacement value.
-     * @param  bool  $caseSensitive Whether to perform a case-sensitive search (default: true).
+     * @param string $search The value to search for.
+     * @param string $replace The replacement value.
+     * @param bool $caseSensitive Whether to perform a case-sensitive search (default: true).
      */
     public static function make(string $search, string $replace, bool $caseSensitive = true): self
     {
@@ -44,8 +44,8 @@ class ReplaceFirst extends StringMutator
     /**
      * Replace the first occurrence of the search string (case-sensitive) with the replacement string.
      *
-     * @param  string  $search The value to search for.
-     * @param  string  $replace The replacement value.
+     * @param string $search The value to search for.
+     * @param string $replace The replacement value.
      */
     public static function sensitive(string $search, string $replace): self
     {
@@ -55,8 +55,8 @@ class ReplaceFirst extends StringMutator
     /**
      * Replace the first occurrence of the search string (case-insensitive) with the replacement string.
      *
-     * @param  string  $search The value to search for.
-     * @param  string  $replace The replacement value.
+     * @param string $search The value to search for.
+     * @param string $replace The replacement value.
      */
     public static function insensitive(string $search, string $replace): self
     {

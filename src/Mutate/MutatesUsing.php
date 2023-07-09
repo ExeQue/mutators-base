@@ -16,7 +16,7 @@ class MutatesUsing extends Mutator
     private $callback;
 
     /**
-     * @param  callable  $callback The callback to use for mutation.
+     * @param callable $callback The callback to use for mutation.
      */
     public function __construct(callable $callback)
     {
@@ -24,7 +24,7 @@ class MutatesUsing extends Mutator
     }
 
     /**
-     * @param  callable  $callback The callback to use for mutation.
+     * @param callable $callback The callback to use for mutation.
      */
     public static function make(callable $callback): self
     {

@@ -19,8 +19,8 @@ class SortKeys extends ArrayMutator
     private int $flags;
 
     /**
-     * @param  SortDirection  $direction The direction to sort by (optional, default: SortDirection::Asc)
-     * @param  int  $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
+     * @param SortDirection $direction The direction to sort by (optional, default: SortDirection::Asc)
+     * @param int $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
      */
     public function __construct(SortDirection $direction = SortDirection::Asc, int $flags = SORT_REGULAR)
     {
@@ -29,8 +29,8 @@ class SortKeys extends ArrayMutator
     }
 
     /**
-     * @param  SortDirection  $direction The direction to sort by (optional, default: SortDirection::Asc)
-     * @param  int  $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
+     * @param SortDirection $direction The direction to sort by (optional, default: SortDirection::Asc)
+     * @param int $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
      */
     public static function make(SortDirection $direction = SortDirection::Asc, int $flags = SORT_REGULAR): self
     {
@@ -40,7 +40,7 @@ class SortKeys extends ArrayMutator
     /**
      * Sorts the keys of an array in ascending order.
      *
-     * @param  int  $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
+     * @param int $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
      */
     public static function asc(int $flags = SORT_REGULAR): self
     {
@@ -50,7 +50,7 @@ class SortKeys extends ArrayMutator
     /**
      * Sorts the keys of an array in descending order.
      *
-     * @param  int  $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
+     * @param int $flags Flags to pass to the PHP sort function (default: SORT_REGULAR)
      */
     public static function desc(int $flags = SORT_REGULAR): self
     {

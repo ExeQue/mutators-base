@@ -16,7 +16,7 @@ class Add extends NumberMutator
     private int|float $addend;
 
     /**
-     * @param  float|int  $addend The addend to add.
+     * @param float|int $addend The addend to add.
      */
     public function __construct(float|int $addend)
     {
@@ -24,7 +24,7 @@ class Add extends NumberMutator
     }
 
     /**
-     * @param  float|int  $addend The addend to add.
+     * @param float|int $addend The addend to add.
      */
     public static function make(float|int $addend): self
     {

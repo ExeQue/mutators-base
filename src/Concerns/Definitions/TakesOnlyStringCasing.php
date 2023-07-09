@@ -11,7 +11,7 @@ trait TakesOnlyStringCasing
     protected StringCase $casing;
 
     /**
-     * @param  StringCase|string  $casing The casing to use
+     * @param StringCase|string $casing The casing to use
      */
     public function __construct(StringCase|string $casing)
     {
@@ -19,7 +19,7 @@ trait TakesOnlyStringCasing
     }
 
     /**
-     * @param  StringCase|string  $casing The casing to use
+     * @param StringCase|string $casing The casing to use
      */
     public static function make(StringCase|string $casing): self
     {

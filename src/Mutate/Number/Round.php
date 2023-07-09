@@ -17,8 +17,8 @@ class Round extends NumberMutator
     private int $mode;
 
     /**
-     * @param  int  $precision The precision to round to (default: 0). Only applies to RoundDirection::Normal.
-     * @param  int  $mode The mode to round with (default: PHP_ROUND_HALF_UP). Only applies to RoundDirection::Normal.
+     * @param int $precision The precision to round to (default: 0). Only applies to RoundDirection::Normal.
+     * @param int $mode The mode to round with (default: PHP_ROUND_HALF_UP). Only applies to RoundDirection::Normal.
      */
     public function __construct(int $precision = 0, int $mode = PHP_ROUND_HALF_UP)
     {
@@ -29,8 +29,8 @@ class Round extends NumberMutator
     }
 
     /**
-     * @param  int  $precision The precision to round to (default: 0). Only applies to RoundDirection::Normal.
-     * @param  int  $mode The mode to round with (default: PHP_ROUND_HALF_UP). Only applies to RoundDirection::Normal.
+     * @param int $precision The precision to round to (default: 0). Only applies to RoundDirection::Normal.
+     * @param int $mode The mode to round with (default: PHP_ROUND_HALF_UP). Only applies to RoundDirection::Normal.
      */
     public static function make(int $precision = 0, int $mode = PHP_ROUND_HALF_UP): self
     {

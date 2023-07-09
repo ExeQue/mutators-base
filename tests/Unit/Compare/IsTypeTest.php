@@ -12,159 +12,160 @@ use ExeQue\Remix\Mutate\Array\Reverse;
 use Iterator;
 use stdClass;
 
-it('checks type of input', function(string $type, mixed $input, bool $expected) {
+it('checks type of input', function (string $type, mixed $input, bool $expected) {
     $comparator = IsType::make($type);
 
     expect($comparator->check($input))->toBe($expected);
 })->with([
     'string' => [
-        'type' => 'string',
-        'input' => 'foo',
+        'type'     => 'string',
+        'input'    => 'foo',
         'expected' => true,
     ],
     'int' => [
-        'type' => 'int',
-        'input' => 1,
+        'type'     => 'int',
+        'input'    => 1,
         'expected' => true,
     ],
     'float' => [
-        'type' => 'float',
-        'input' => 1.1,
+        'type'     => 'float',
+        'input'    => 1.1,
         'expected' => true,
     ],
     'bool' => [
-        'type' => 'bool',
-        'input' => true,
+        'type'     => 'bool',
+        'input'    => true,
         'expected' => true,
     ],
     'scalar' => [
-        'type' => 'scalar',
-        'input' => 'foo',
+        'type'     => 'scalar',
+        'input'    => 'foo',
         'expected' => true,
     ],
     'numeric' => [
-        'type' => 'numeric',
-        'input' => '1.3',
+        'type'     => 'numeric',
+        'input'    => '1.3',
         'expected' => true,
     ],
     'array' => [
-        'type' => 'array',
-        'input' => [],
+        'type'     => 'array',
+        'input'    => [],
         'expected' => true,
     ],
     'object' => [
-        'type' => 'object',
-        'input' => new stdClass(),
+        'type'     => 'object',
+        'input'    => new stdClass(),
         'expected' => true,
     ],
     'null' => [
-        'type' => 'null',
-        'input' => null,
+        'type'     => 'null',
+        'input'    => null,
         'expected' => true,
     ],
     'callable' => [
-        'type' => 'callable',
-        'input' => function() {},
+        'type'  => 'callable',
+        'input' => function () {
+        },
         'expected' => true,
     ],
     'iterable' => [
-        'type' => 'iterable',
-        'input' => new ArrayIterator(),
+        'type'     => 'iterable',
+        'input'    => new ArrayIterator(),
         'expected' => true,
     ],
     'resource' => [
-        'type' => 'resource',
-        'input' => fopen('php://memory', 'rb'),
+        'type'     => 'resource',
+        'input'    => fopen('php://memory', 'rb'),
         'expected' => true,
     ],
     'class' => [
-        'type' => stdClass::class,
-        'input' => new stdClass(),
+        'type'     => stdClass::class,
+        'input'    => new stdClass(),
         'expected' => true,
     ],
     'interface' => [
-        'type' => Iterator::class,
-        'input' => new ArrayIterator(),
+        'type'     => Iterator::class,
+        'input'    => new ArrayIterator(),
         'expected' => true,
     ],
     'trait' => [
-        'type' => Makes::class,
-        'input' => Reverse::make(),
+        'type'     => Makes::class,
+        'input'    => Reverse::make(),
         'expected' => true,
     ],
     'not string' => [
-        'type' => 'string',
-        'input' => 1,
+        'type'     => 'string',
+        'input'    => 1,
         'expected' => false,
     ],
     'not int' => [
-        'type' => 'int',
-        'input' => 'foo',
+        'type'     => 'int',
+        'input'    => 'foo',
         'expected' => false,
     ],
     'not float' => [
-        'type' => 'float',
-        'input' => 'foo',
+        'type'     => 'float',
+        'input'    => 'foo',
         'expected' => false,
     ],
     'not bool' => [
-        'type' => 'bool',
-        'input' => 'foo',
+        'type'     => 'bool',
+        'input'    => 'foo',
         'expected' => false,
     ],
     'not scalar' => [
-        'type' => 'scalar',
-        'input' => [],
+        'type'     => 'scalar',
+        'input'    => [],
         'expected' => false,
     ],
     'not numeric' => [
-        'type' => 'numeric',
-        'input' => 'foo',
+        'type'     => 'numeric',
+        'input'    => 'foo',
         'expected' => false,
     ],
     'not array' => [
-        'type' => 'array',
-        'input' => 'foo',
+        'type'     => 'array',
+        'input'    => 'foo',
         'expected' => false,
     ],
     'not object' => [
-        'type' => 'object',
-        'input' => 'foo',
+        'type'     => 'object',
+        'input'    => 'foo',
         'expected' => false,
     ],
     'not null' => [
-        'type' => 'null',
-        'input' => 'foo',
+        'type'     => 'null',
+        'input'    => 'foo',
         'expected' => false,
     ],
     'not callable' => [
-        'type' => 'callable',
-        'input' => 'foo',
+        'type'     => 'callable',
+        'input'    => 'foo',
         'expected' => false,
     ],
     'not iterable' => [
-        'type' => 'iterable',
-        'input' => 'foo',
+        'type'     => 'iterable',
+        'input'    => 'foo',
         'expected' => false,
     ],
     'not resource' => [
-        'type' => 'resource',
-        'input' => 'foo',
+        'type'     => 'resource',
+        'input'    => 'foo',
         'expected' => false,
     ],
     'not class' => [
-        'type' => stdClass::class,
-        'input' => 'foo',
+        'type'     => stdClass::class,
+        'input'    => 'foo',
         'expected' => false,
     ],
     'not interface' => [
-        'type' => Iterator::class,
-        'input' => 'foo',
+        'type'     => Iterator::class,
+        'input'    => 'foo',
         'expected' => false,
     ],
     'not trait' => [
-        'type' => Makes::class,
-        'input' => 'foo',
+        'type'     => Makes::class,
+        'input'    => 'foo',
         'expected' => false,
     ],
 ]);
@@ -175,83 +176,83 @@ it('throws an exception if given an invalid type', function () {
 
 it('has aliases for all types', function (string $type, $comparatorArgs, array $aliasArgs) {
     $aliasedComparator = call_user_func([IsType::class, $type], ...$aliasArgs);
-    $comparator = IsType::make(...$comparatorArgs);
+    $comparator        = IsType::make(...$comparatorArgs);
 
     expect($aliasedComparator)->toEqual($comparator);
 })->with([
     'string' => [
-        'type' => 'string',
+        'type'           => 'string',
         'comparatorArgs' => ['string'],
-        'aliasArgs' => [],
+        'aliasArgs'      => [],
     ],
     'int' => [
-        'type' => 'int',
+        'type'        => 'int',
         'compareArgs' => ['int'],
-        'aliasArgs' => [],
+        'aliasArgs'   => [],
     ],
     'float' => [
-        'type' => 'float',
+        'type'        => 'float',
         'compareArgs' => ['float'],
-        'aliasArgs' => [],
+        'aliasArgs'   => [],
     ],
     'bool' => [
-        'type' => 'bool',
+        'type'        => 'bool',
         'compareArgs' => ['bool'],
-        'aliasArgs' => [],
+        'aliasArgs'   => [],
     ],
     'scalar' => [
-        'type' => 'scalar',
+        'type'        => 'scalar',
         'compareArgs' => ['scalar'],
-        'aliasArgs' => [],
+        'aliasArgs'   => [],
     ],
     'numeric' => [
-        'type' => 'numeric',
+        'type'        => 'numeric',
         'compareArgs' => ['numeric'],
-        'aliasArgs' => [],
+        'aliasArgs'   => [],
     ],
     'array' => [
-        'type' => 'array',
+        'type'        => 'array',
         'compareArgs' => ['array'],
-        'aliasArgs' => [],
+        'aliasArgs'   => [],
     ],
     'object' => [
-        'type' => 'object',
+        'type'        => 'object',
         'compareArgs' => ['object'],
-        'aliasArgs' => [],
+        'aliasArgs'   => [],
     ],
     'null' => [
-        'type' => 'null',
+        'type'        => 'null',
         'compareArgs' => ['null'],
-        'aliasArgs' => [],
+        'aliasArgs'   => [],
     ],
     'callable' => [
-        'type' => 'callable',
+        'type'        => 'callable',
         'compareArgs' => ['callable'],
-        'aliasArgs' => [],
+        'aliasArgs'   => [],
     ],
     'iterable' => [
-        'type' => 'iterable',
+        'type'        => 'iterable',
         'compareArgs' => ['iterable'],
-        'aliasArgs' => [],
+        'aliasArgs'   => [],
     ],
     'resource' => [
-        'type' => 'resource',
+        'type'        => 'resource',
         'compareArgs' => ['resource'],
-        'aliasArgs' => [],
+        'aliasArgs'   => [],
     ],
     'class' => [
-        'type' => 'class',
+        'type'        => 'class',
         'compareArgs' => [stdClass::class],
-        'aliasArgs' => [stdClass::class],
+        'aliasArgs'   => [stdClass::class],
     ],
     'interface' => [
-        'type' => 'interface',
+        'type'        => 'interface',
         'compareArgs' => [Iterator::class],
-        'aliasArgs' => [Iterator::class],
+        'aliasArgs'   => [Iterator::class],
     ],
     'trait' => [
-        'type' => 'trait',
+        'type'        => 'trait',
         'compareArgs' => [Makes::class],
-        'aliasArgs' => [Makes::class],
+        'aliasArgs'   => [Makes::class],
     ],
 ]);

@@ -20,8 +20,8 @@ class Chunk extends Mutator
     private int $size;
 
     /**
-     * @param  int  $size The size of each chunk.
-     * @param  string|null  $encoding The encoding to use (optional).
+     * @param int $size The size of each chunk.
+     * @param string|null $encoding The encoding to use (optional).
      */
     public function __construct(int $size, string $encoding = null)
     {
@@ -32,8 +32,8 @@ class Chunk extends Mutator
     }
 
     /**
-     * @param  int  $size The size of each chunk.
-     * @param  string|null  $encoding The encoding to use (optional).
+     * @param int $size The size of each chunk.
+     * @param string|null $encoding The encoding to use (optional).
      */
     public static function make(int $size, string $encoding = null): self
     {

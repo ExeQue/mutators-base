@@ -19,9 +19,9 @@ class Number extends NumberComparator
     private bool $inclusive;
 
     /**
-     * @param  int|float|null  $min Minimum. Null means no minimum.
-     * @param  int|float|null  $max Maximum. Null means no maximum.
-     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison (default: true)
+     * @param int|float|null $min Minimum. Null means no minimum.
+     * @param int|float|null $max Maximum. Null means no maximum.
+     * @param bool $inclusive Whether to include the minimum and maximum in the comparison (default: true)
      */
     public function __construct(int|float $min = null, int|float $max = null, bool $inclusive = true)
     {
@@ -39,9 +39,9 @@ class Number extends NumberComparator
     }
 
     /**
-     * @param  int|float|null  $min Minimum. Null means no minimum.
-     * @param  int|float|null  $max Maximum. Null means no maximum.
-     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison (default: true)
+     * @param int|float|null $min Minimum. Null means no minimum.
+     * @param int|float|null $max Maximum. Null means no maximum.
+     * @param bool $inclusive Whether to include the minimum and maximum in the comparison (default: true)
      */
     public static function make(int|float $min = null, int|float $max = null, bool $inclusive = true): self
     {
@@ -51,7 +51,7 @@ class Number extends NumberComparator
     /**
      * Must be equal to the given size.
      *
-     * @param  int|float  $size Size to compare to
+     * @param int|float $size Size to compare to
      */
     public static function equal(int|float $size): self
     {
@@ -61,8 +61,8 @@ class Number extends NumberComparator
     /**
      * Must be greater than or equal to the given minimum.
      *
-     * @param  int|float  $min Minimum count
-     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison (default: true)
+     * @param int|float $min Minimum count
+     * @param bool $inclusive Whether to include the minimum and maximum in the comparison (default: true)
      */
     public static function min(int|float $min, bool $inclusive = true): self
     {
@@ -72,8 +72,8 @@ class Number extends NumberComparator
     /**
      * Must be less than or equal to the given maximum.
      *
-     * @param  int  $max Maximum count
-     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison (default: true)
+     * @param int $max Maximum count
+     * @param bool $inclusive Whether to include the minimum and maximum in the comparison (default: true)
      */
     public static function max(int|float $max, bool $inclusive = true): self
     {
@@ -83,9 +83,9 @@ class Number extends NumberComparator
     /**
      * Must be between the given minimum and maximum.
      *
-     * @param  int|float  $min Minimum count
-     * @param  int|float  $max Maximum count
-     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison (default: true)
+     * @param int|float $min Minimum count
+     * @param int|float $max Maximum count
+     * @param bool $inclusive Whether to include the minimum and maximum in the comparison (default: true)
      */
     public static function between(int|float $min, int|float $max, bool $inclusive = true): self
     {

@@ -8,8 +8,7 @@ use ArrayIterator;
 use ExeQue\Remix\Mutate\Array\ArrayMutator;
 
 it('works with iterable instance', function () {
-    $instance = new class extends ArrayMutator
-    {
+    $instance = new class () extends ArrayMutator {
         protected function mutateArray(array $array): array
         {
             return $array;
@@ -24,8 +23,7 @@ it('works with iterable instance', function () {
 });
 
 it('preserves keys when used with iterator', function () {
-    $instance = new class extends ArrayMutator
-    {
+    $instance = new class () extends ArrayMutator {
         protected function mutateArray(array $array): array
         {
             return $array;

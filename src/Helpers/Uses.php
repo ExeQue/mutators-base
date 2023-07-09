@@ -19,7 +19,7 @@ class Uses
 
         $results = [];
 
-        if(!class_exists($class) && !trait_exists($class)) {
+        if (! class_exists($class) && ! trait_exists($class)) {
             return $results;
         }
 

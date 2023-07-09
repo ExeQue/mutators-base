@@ -6,7 +6,7 @@ namespace Tests\Unit\Compare;
 
 use ExeQue\Remix\Compare\Equal;
 
-it('checks if values are equal', function(mixed $one, mixed $two, bool $expected) {
+it('checks if values are equal', function (mixed $one, mixed $two, bool $expected) {
     $comparator = Equal::make($one);
 
     expect($comparator->check($two))->toBe($expected);

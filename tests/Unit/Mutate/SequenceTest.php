@@ -11,8 +11,7 @@ use ExeQue\Remix\Mutate\When;
 use ReflectionClass;
 
 it('executes mutators in order', function () {
-    $callableObject = new class
-    {
+    $callableObject = new class () {
         public function __invoke($value): string
         {
             return $value . 'ral';

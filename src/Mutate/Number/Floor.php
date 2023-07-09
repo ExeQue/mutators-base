@@ -16,7 +16,7 @@ class Floor extends NumberMutator
     private int $precision;
 
     /**
-     * @param  int  $precision The precision to round to.
+     * @param int $precision The precision to round to.
      */
     public function __construct(int $precision = 0)
     {
@@ -26,7 +26,7 @@ class Floor extends NumberMutator
     }
 
     /**
-     * @param  int  $precision The precision to round to.
+     * @param int $precision The precision to round to.
      */
     public static function make(int $precision = 0): self
     {

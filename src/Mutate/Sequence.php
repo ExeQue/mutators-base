@@ -23,7 +23,7 @@ class Sequence extends Mutator
     private array $mutators;
 
     /**
-     * @param  array  $mutators The mutators to sequence.
+     * @param array $mutators The mutators to sequence.
      */
     public function __construct(array $mutators = [])
     {
@@ -31,7 +31,7 @@ class Sequence extends Mutator
     }
 
     /**
-     * @param  array  $mutators The mutators to sequence.
+     * @param array $mutators The mutators to sequence.
      */
     public static function make(array $mutators = []): self
     {
@@ -41,7 +41,7 @@ class Sequence extends Mutator
     /**
      * Add mutator(s) to the sequence.
      *
-     * @param  callable  ...$mutators The mutators to add.
+     * @param callable ...$mutators The mutators to add.
      */
     public function then(callable ...$mutators): self
     {
@@ -53,9 +53,9 @@ class Sequence extends Mutator
     /**
      * Add mutator(s) to the sequence that runs if a condition is met.
      *
-     * @param  callable|false  $condition The condition to check.
-     * @param  callable|array  $then The mutator(s) to run if the condition is met.
-     * @param  callable|array|null  $otherwise The mutator(s) to run if the condition is not met.
+     * @param callable|false $condition The condition to check.
+     * @param callable|array $then The mutator(s) to run if the condition is met.
+     * @param callable|array|null $otherwise The mutator(s) to run if the condition is not met.
      */
     public function when(callable|bool $condition, callable|array $then, callable|array $otherwise = null): self
     {

@@ -17,7 +17,7 @@ class Divide extends NumberMutator
     private int|float $divisor;
 
     /**
-     * @param  float|int  $divisor The divisor to divide with.
+     * @param float|int $divisor The divisor to divide with.
      */
     public function __construct(float|int $divisor)
     {
@@ -27,7 +27,7 @@ class Divide extends NumberMutator
     }
 
     /**
-     * @param  float|int  $divisor The divisor to divide with.
+     * @param float|int $divisor The divisor to divide with.
      */
     public static function make(float|int $divisor): self
     {

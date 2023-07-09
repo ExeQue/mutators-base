@@ -18,7 +18,7 @@ class Not extends Comparator
     private ComparatorInterface $comparator;
 
     /**
-     * @param  callable|bool  $comparator A comparator or a boolean value to invert
+     * @param callable|bool $comparator A comparator or a boolean value to invert
      */
     public function __construct(callable|bool $comparator)
     {
@@ -26,7 +26,7 @@ class Not extends Comparator
     }
 
     /**
-     * @param  callable|bool  $comparator A comparator or a boolean value to invert
+     * @param callable|bool $comparator A comparator or a boolean value to invert
      */
     public static function make(callable|bool $comparator): self
     {

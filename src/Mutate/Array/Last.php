@@ -17,7 +17,7 @@ class Last extends Mutator
     private $callback;
 
     /**
-     * @param  callable|null  $callback A callback to filter the array (optional)
+     * @param callable|null $callback A callback to filter the array (optional)
      */
     public function __construct(callable $callback = null)
     {
@@ -25,7 +25,7 @@ class Last extends Mutator
     }
 
     /**
-     * @param  callable|null  $callback A callback to filter the array (optional)
+     * @param callable|null $callback A callback to filter the array (optional)
      */
     public static function make(callable $callback = null): self
     {

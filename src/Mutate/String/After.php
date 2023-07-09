@@ -15,8 +15,8 @@ class After extends StringMutator
     private bool $last;
 
     /**
-     * @param  string  $search The substring to search for.
-     * @param  bool  $last Whether to search for the last occurrence of the substring (default: false).
+     * @param string $search The substring to search for.
+     * @param bool $last Whether to search for the last occurrence of the substring (default: false).
      */
     public function __construct(string $search, bool $last = false)
     {
@@ -25,8 +25,8 @@ class After extends StringMutator
     }
 
     /**
-     * @param  string  $search The substring to search for.
-     * @param  bool  $last Whether to search for the last occurrence of the substring (default: false).
+     * @param string $search The substring to search for.
+     * @param bool $last Whether to search for the last occurrence of the substring (default: false).
      */
     public static function make(string $search, bool $last = false): self
     {
@@ -36,7 +36,7 @@ class After extends StringMutator
     /**
      * Retrieves the part of a string after the first occurrence of a given substring.
      *
-     * @param  string  $search The substring to search for.
+     * @param string $search The substring to search for.
      */
     public static function first(string $search): self
     {
@@ -46,7 +46,7 @@ class After extends StringMutator
     /**
      * Retrieves the part of a string after the last occurrence of a given substring.
      *
-     * @param  string  $search The substring to search for.
+     * @param string $search The substring to search for.
      */
     public static function last(string $search): self
     {

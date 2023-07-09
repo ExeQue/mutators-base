@@ -20,8 +20,8 @@ class ToClass extends Mutator
     private bool $spread;
 
     /**
-     * @param  string  $class The class to convert to
-     * @param  bool  $spread Whether to spread an array into the constructor or not (default: false)
+     * @param string $class The class to convert to
+     * @param bool $spread Whether to spread an array into the constructor or not (default: false)
      */
     public function __construct(string $class, bool $spread = false)
     {
@@ -32,8 +32,8 @@ class ToClass extends Mutator
     }
 
     /**
-     * @param  string  $class The class to convert to
-     * @param  bool  $spread Whether to spread an array into the constructor or not (default: false)
+     * @param string $class The class to convert to
+     * @param bool $spread Whether to spread an array into the constructor or not (default: false)
      */
     public static function make(string $class, bool $spread = false): self
     {

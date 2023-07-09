@@ -66,8 +66,7 @@ it('throws an exception if unable to serialize', function (mixed $input) {
         },
     ],
     'anonymous class' => [
-        'input' => new class
-        {
+        'input' => new class () {
         },
     ],
     'class with exception during __serialize' => [

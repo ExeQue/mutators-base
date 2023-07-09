@@ -16,7 +16,7 @@ class Subtract extends NumberMutator
     private int|float $subtrahend;
 
     /**
-     * @param  float|int  $subtrahend The subtrahend to subtract.
+     * @param float|int $subtrahend The subtrahend to subtract.
      */
     public function __construct(float|int $subtrahend)
     {
@@ -24,7 +24,7 @@ class Subtract extends NumberMutator
     }
 
     /**
-     * @param  float|int  $subtrahend The subtrahend to subtract.
+     * @param float|int $subtrahend The subtrahend to subtract.
      */
     public static function make(float|int $subtrahend): self
     {

@@ -15,7 +15,7 @@ trait HasMultipleComparators
     private array $comparators;
 
     /**
-     * @param  callable|bool  ...$comparators A list of comparators to use
+     * @param callable|bool ...$comparators A list of comparators to use
      */
     public function __construct(callable|bool ...$comparators)
     {
@@ -25,7 +25,7 @@ trait HasMultipleComparators
     }
 
     /**
-     * @param  callable|bool  ...$comparators A list of comparators to add
+     * @param callable|bool ...$comparators A list of comparators to add
      */
     public function with(callable|bool ...$comparators): self
     {
@@ -35,7 +35,7 @@ trait HasMultipleComparators
     }
 
     /**
-     * @param  callable|bool  ...$comparators A list of comparators to use
+     * @param callable|bool ...$comparators A list of comparators to use
      */
     public static function make(callable|bool ...$comparators): self
     {
@@ -43,7 +43,7 @@ trait HasMultipleComparators
     }
 
     /**
-     * @param  callable|bool  ...$comparators A list of comparators to use
+     * @param callable|bool ...$comparators A list of comparators to use
      */
     public static function makeFromArray(array $comparators): self
     {

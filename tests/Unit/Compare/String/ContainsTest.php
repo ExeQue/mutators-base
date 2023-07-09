@@ -91,8 +91,7 @@ it('does not throw an exception if given a stringable input', function (mixed $i
         'input' => 'foo',
     ],
     'stringable' => [
-        'input' => new class
-        {
+        'input' => new class () {
             public function __toString(): string
             {
                 return 'foo';
@@ -108,19 +107,18 @@ it('throws an exception if given any non-stringable input', function (array $inp
         'input' => [[]],
     ],
     'object' => [
-        'input' => [new class
-        {
+        'input' => [new class () {
         }],
     ],
 ]);
 
 test('aliases are identical to the original', function () {
-    $all = Contains::make('foo');
+    $all      = Contains::make('foo');
     $allAlias = Contains::all('foo');
 
     expect($all)->toEqual($allAlias);
 
-    $any = Contains::make('foo', all: false);
+    $any      = Contains::make('foo', all: false);
     $anyAlias = Contains::any('foo');
 
     expect($any)->toEqual($anyAlias);

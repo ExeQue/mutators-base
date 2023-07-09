@@ -18,8 +18,8 @@ class Implode extends Mutator
     private ?string $finalGlue;
 
     /**
-     * @param  string  $glue The glue to use between values (default: "").
-     * @param  string|null  $finalGlue The glue to use between the last two values (optional).
+     * @param string $glue The glue to use between values (default: "").
+     * @param string|null $finalGlue The glue to use between the last two values (optional).
      */
     public function __construct(string $glue = '', string $finalGlue = null)
     {
@@ -28,8 +28,8 @@ class Implode extends Mutator
     }
 
     /**
-     * @param  string  $glue The glue to use between values (default: "").
-     * @param  string|null  $finalGlue The glue to use between the last two values (optional).
+     * @param string $glue The glue to use between values (default: "").
+     * @param string|null $finalGlue The glue to use between the last two values (optional).
      */
     public static function make(string $glue = '', string $finalGlue = null): self
     {

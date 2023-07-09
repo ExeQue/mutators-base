@@ -17,8 +17,8 @@ class Mask extends StringMutator
     private string $replacement;
 
     /**
-     * @param  string  $pattern The regular expression to match.
-     * @param  string  $replacement The replacement character (default: '*').
+     * @param string $pattern The regular expression to match.
+     * @param string $replacement The replacement character (default: '*').
      */
     public function __construct(string $pattern, string $replacement = '*')
     {
@@ -29,8 +29,8 @@ class Mask extends StringMutator
     }
 
     /**
-     * @param  string  $pattern The regular expression to match.
-     * @param  string  $replacement The replacement character (default: '*').
+     * @param string $pattern The regular expression to match.
+     * @param string $replacement The replacement character (default: '*').
      */
     public static function make(string $pattern, string $replacement = '*'): self
     {

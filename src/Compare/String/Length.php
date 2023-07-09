@@ -18,9 +18,9 @@ class Length extends StringComparator
     private Number $comparator;
 
     /**
-     * @param  int|null  $min Minimum length. Null means no minimum.
-     * @param  int|null  $max Maximum length. Null means no maximum.
-     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison (default: true)
+     * @param int|null $min Minimum length. Null means no minimum.
+     * @param int|null $max Maximum length. Null means no maximum.
+     * @param bool $inclusive Whether to include the minimum and maximum in the comparison (default: true)
      */
     public function __construct(int $min = null, int $max = null, bool $inclusive = true)
     {
@@ -31,9 +31,9 @@ class Length extends StringComparator
     }
 
     /**
-     * @param  int|null  $min Minimum length. Null means no minimum.
-     * @param  int|null  $max Maximum length. Null means no maximum.
-     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison (default: true)
+     * @param int|null $min Minimum length. Null means no minimum.
+     * @param int|null $max Maximum length. Null means no maximum.
+     * @param bool $inclusive Whether to include the minimum and maximum in the comparison (default: true)
      */
     public static function make(int $min = null, int $max = null, bool $inclusive = true): self
     {
@@ -43,7 +43,7 @@ class Length extends StringComparator
     /**
      * Length must be equal to the given size.
      *
-     * @param  int  $size Size to compare to
+     * @param int $size Size to compare to
      */
     public static function equal(int $size): self
     {
@@ -53,8 +53,8 @@ class Length extends StringComparator
     /**
      * Length must be greater than or equal to the given size.
      *
-     * @param  int  $min Minimum size
-     * @param  bool  $inclusive Whether to include the minimum in the comparison (default: true)
+     * @param int $min Minimum size
+     * @param bool $inclusive Whether to include the minimum in the comparison (default: true)
      */
     public static function min(int $min, bool $inclusive = true): self
     {
@@ -64,8 +64,8 @@ class Length extends StringComparator
     /**
      * Length must be less than or equal to the given size.
      *
-     * @param  int  $max Maximum size
-     * @param  bool  $inclusive Whether to include the maximum in the comparison (default: true)
+     * @param int $max Maximum size
+     * @param bool $inclusive Whether to include the maximum in the comparison (default: true)
      */
     public static function max(int $max, bool $inclusive = true): self
     {
@@ -75,9 +75,9 @@ class Length extends StringComparator
     /**
      * Length must be between the given sizes.
      *
-     * @param  int  $min Minimum size
-     * @param  int  $max Maximum size
-     * @param  bool  $inclusive Whether to include the minimum and maximum in the comparison (default: true)
+     * @param int $min Minimum size
+     * @param int $max Maximum size
+     * @param bool $inclusive Whether to include the minimum and maximum in the comparison (default: true)
      */
     public static function between(int $min, int $max, bool $inclusive = true): self
     {

@@ -38,8 +38,8 @@ class Tags extends StringMutator
     private mixed $removeOnMissing;
 
     /**
-     * @param  array  $tags The tags to replace.
-     * @param  array  $options The options to use.
+     * @param array $tags The tags to replace.
+     * @param array $options The options to use.
      */
     public function __construct(array $tags, array $options = [])
     {
@@ -56,8 +56,8 @@ class Tags extends StringMutator
     }
 
     /**
-     * @param  array  $tags The tags to replace.
-     * @param  array  $options The options to use.
+     * @param array $tags The tags to replace.
+     * @param array $options The options to use.
      */
     public static function make(array $tags, array $options = []): self
     {

@@ -18,9 +18,9 @@ class Replace extends StringMutator
     private bool $caseSensitive;
 
     /**
-     * @param  array|string  $search The value(s) to search for.
-     * @param  array|string  $replace The replacement value(s).
-     * @param  bool  $caseSensitive Whether to perform a case-sensitive search (default: true).
+     * @param array|string $search The value(s) to search for.
+     * @param array|string $replace The replacement value(s).
+     * @param bool $caseSensitive Whether to perform a case-sensitive search (default: true).
      */
     public function __construct(array|string $search, array|string $replace, bool $caseSensitive = true)
     {
@@ -30,9 +30,9 @@ class Replace extends StringMutator
     }
 
     /**
-     * @param  array|string  $search The value(s) to search for.
-     * @param  array|string  $replace The replacement value(s).
-     * @param  bool  $caseSensitive Whether to perform a case-sensitive search (default: true).
+     * @param array|string $search The value(s) to search for.
+     * @param array|string $replace The replacement value(s).
+     * @param bool $caseSensitive Whether to perform a case-sensitive search (default: true).
      */
     public static function make(array|string $search, array|string $replace, bool $caseSensitive = true): self
     {
@@ -42,8 +42,8 @@ class Replace extends StringMutator
     /**
      * Replace all occurrences of the search string (case-sensitive) with the replacement string.
      *
-     * @param  array|string  $search The value(s) to search for.
-     * @param  array|string  $replace The replacement value(s).
+     * @param array|string $search The value(s) to search for.
+     * @param array|string $replace The replacement value(s).
      */
     public static function sensitive(array|string $search, array|string $replace): self
     {
@@ -53,8 +53,8 @@ class Replace extends StringMutator
     /**
      * Replace all occurrences of the search string (case-insensitive) with the replacement string.
      *
-     * @param  array|string  $search The value(s) to search for.
-     * @param  array|string  $replace The replacement value(s).
+     * @param array|string $search The value(s) to search for.
+     * @param array|string $replace The replacement value(s).
      */
     public static function insensitive(array|string $search, array|string $replace): self
     {

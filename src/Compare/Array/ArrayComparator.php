@@ -12,7 +12,7 @@ abstract class ArrayComparator extends Comparator
     /**
      * Compare the input array against the comparator.
      *
-     * @param  array  $value
+     * @param array $value
      */
     final public function check(mixed $value): bool
     {

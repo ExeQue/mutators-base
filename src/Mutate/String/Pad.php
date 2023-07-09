@@ -24,10 +24,10 @@ class Pad extends StringMutator
     private StringDirection $direction;
 
     /**
-     * @param  int  $length The length to pad to.
-     * @param  string  $string The string to pad with (default: ' ').
-     * @param  StringDirection  $direction The direction to pad in (default: StringDirection::Right).
-     * @param  string|null  $encoding The encoding to use (optional).
+     * @param int $length The length to pad to.
+     * @param string $string The string to pad with (default: ' ').
+     * @param StringDirection $direction The direction to pad in (default: StringDirection::Right).
+     * @param string|null $encoding The encoding to use (optional).
      */
     public function __construct(int $length, string $string = ' ', StringDirection $direction = StringDirection::Right, string $encoding = null)
     {
@@ -41,10 +41,10 @@ class Pad extends StringMutator
     }
 
     /**
-     * @param  int  $length The length to pad to.
-     * @param  string  $string The string to pad with (default: ' ').
-     * @param  StringDirection  $direction The direction to pad in (default: StringDirection::Right).
-     * @param  string|null  $encoding The encoding to use (optional).
+     * @param int $length The length to pad to.
+     * @param string $string The string to pad with (default: ' ').
+     * @param StringDirection $direction The direction to pad in (default: StringDirection::Right).
+     * @param string|null $encoding The encoding to use (optional).
      */
     public static function make(int $length, string $string = ' ', StringDirection $direction = StringDirection::Right, string $encoding = null): self
     {
@@ -52,9 +52,9 @@ class Pad extends StringMutator
     }
 
     /**
-     * @param  int  $length The length to pad to.
-     * @param  string  $string The string to pad with (default: ' ').
-     * @param  string|null  $encoding The encoding to use (optional).
+     * @param int $length The length to pad to.
+     * @param string $string The string to pad with (default: ' ').
+     * @param string|null $encoding The encoding to use (optional).
      */
     public static function left(int $length, string $string = ' ', string $encoding = null): self
     {
@@ -62,9 +62,9 @@ class Pad extends StringMutator
     }
 
     /**
-     * @param  int  $length The length to pad to.
-     * @param  string  $string The string to pad with (default: ' ').
-     * @param  string|null  $encoding The encoding to use (optional).
+     * @param int $length The length to pad to.
+     * @param string $string The string to pad with (default: ' ').
+     * @param string|null $encoding The encoding to use (optional).
      */
     public static function right(int $length, string $string = ' ', string $encoding = null): self
     {
@@ -72,9 +72,9 @@ class Pad extends StringMutator
     }
 
     /**
-     * @param  int  $length The length to pad to.
-     * @param  string  $string The string to pad with (default: ' ').
-     * @param  string|null  $encoding The encoding to use (optional).
+     * @param int $length The length to pad to.
+     * @param string $string The string to pad with (default: ' ').
+     * @param string|null $encoding The encoding to use (optional).
      */
     public static function both(int $length, string $string = ' ', string $encoding = null): self
     {

@@ -16,7 +16,7 @@ class Filter extends ArrayMutator
     private $callback;
 
     /**
-     * @param  callable|null  $callback The callback to use for filtering (optional).
+     * @param callable|null $callback The callback to use for filtering (optional).
      */
     public function __construct(callable $callback = null)
     {
@@ -24,7 +24,7 @@ class Filter extends ArrayMutator
     }
 
     /**
-     * @param  callable|null  $callback The callback to use for filtering (optional).
+     * @param callable|null $callback The callback to use for filtering (optional).
      */
     public static function make(callable $callback = null): self
     {

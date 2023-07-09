@@ -16,7 +16,7 @@ class Matches extends StringComparator
     private string $pattern;
 
     /**
-     * @param  string  $pattern The regular expression pattern to match against
+     * @param string $pattern The regular expression pattern to match against
      */
     public function __construct(string $pattern)
     {
@@ -24,7 +24,7 @@ class Matches extends StringComparator
     }
 
     /**
-     * @param  string  $pattern The regular expression pattern to match against
+     * @param string $pattern The regular expression pattern to match against
      */
     public static function make(string $pattern): self
     {
