@@ -6,36 +6,36 @@ namespace Tests\Unit\Compare;
 
 use ExeQue\Remix\Compare\One;
 
-it('only one comparator can be true', function (array $comparators, bool $expected) {
+it('checks if only one comparator is true', function (array $comparators, bool $expected) {
     $comparator = One::make(...$comparators);
 
     expect($comparator->check(''))->toBe($expected);
 })->with([
-    'one true (true)' => [
-        [
+    'one true' => [
+        'comparators' => [
             fn () => false,
             fn () => false,
             fn () => true,
             fn () => false,
         ],
-        true,
+        'expected' => true,
     ],
-    'multiple true (false)' => [
-        [
+    'multiple true' => [
+        'comparators' => [
             fn () => true,
             fn () => true,
             fn () => true,
             fn () => true,
         ],
-        false,
+        'expected' => false,
     ],
-    'no true (false)' => [
-        [
+    'no true' => [
+        'comparators' => [
             fn () => false,
             fn () => false,
             fn () => false,
             fn () => false,
         ],
-        false,
+        'expected' => false,
     ],
 ]);

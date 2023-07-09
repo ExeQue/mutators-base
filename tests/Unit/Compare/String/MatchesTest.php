@@ -6,14 +6,19 @@ namespace Tests\Unit\Compare\String;
 
 use ExeQue\Remix\Compare\String\Matches;
 
-it('matches pattern', function () {
-    $comparator = Matches::make('/foo/');
+it('checks if the value matches the pattern', function (string $pattern, string $input, bool $expected) {
+    $comparator = Matches::make($pattern);
 
-    expect($comparator->check('foo'))->toBe(true);
-});
-
-it('does not match pattern', function () {
-    $comparator = Matches::make('/foo/');
-
-    expect($comparator->check('bar'))->toBe(false);
-});
+    expect($comparator->check($input))->toBe($expected);
+})->with([
+    'matches' => [
+        'pattern'  => '/foo/',
+        'input'    => 'foo',
+        'expected' => true,
+    ],
+    'does not match' => [
+        'pattern'  => '/foo/',
+        'input'    => 'bar',
+        'expected' => false,
+    ],
+]);

@@ -6,52 +6,102 @@ namespace Tests\Unit\Compare\Array;
 
 // Create tests for the following class: \ExeQue\Remix\Compare\Array\KeyExists
 
+use ArrayIterator;
 use ExeQue\Remix\Compare\Array\KeyExists;
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
+use stdClass;
 
-test('has a key', function () {
-    $comparator = KeyExists::make('foo');
+test('checks if key exists', function (mixed $data, mixed $input, bool $expected) {
+    $comparator = KeyExists::make($input);
 
-    expect($comparator->check(['foo' => 'bar']))->toBe(true);
-});
+    expect($comparator->check($data))->toBe($expected);
+})->with([
+    'empty array' => [
+        'data'     => [],
+        'input'    => 'foo',
+        'expected' => false,
+    ],
+    'empty iterable' => [
+        'data'     => new ArrayIterator([]),
+        'input'    => 'foo',
+        'expected' => false,
+    ],
+    'non-empty array' => [
+        'data'     => ['foo' => 'bar'],
+        'input'    => 'foo',
+        'expected' => true,
+    ],
+    'non-empty iterable' => [
+        'data'     => new ArrayIterator(['foo' => 'bar']),
+        'input'    => 'foo',
+        'expected' => true,
+    ],
+    'non-empty map' => [
+        'data'     => ['foo' => 'bar'],
+        'input'    => 'foo',
+        'expected' => true,
+    ],
+    'non-empty iterable map' => [
+        'data'     => new ArrayIterator(['foo' => 'bar']),
+        'input'    => 'foo',
+        'expected' => true,
+    ],
+    'non-empty map with numeric keys' => [
+        'data'     => [1 => 'foo', 2 => 'bar'],
+        'input'    => 1,
+        'expected' => true,
+    ],
+    'non-empty iterable map with numeric keys' => [
+        'data'     => new ArrayIterator([1 => 'foo', 2 => 'bar']),
+        'input'    => 1,
+        'expected' => true,
+    ],
+    'non-empty map with non-existent key' => [
+        'data'     => ['foo' => 'bar'],
+        'input'    => 'baz',
+        'expected' => false,
+    ],
+    'non-empty iterable map with non-existent key' => [
+        'data'     => new ArrayIterator(['foo' => 'bar']),
+        'input'    => 'baz',
+        'expected' => false,
+    ],
+    'non-empty map with numeric keys and non-existent key' => [
+        'data'     => [1 => 'foo', 2 => 'bar'],
+        'input'    => 3,
+        'expected' => false,
+    ],
+    'non-empty iterable map with numeric keys and non-existent key' => [
+        'data'     => new ArrayIterator([1 => 'foo', 2 => 'bar']),
+        'input'    => 3,
+        'expected' => false,
+    ],
+    'non-empty map using upper-case key' => [
+        'data'     => ['foo' => 'bar'],
+        'input'    => 'FOO',
+        'expected' => false,
+    ],
+]);
 
-test('does not have a key', function () {
-    $comparator = KeyExists::make('foo');
-
-    expect($comparator->check(['bar' => 'foo']))->toBe(false);
-});
-
-test('has a key with a null value', function () {
-    $comparator = KeyExists::make('foo');
-
-    expect($comparator->check(['foo' => null]))->toBe(true);
-});
-
-test('has a key with a false value', function () {
-    $comparator = KeyExists::make('foo');
-
-    expect($comparator->check(['foo' => false]))->toBe(true);
-});
-
-test('has a key with a zero value', function () {
-    $comparator = KeyExists::make('foo');
-
-    expect($comparator->check(['foo' => 0]))->toBe(true);
-});
-
-test('has a key with an empty string value', function () {
-    $comparator = KeyExists::make('foo');
-
-    expect($comparator->check(['foo' => '']))->toBe(true);
-});
-
-test('has a key with an empty array value', function () {
-    $comparator = KeyExists::make('foo');
-
-    expect($comparator->check(['foo' => []]))->toBe(true);
-});
-
-test('is case sensitive', function () {
-    $comparator = KeyExists::make('foo');
-
-    expect($comparator->check(['FOO' => 'bar']))->toBe(false);
-});
+it('throws an exception if input is not an array or iterable', function (mixed $input) {
+    KeyExists::make('foo')->check($input);
+})->throws(InvalidArgumentException::class)->with([
+    'input is a string' => [
+        'input' => 'foo',
+    ],
+    'input is an object' => [
+        'input' => new stdClass(),
+    ],
+    'input is an integer' => [
+        'input' => 1,
+    ],
+    'input is a float' => [
+        'input' => 1.1,
+    ],
+    'input is a boolean' => [
+        'input' => true,
+    ],
+    'input is null' => [
+        'input' => null,
+    ],
+]);

@@ -12,7 +12,7 @@ it('inverts comparator', function (mixed $comparator, mixed $expected) {
     expect($comparator->check('foo'))->toBe($expected);
 })->with(function () {
     return [
-        'callable mutator' => [
+        'callable' => [
             'comparator' => fn () => true,
             'expected'   => false,
         ],

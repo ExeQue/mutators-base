@@ -14,6 +14,10 @@ abstract class NumberComparator extends Comparator
      */
     final public function check(mixed $value): bool
     {
+        if (is_string($value) && is_numeric($value)) {
+            $value = (float)$value;
+        }
+
         Assert::intOrFloat($value, 'Value must be a number. Got: %s');
 
         return $this->checkNumber($value);

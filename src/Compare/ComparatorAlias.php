@@ -13,7 +13,7 @@ abstract class ComparatorAlias extends Comparator
         $this->comparator = $comparator;
     }
 
-    final public function check(mixed $value): bool
+    public function check(mixed $value): bool
     {
         return $this->comparator->check($value);
     }

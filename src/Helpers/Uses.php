@@ -19,6 +19,10 @@ class Uses
 
         $results = [];
 
+        if(!class_exists($class) && !trait_exists($class)) {
+            return $results;
+        }
+
         /** @noinspection SuspiciousLoopInspection */
         foreach (array_reverse(class_parents($class)) + [$class => $class] as $class) {
             $results += self::traitUsesRecursive($class);

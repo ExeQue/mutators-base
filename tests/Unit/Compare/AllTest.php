@@ -7,39 +7,40 @@ namespace Tests\Unit\Compare;
 use ExeQue\Remix\Compare\All;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 
-it('all comparators must be truthful', function () {
-    $comparator = All::make(
-        fn () => true,
-        fn () => true,
-        fn () => true,
-        fn () => true,
-    );
+it('checks if all comparators are truthful', function (array $comparators, bool $expected) {
+    $comparator = All::make(...$comparators);
 
-    expect($comparator->check(''))->toBeTrue();
-});
+    expect($comparator->check(''))->toBe($expected);
+})->with([
+    'all true' => [
+        'comparators' => [
+            fn () => true,
+            fn () => true,
+            fn () => true,
+            fn () => true,
+        ],
+        'expected' => true,
+    ],
+    'one false' => [
+        'comparators' => [
+            fn () => true,
+            fn () => true,
+            fn () => false,
+            fn () => true,
+        ],
+        'expected' => false,
+    ],
+    'all false' => [
+        'comparators' => [
+            fn () => false,
+            fn () => false,
+            fn () => false,
+            fn () => false,
+        ],
+        'expected' => false,
+    ],
+]);
 
-it('outputs false if any comparator is false', function () {
-    $comparator = All::make(
-        fn () => true,
-        fn () => true,
-        fn () => false,
-        fn () => true,
-    );
-
-    expect($comparator->check(''))->toBeFalse();
-});
-
-it('outputs false if all comparators are false', function () {
-    $comparator = All::make(
-        fn () => false,
-        fn () => false,
-        fn () => false,
-        fn () => false,
-    );
-
-    expect($comparator->check(''))->toBeFalse();
-});
-
-it('fails if comparators is empty', function () {
+it('throws an exception if no comparators are provided', function () {
     new All();
 })->throws(InvalidArgumentException::class);
