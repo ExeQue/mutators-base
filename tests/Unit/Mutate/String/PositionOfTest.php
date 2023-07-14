@@ -42,7 +42,7 @@ it('gets the position of a string', function (mixed $needle, bool $last, int $of
         'offset'        => 15,
         'caseSensitive' => true,
         'input'         => 'foo bar baz foo bar baz',
-        'expected'      => 0,
+        'expected'      => false,
     ],
     'not found' => [
         'needle'        => 'not found',

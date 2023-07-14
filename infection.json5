@@ -5,7 +5,8 @@
             "src"
         ],
         excludes: [
-            "src/Testing"
+            "src/Testing",
+            "src/Debugging"
         ]
     },
     "mutators": {

@@ -7,27 +7,23 @@ services:
     volumes:
       - ./:/app
     working_dir: /app
-  php:
-    image: php:8.2-cli
+  php81:
     build:
-        context: docker/php
+      context: docker/php81
     user: 1000:1000
     volumes:
       - ./:/app
     working_dir: /app
-  pint:
+  php82:
+    build:
+      context: docker/php82
+    user: 1000:1000
+    volumes:
+      - ./:/app
+    working_dir: /app
+  pest81:
     extends:
-      service: php
-    entrypoint:
-        - vendor/bin/pint
-  testbench:
-    extends:
-      service: php
-    entrypoint:
-        - vendor/bin/testbench
-  pest:
-    extends:
-      service: php
+      service: php81
     environment:
       - XDEBUG_MODE=coverage
     entrypoint:
@@ -35,19 +31,41 @@ services:
         - --coverage-html
         - .phpunit.coverage
         - --profile
-  infection:
+  pest82:
     extends:
-      service: php
+      service: php82
+    environment:
+      - XDEBUG_MODE=coverage
+    entrypoint:
+        - vendor/bin/pest
+        - --coverage-html
+        - .phpunit.coverage
+        - --profile
+  infection81:
+    extends:
+      service: php81
     entrypoint:
         - vendor/bin/infection
         - --threads=8
-        - --logger-html='.infection.log.html'
+        - --logger-html=.infection.log.html
+  infection82:
+    extends:
+      service: php82
+    entrypoint:
+        - vendor/bin/infection
+        - --threads=8
+        - --logger-html=.infection.log.html
   doctum:
     extends:
-      service: php
+      service: php82
     entrypoint:
         - php
         - vendor/bin/doctum.php
         - update
         - ./doctum.php
+  pint:
+      extends:
+          service: php82
+      entrypoint:
+          - vendor/bin/pint
 

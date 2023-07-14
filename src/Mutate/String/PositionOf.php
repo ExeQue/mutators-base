@@ -70,10 +70,10 @@ class PositionOf extends Mutator
 
         if ($this->last) {
             if(! $this->caseSensitive) {
-                return mb_strripos($value, $this->needle, $this->offset * -1, $encoding);
+                return mb_strripos($value, $this->needle, $this->offset, $encoding);
             }
 
-            return mb_strrpos($value, $this->needle, $this->offset * -1, $encoding);
+            return mb_strrpos($value, $this->needle, $this->offset, $encoding);
         }
 
         if(! $this->caseSensitive) {
