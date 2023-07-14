@@ -5,24 +5,21 @@ declare(strict_types=1);
 namespace Tests\Unit\Concerns;
 
 use ExeQue\Remix\Compare\Comparator;
-use ExeQue\Remix\Concerns\ResolvesComparators;
-use ExeQue\Remix\Exceptions\InvalidComparatorException;
+use ExeQue\Remix\Concerns\ResolvesMutators;
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\Mutator;
 
-it('resolves comparators', function (mixed $input) {
+it('resolves mutators', function (mixed $input) {
     $implementation = new class () {
-        use ResolvesComparators {
-            resolveComparator as public;
+        use ResolvesMutators {
+            resolveMutator as public;
         }
     };
 
-    $implementation->resolveComparator($input);
+    $implementation->resolveMutator($input);
 })->throwsNoExceptions()->with([
-    'boolean' => [
-        'input' => true,
-    ],
     'callable' => [
-        'input' => fn () => fn () => true,
+        'input' => fn () => fn () => 'foobar',
     ],
     'instance of ComparatorInterface' => [
         'input' => new class () extends Comparator {
@@ -34,15 +31,14 @@ it('resolves comparators', function (mixed $input) {
     ],
     'instance of MutatorInterface' => [
         'input' => new class () extends Mutator {
-            public function mutate(mixed $value): bool
+            public function mutate(mixed $value): string
             {
-                return true;
+                return 'foobar';
             }
         },
     ],
     'array of valid values' => [
         'input' => [
-            true,
             fn () => true,
             new class () extends Comparator {
                 public function check(mixed $value): bool
@@ -51,9 +47,9 @@ it('resolves comparators', function (mixed $input) {
                 }
             },
             new class () extends Mutator {
-                public function mutate(mixed $value): bool
+                public function mutate(mixed $value): string
                 {
-                    return true;
+                    return 'foobar';
                 }
             },
         ],
@@ -62,10 +58,10 @@ it('resolves comparators', function (mixed $input) {
 
 it('throws an exception when the given comparator is not supported', function () {
     $implementation = new class () {
-        use ResolvesComparators {
-            resolveComparator as public;
+        use ResolvesMutators {
+            resolveMutator as public;
         }
     };
 
-    $implementation->resolveComparator('invalid');
-})->throws(InvalidComparatorException::class);
+    $implementation->resolveMutator('invalid');
+})->throws(InvalidArgumentException::class);

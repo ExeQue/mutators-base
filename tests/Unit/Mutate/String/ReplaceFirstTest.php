@@ -4,36 +4,56 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Mutate\String;
 
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\String\ReplaceFirst;
 
-it('replaces first occurrence of a string with another string', function () {
-    $mutator = ReplaceFirst::make('foo', 'bar');
+it('replaces the first occurrence of a string', function (mixed $search, mixed $replace, mixed $caseSensitive, mixed $input, mixed $expected) {
+    $mutator = ReplaceFirst::make($search, $replace, $caseSensitive);
 
-    expect($mutator->mutate('foo foo foo'))->toBe('bar foo foo');
-});
+    expect($mutator->mutate($input))->toBe($expected);
+})->with([
+    'string' => [
+        'search'        => 'foo',
+        'replace'       => 'bar',
+        'caseSensitive' => true,
+        'input'         => 'foo foo foo',
+        'expected'      => 'bar foo foo',
+    ],
+    'string with case insensitive' => [
+        'search'        => 'FOO',
+        'replace'       => 'bar',
+        'caseSensitive' => false,
+        'input'         => 'Foo foo FOO',
+        'expected'      => 'bar foo FOO',
+    ],
+    'stringable input' => [
+        'search'        => 'foo',
+        'replace'       => 'bar',
+        'caseSensitive' => true,
+        'input'         => new class () {
+            public function __toString(): string
+            {
+                return 'foo foo foo';
+            }
+        },
+        'expected' => 'bar foo foo',
+    ],
+    'nothing if search is empty' => [
+        'search'        => '',
+        'replace'       => 'bar',
+        'caseSensitive' => true,
+        'input'         => 'foo foo foo',
+        'expected'      => 'foo foo foo',
+    ],
+    'nothing if search is not found' => [
+        'search'        => 'bar',
+        'replace'       => 'baz',
+        'caseSensitive' => true,
+        'input'         => 'foo foo foo',
+        'expected'      => 'foo foo foo',
+    ],
+]);
 
-it('replaces nothing if search string is empty', function () {
-    $mutator = ReplaceFirst::make('', 'bar');
-
-    expect($mutator->mutate('foo foo foo'))->toBe('foo foo foo');
-});
-
-it('replaces nothing if the search string was not found', function () {
-    $mutator = ReplaceFirst::make('bar', 'foo');
-
-    expect($mutator->mutate('foo foo foo'))->toBe('foo foo foo');
-});
-
-it('replaces first occurrence of a string with another string using case-sensitive alias', function () {
-    $mutator = ReplaceFirst::sensitive('foo', 'bar');
-
-    expect($mutator->mutate('foo foo foo'))->toBe('bar foo foo')
-        ->and($mutator->mutate('Foo foo FOO'))->toBe('Foo bar FOO');
-});
-
-it('replaces first occurrence of a string with another string using case-insensitive alias', function () {
-    $mutator = ReplaceFirst::insensitive('foo', 'bar');
-
-    expect($mutator->mutate('foo foo foo'))->toBe('bar foo foo')
-        ->and($mutator->mutate('Foo foo FOO'))->toBe('bar foo FOO');
-});
+it('throws an exception if given a non-stringable input', function () {
+    ReplaceFirst::make('foo', 'bar')->mutate([]);
+})->throws(InvalidArgumentException::class);

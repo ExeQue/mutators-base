@@ -20,32 +20,32 @@ class Sequence extends Mutator
 {
     use ResolvesMutators;
 
-    private array $mutators;
+    private array $sequence;
 
     /**
-     * @param array $mutators The mutators to sequence.
+     * @param array $sequence The sequence to execute.
      */
-    public function __construct(array $mutators = [])
+    public function __construct(array $sequence = [])
     {
-        $this->mutators = $this->resolveMutators($mutators);
+        $this->sequence = $this->resolveMutators($sequence);
     }
 
     /**
-     * @param array $mutators The mutators to sequence.
+     * @param array $sequence The sequence to execute.
      */
-    public static function make(array $mutators = []): self
+    public static function make(array $sequence = []): self
     {
-        return new self($mutators);
+        return new self($sequence);
     }
 
     /**
      * Add mutator(s) to the sequence.
      *
-     * @param callable ...$mutators The mutators to add.
+     * @param callable ...$sequence The mutators to add.
      */
-    public function then(callable ...$mutators): self
+    public function then(callable ...$sequence): self
     {
-        $this->mutators = array_merge($this->mutators, $this->resolveMutators($mutators));
+        $this->sequence = array_merge($this->sequence, $this->resolveMutators($sequence));
 
         return $this;
     }
@@ -78,8 +78,8 @@ class Sequence extends Mutator
 
     public function mutate(mixed $value): mixed
     {
-        foreach ($this->mutators as $mutator) {
-            $value = $mutator->mutate($value);
+        foreach ($this->sequence as $mutator) {
+            $value = $mutator($value);
         }
 
         return $value;

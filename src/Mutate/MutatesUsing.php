@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace ExeQue\Remix\Mutate;
 
+use ExeQue\Remix\Assert;
+
 /**
  * Mutate a value using a callback.
  *
@@ -18,15 +20,21 @@ class MutatesUsing extends Mutator
     /**
      * @param callable $callback The callback to use for mutation.
      */
-    public function __construct(callable $callback)
+    public function __construct(mixed $callback)
     {
+        if(is_string($callback)) {
+            Assert::report($callback, 'Callback must be callable. Got %s', $callback);
+        }
+
+        Assert::isCallable($callback, 'Callback must be callable. Got %s');
+
         $this->callback = $callback;
     }
 
     /**
      * @param callable $callback The callback to use for mutation.
      */
-    public static function make(callable $callback): self
+    public static function make(mixed $callback): self
     {
         return new self($callback);
     }

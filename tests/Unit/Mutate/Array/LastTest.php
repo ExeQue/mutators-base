@@ -5,31 +5,40 @@ declare(strict_types=1);
 namespace Tests\Unit\Mutate\Array;
 
 use ArrayIterator;
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\Array\Last;
 
-it('retrieves the last element of an array', function () {
-    $mutator = Last::make();
+it('gets the last element of an array', function (mixed $callback, mixed $input, mixed $expected) {
+    $mutator = Last::make($callback);
 
-    expect($mutator->mutate(['foo', 'bar']))->toBe('bar');
-});
-
-it('returns null if the array is empty', function () {
-    $mutator = Last::make();
-
-    expect($mutator->mutate([]))->toBeNull();
-});
-
-it('uses callback to determine last element', function () {
-    $mutator = Last::make(static fn ($value, $key) => str_contains($value, 'o'));
-
-    expect($mutator->mutate(['foo', 'bar']))->toBe('foo');
-});
-
-it('returns null if no element matches callback', function () {
-    $mutator = Last::make(static fn ($value, $key) => $key === 2);
-
-    expect($mutator->mutate(['foo', 'bar']))->toBeNull();
-});
+    expect($mutator->mutate($input))->toBe($expected);
+})->with([
+    'no callback' => [
+        'callback' => null,
+        'input'    => ['foo', 'bar'],
+        'expected' => 'bar',
+    ],
+    'callback' => [
+        'callback' => static fn ($value) => $value === 'foo',
+        'input'    => ['foo', 'bar'],
+        'expected' => 'foo',
+    ],
+    'callback not found' => [
+        'callback' => static fn ($value) => $value === 'baz',
+        'input'    => ['foo', 'bar'],
+        'expected' => null,
+    ],
+    'empty array' => [
+        'callback' => null,
+        'input'    => [],
+        'expected' => null,
+    ],
+    'iterator' => [
+        'callback' => null,
+        'input'    => new ArrayIterator(['foo', 'bar']),
+        'expected' => 'bar',
+    ],
+]);
 
 it('callback is provided with value and key', function () {
     $mutator = Last::make(static function ($value, $key) {
@@ -42,8 +51,8 @@ it('callback is provided with value and key', function () {
     $mutator->mutate(['foo' => 'bar']);
 });
 
-it('works with iterable', function () {
-    $mutator = Last::make();
+it('throws an exception if given a non-iterable input', function () {
+    $mutator = Last::make(static fn () => true);
 
-    expect($mutator->mutate(new ArrayIterator(['foo', 'bar'])))->toBe('bar');
-});
+    $mutator->mutate('foo');
+})->throws(InvalidArgumentException::class);

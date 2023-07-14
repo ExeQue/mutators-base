@@ -40,6 +40,10 @@ class Implode extends Mutator
     {
         Assert::isIterable($value, static::class . ' expects an iterable value');
 
+        if(empty($value)) {
+            return '';
+        }
+
         if (! is_array($value)) {
             $value = iterator_to_array($value);
         }

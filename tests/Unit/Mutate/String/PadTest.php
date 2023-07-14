@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Mutate\String;
 
+use ExeQue\Remix\Data\StringDirection;
 use ExeQue\Remix\Mutate\String\Pad;
 
 it('pads string with additional characters', function (string $input, int $length, string $pad, string $expected) {
@@ -46,3 +47,9 @@ it('matches direction', function (string $method, string $input, string $expecte
         'output' => 'foo   ',
     ],
 ]);
+
+test('aliases are identical to the original', function () {
+    expect(Pad::both(1))->toEqual(Pad::make(1, direction: StringDirection::Both))
+        ->and(Pad::left(1))->toEqual(Pad::make(1, direction: StringDirection::Left))
+        ->and(Pad::right(1))->toEqual(Pad::make(1, direction: StringDirection::Right));
+});

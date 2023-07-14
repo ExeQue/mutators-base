@@ -4,67 +4,99 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Mutate\String;
 
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Exceptions\MissingTagException;
 use ExeQue\Remix\Mutate\String\Tags;
 
-it('replaces tags in string', function (string $input, array $tags, string $expected) {
-    $mutator = Tags::make($tags);
+it('replaces tags in string', function (mixed $tags, mixed $options, mixed $input, mixed $expected) {
+    $mutator = Tags::make($tags, $options);
 
     expect($mutator->mutate($input))->toBe($expected);
 })->with([
     'without whitespace around tags' => [
-        'input' => 'Hello, {{name}}!',
-        'tags'  => [
+        'tags' => [
             'name' => 'John Doe',
         ],
+        'options'  => [],
+        'input'    => 'Hello, {{name}}!',
         'expected' => 'Hello, John Doe!',
     ],
     'with whitespace around tags' => [
-        'input' => 'Hello, {{ name }}!',
-        'tags'  => [
+        'tags' => [
             'name' => 'John Doe',
         ],
+        'options'  => [],
+        'input'    => 'Hello, {{ name }}!',
         'expected' => 'Hello, John Doe!',
     ],
     'with multiple tags' => [
-        'input' => 'Hello, {{ name }}! You are {{ age }} years old.',
-        'tags'  => [
+        'tags' => [
             'name' => 'John Doe',
             'age'  => 30,
         ],
+        'options'  => [],
+        'input'    => 'Hello, {{ name }}! You are {{ age }} years old.',
         'expected' => 'Hello, John Doe! You are 30 years old.',
     ],
-    'with multiple tags and whitespace' => [
-        'input' => 'Hello, {{ name }}! You are {{ age }} years old.',
-        'tags'  => [
-            'name' => 'John Doe',
-            'age'  => 30,
-        ],
-        'expected' => 'Hello, John Doe! You are 30 years old.',
-    ],
-    'with missing tag' => [
-        'input' => 'Hello, {{ name }}! You are {{ age }} years old.',
-        'tags'  => [
+    'ignores missing tag' => [
+        'tags' => [
             'name' => 'John Doe',
         ],
+        'options'  => [],
+        'input'    => 'Hello, {{ name }}! You are {{ age }} years old.',
         'expected' => 'Hello, John Doe! You are {{ age }} years old.',
+    ],
+    'removes missing tag' => [
+        'tags' => [
+            'name' => 'John Doe',
+        ],
+        'options' => [
+            'removeWhenMissing' => true,
+        ],
+        'input'    => 'Hello, {{ name }}! You are {{ age }} years old.',
+        'expected' => 'Hello, John Doe! You are  years old.',
+    ],
+    'ignores tag casing' => [
+        'tags' => [
+            'NAME' => 'John Doe',
+        ],
+        'options' => [
+            'forceLowerCaseKeys' => true,
+        ],
+        'input'    => 'Hello, {{ name }}!',
+        'expected' => 'Hello, John Doe!',
+    ],
+    'ignores key casing with multibyte characters' => [
+        'tags' => [
+            'æ' => 'John Doe',
+        ],
+        'options' => [
+            'forceLowerCaseKeys' => true,
+        ],
+        'input'    => 'Hello, {{ Æ }}!',
+        'expected' => 'Hello, John Doe!',
+    ],
+    'removes missing tag while ignoring casing' => [
+        'tags' => [
+            'name' => 'John Doe',
+        ],
+        'options' => [
+            'removeWhenMissing'  => true,
+            'forceLowerCaseKeys' => true,
+        ],
+        'input'    => 'Hello, {{ NAME }}! You are {{ AGE }} years old.',
+        'expected' => 'Hello, John Doe! You are  years old.',
     ],
 ]);
 
-it('ignores tag casing if prompted', function () {
-    $mutator = new Tags(['NAME' => 'John Doe'], ['forceLowerCaseKeys' => true]);
-
-    expect($mutator->mutate('Hello, {{ name }}!'))->toBe('Hello, John Doe!');
-});
-
-it('removes tag when missing if prompted', function () {
-    $mutator = new Tags(['name' => 'John Doe'], ['removeOnMissing' => true]);
-
-    expect($mutator->mutate('Hello, {{ name }}! You are {{ age }} years old.'))->toBe('Hello, John Doe! You are  years old.');
-});
-
-it('fails if a tag is missing if prompted', function () {
-    $mutator = new Tags(['name' => 'John Doe'], ['throwWhenMissing' => true]);
+it('throws an exception if a tag is found but not available in the input tags when `throwWhenMissing` is enabled', function () {
+    $mutator = Tags::make(['name' => 'John Doe'], ['throwWhenMissing' => true]);
 
     $mutator->mutate('Hello, {{ name }}! You are {{ age }} years old.');
 })->throws(MissingTagException::class);
+
+it('throws an exception when given a non-stringable input', function () {
+    $mutator = Tags::make([]);
+
+    $mutator->mutate([]);
+})->throws(InvalidArgumentException::class);

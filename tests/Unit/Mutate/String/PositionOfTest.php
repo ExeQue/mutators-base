@@ -7,48 +7,74 @@ namespace Tests\Unit\Mutate\String;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\String\PositionOf;
 
-it('fails if encoding is invalid', function () {
-    PositionOf::make('foo', encoding: 'foo');
-})->throws(InvalidArgumentException::class, 'Invalid encoding provided. Got: "foo"');
+it('gets the position of a string', function (mixed $needle, bool $last, int $offset, bool $caseSensitive, mixed $input, mixed $expected) {
+    $mutator = PositionOf::make($needle, $last, $offset, $caseSensitive);
 
-it('gets position of the first occurrence', function () {
-    $mutator = PositionOf::make('baz');
+    expect($mutator->mutate($input))->toBe($expected);
+})->with([
+    'first occurrence' => [
+        'needle'        => 'foo',
+        'last'          => false,
+        'offset'        => 0,
+        'caseSensitive' => true,
+        'input'         => 'foo bar baz foo bar baz',
+        'expected'      => 0,
+    ],
+    'first occurrence with offset' => [
+        'needle'        => 'foo',
+        'last'          => false,
+        'offset'        => 9,
+        'caseSensitive' => true,
+        'input'         => 'foo bar baz foo bar baz',
+        'expected'      => 12,
+    ],
+    'last occurrence' => [
+        'needle'        => 'foo',
+        'last'          => true,
+        'offset'        => 0,
+        'caseSensitive' => true,
+        'input'         => 'foo bar baz foo bar baz',
+        'expected'      => 12,
+    ],
+    'last occurrence with offset' => [
+        'needle'        => 'foo',
+        'last'          => true,
+        'offset'        => 15,
+        'caseSensitive' => true,
+        'input'         => 'foo bar baz foo bar baz',
+        'expected'      => 0,
+    ],
+    'not found' => [
+        'needle'        => 'not found',
+        'last'          => false,
+        'offset'        => 0,
+        'caseSensitive' => true,
+        'input'         => 'foo bar baz foo bar baz',
+        'expected'      => false,
+    ],
+    'first with case insensitive' => [
+        'needle'        => 'FOO',
+        'last'          => false,
+        'offset'        => 0,
+        'caseSensitive' => false,
+        'input'         => 'foo bar baz foo bar baz',
+        'expected'      => 0,
+    ],
+    'last with case insensitive' => [
+        'needle'        => 'FOO',
+        'last'          => true,
+        'offset'        => 0,
+        'caseSensitive' => false,
+        'input'         => 'foo bar baz foo bar baz',
+        'expected'      => 12,
+    ],
+]);
 
-    expect($mutator->mutate('foo bar baz foo bar baz'))->toBe(8);
+test('aliases are identical to the original', function () {
+    expect(PositionOf::first('foo'))->toEqual(PositionOf::make('foo'))
+        ->and(PositionOf::last('foo'))->toEqual(PositionOf::make('foo', true));
 });
 
-it('gets position of the first occurrence using alias', function () {
-    $mutator = PositionOf::first('baz');
-
-    expect($mutator->mutate('foo bar baz foo bar baz'))->toBe(8);
-});
-
-it('gets position of the first occurrence with offset', function () {
-    $mutator = PositionOf::make('baz', offset: 9);
-
-    expect($mutator->mutate('foo bar baz foo bar baz'))->toBe(20);
-});
-
-it('gets position of the last occurrence', function () {
-    $mutator = PositionOf::make('foo', true);
-
-    expect($mutator->mutate('foo bar baz foo bar baz'))->toBe(12);
-});
-
-it('gets position of the last occurrence using alias', function () {
-    $mutator = PositionOf::last('foo');
-
-    expect($mutator->mutate('foo bar baz foo bar baz'))->toBe(12);
-});
-
-it('gets position of the last occurrence with offset', function () {
-    $mutator = PositionOf::make('baz', true, 8);
-
-    expect($mutator->mutate('foo bar baz foo bar baz'))->toBe(8);
-});
-
-it('outputs false if no occurrence', function () {
-    $mutator = PositionOf::make('foo');
-
-    expect($mutator->mutate('bar baz bar baz'))->toBe(false);
-});
+it('throws an exception if given a non-stringable input', function () {
+    PositionOf::make('foo')->mutate([]);
+})->throws(InvalidArgumentException::class);

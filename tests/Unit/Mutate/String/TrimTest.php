@@ -5,84 +5,73 @@ declare(strict_types=1);
 namespace Tests\Unit\Mutate\String;
 
 use ExeQue\Remix\Data\StringDirection;
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\String\Trim;
 
-it('trims left', function () {
-    $mutator = Trim::make(StringDirection::Left);
-
-    expect($mutator->mutate(' foo '))->toBe('foo ');
-});
-
-it('trims right', function () {
-    $mutator = Trim::make(StringDirection::Right);
-
-    expect($mutator->mutate(' foo '))->toBe(' foo');
-});
-
-it('trims both', function () {
-    $mutator = Trim::make(StringDirection::Both);
-
-    expect($mutator->mutate(' foo '))->toBe('foo');
-});
-
-it('trims both by default', function () {
-    $mutator = Trim::make();
-
-    expect($mutator->mutate(' foo '))->toBe('foo');
-});
-
-it('make is identical to constructor', function () {
-    $input              = 'Hello there, General Kenobi. Hello there, Mr. Anderson';
-    $madeMutator        = Trim::make(StringDirection::Both);
-    $constructedMutator = Trim::make(StringDirection::Both);
-
-    expect($madeMutator->mutate($input))->toBe($constructedMutator->mutate($input));
-});
-
-it('trims all supported characters', function (string $characters) {
-    $input = $characters . 'foo' . $characters;
-
-    $mutator = Trim::make(StringDirection::Both);
-
-    expect($mutator->mutate($input))->toBe('foo');
-})->with(function () {
-    $characters = " \t\n\r\0\x0B";
-
-    return [
-        'space'           => ' ',
-        'tab'             => "\t",
-        'newline'         => "\n",
-        'carriage return' => "\r",
-        'null'            => "\0",
-        'vertical tab'    => "\x0B",
-        'trim fn default' => $characters,
-    ];
-});
-
-it('trims specified characters', function () {
-    $mutator = Trim::make(StringDirection::Both, 'o');
-
-    expect($mutator->mutate('foo'))->toBe('f');
-});
-
-it('matches direction', function (string $method, string $input, string $expected) {
-    $mutator = Trim::$method();
+it('trims a string', function (mixed $direction, mixed $characters, mixed $input, mixed $expected) {
+    $mutator = Trim::make($direction, $characters);
 
     expect($mutator->mutate($input))->toBe($expected);
 })->with([
-    'Trim::both()' => [
-        'method' => 'both',
-        'input'  => ' foo ',
-        'output' => 'foo',
+    'trim whitespace left' => [
+        'direction'  => StringDirection::Left,
+        'characters' => null,
+        'input'      => " \t\n\r\0\x0Bfoobar",
+        'expected'   => 'foobar',
     ],
-    'Trim::left()' => [
-        'method' => 'left',
-        'input'  => ' foo ',
-        'output' => 'foo ',
+    'trim whitespace right' => [
+        'direction'  => StringDirection::Right,
+        'characters' => null,
+        'input'      => "foobar \t\n\r\0\x0B",
+        'expected'   => 'foobar',
     ],
-    'Trim::right()' => [
-        'method' => 'right',
-        'input'  => ' foo ',
-        'output' => ' foo',
+    'trim whitespace both' => [
+        'direction'  => StringDirection::Both,
+        'characters' => null,
+        'input'      => " \t\n\r\0\x0Bfoobar \t\n\r\0\x0B",
+        'expected'   => 'foobar',
+    ],
+    'trim custom characters left' => [
+        'direction'  => StringDirection::Left,
+        'characters' => 'of',
+        'input'      => 'foobar',
+        'expected'   => 'bar',
+    ],
+    'trim custom characters right' => [
+        'direction'  => StringDirection::Right,
+        'characters' => 'rab',
+        'input'      => 'foobar',
+        'expected'   => 'foo',
+    ],
+    'trim custom characters both' => [
+        'direction'  => StringDirection::Both,
+        'characters' => 'fbar',
+        'input'      => 'foobar',
+        'expected'   => 'oo',
+    ],
+    'using stringable characters' => [
+        'direction'  => StringDirection::Both,
+        'characters' => null,
+        'input'      => new class () {
+            public function __toString(): string
+            {
+                return 'foobar';
+            }
+        },
+        'expected' => 'foobar',
     ],
 ]);
+
+test('aliases are identical to the original method', function () {
+    expect(Trim::left())->toEqual(Trim::make(StringDirection::Left))
+        ->and(Trim::right())->toEqual(Trim::make(StringDirection::Right))
+        ->and(Trim::both())->toEqual(Trim::make());
+});
+
+
+
+it('throws an exception when given a non-stringable input', function () {
+    $mutator = Trim::make();
+
+    $mutator->mutate([]);
+})->throws(InvalidArgumentException::class);

@@ -8,8 +8,7 @@ use ExeQue\Remix\Compare\ComparesUsing;
 use ExeQue\Remix\Concerns\HasMultipleComparators;
 
 it('create using array input using makeFromArray', function () {
-    $implementation = new class(true)
-    {
+    $implementation = new class (true) {
         use HasMultipleComparators;
 
         public function getComparators()
@@ -33,8 +32,7 @@ it('supports adding additional comparators', function () {
     $comparator1 = ComparesUsing::make(fn () => true);
     $comparator2 = ComparesUsing::make(fn () => true);
 
-    $implementation = new class($comparator1)
-    {
+    $implementation = new class ($comparator1) {
         use HasMultipleComparators;
 
         public function getComparators()

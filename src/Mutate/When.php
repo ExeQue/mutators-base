@@ -23,12 +23,16 @@ class When extends Mutator
     private ?MutatorInterface $otherwise = null;
 
     /**
-     * @param callable|bool $condition The condition to check - If a callable is provided, it will be called with the value to check as the first argument.
+     * @param mixed $condition The condition to check - If a callable is provided, it will be called with the value to check as the first argument.
      * @param callable|array $then The mutator to execute if the condition is true.
      * @param callable|array|null $otherwise The mutator to execute if the condition is false (optional).
      */
-    public function __construct(callable|bool $condition, callable|array $then, callable|array $otherwise = null)
+    public function __construct(mixed $condition, mixed $then, mixed $otherwise = null)
     {
+        if(is_scalar($condition) || ! is_callable($condition)) {
+            $condition = (bool)$condition;
+        }
+
         $this->condition = $this->resolveComparator($condition);
         $this->then      = $this->resolveMutator($then);
 
@@ -38,11 +42,11 @@ class When extends Mutator
     }
 
     /**
-     * @param callable|bool $condition The condition to check - If a callable is provided, it will be called with the value to check as the first argument.
+     * @param mixed $condition The condition to check - If a callable is provided, it will be called with the value to check as the first argument.
      * @param callable|array $then The mutator to execute if the condition is true.
      * @param callable|array|null $otherwise The mutator to execute if the condition is false (optional).
      */
-    public static function make(callable|bool $condition, callable|array $then, callable|array $otherwise = null): self
+    public static function make(mixed $condition, mixed $then, mixed $otherwise = null): self
     {
         return new self($condition, $then, $otherwise);
     }

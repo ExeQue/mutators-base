@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Mutate\Array;
 
 use ExeQue\Remix\Data\StringCase;
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\Array\KeyCase;
 
 it('changes key casing of an array', function (StringCase $casing, array $input, array $expected) {
@@ -35,3 +36,9 @@ it('changes key casing of an array', function (StringCase $casing, array $input,
         ],
     ],
 ]);
+
+it('throws an exception if given a non-iterable input', function () {
+    $mutator = KeyCase::make(StringCase::Camel);
+
+    $mutator->mutate('foo');
+})->throws(InvalidArgumentException::class);

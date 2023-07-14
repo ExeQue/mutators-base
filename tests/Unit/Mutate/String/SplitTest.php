@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Tests\Unit\Mutate\String;
 
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
-use ExeQue\Remix\Mutate\String\Chunk;
+use ExeQue\Remix\Mutate\String\Split;
 
-it('chunks a string into an array of strings', function () {
-    $mutator = Chunk::make(3);
+it('splits a string into an array of strings', function () {
+    $mutator = Split::make(3);
 
     expect($mutator->mutate('foo'))->toBe(['foo']);
 })->with([
@@ -24,6 +24,6 @@ it('chunks a string into an array of strings', function () {
     ],
 ]);
 
-it('fail on negative size', function () {
-    new Chunk(-6);
+it('throws an exception when given a negative size', function () {
+    new Split(-6);
 })->throws(InvalidArgumentException::class);

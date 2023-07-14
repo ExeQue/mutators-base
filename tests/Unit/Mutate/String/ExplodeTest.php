@@ -13,6 +13,6 @@ it('explodes a string', function () {
     expect($mutator->mutate('foo bar baz'))->toBe(['foo', 'bar', 'baz']);
 });
 
-it('fail on negative limit', function () {
+it('throws an exception when given a negative limit', function () {
     Explode::make(' ', -3);
 })->throws(InvalidArgumentException::class);

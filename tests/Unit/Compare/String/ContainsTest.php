@@ -113,13 +113,6 @@ it('throws an exception if given any non-stringable input', function (array $inp
 ]);
 
 test('aliases are identical to the original', function () {
-    $all      = Contains::make('foo');
-    $allAlias = Contains::all('foo');
-
-    expect($all)->toEqual($allAlias);
-
-    $any      = Contains::make('foo', all: false);
-    $anyAlias = Contains::any('foo');
-
-    expect($any)->toEqual($anyAlias);
+    expect(Contains::make('foo'))->toEqual(Contains::all('foo'))
+        ->and(Contains::make('foo', all: false))->toEqual(Contains::any('foo'));
 });

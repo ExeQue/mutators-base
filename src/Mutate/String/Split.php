@@ -9,11 +9,11 @@ use ExeQue\Remix\Concerns\Definitions\UsesEncoding;
 use ExeQue\Remix\Mutate\Mutator;
 
 /**
- * Chunk a string into an array of strings with a specified max size.
+ * Splits a string into an array of strings with a specified max size.
  *
  * @author Morten Harders <mmh@harders-it.dk>
  */
-class Chunk extends Mutator
+class Split extends Mutator
 {
     use UsesEncoding;
 

@@ -12,43 +12,73 @@ use ExeQue\Remix\Exceptions\InvalidArgumentException;
  */
 enum StringCase
 {
-    /** Example: `myNameIsBond` */
+    /**
+     * camelCase - Example: camelCase, firstName, lastName etc.
+     */
     case Camel;
 
-    /** Example: `MyNameIsBond` */
+    /**
+     * PascalCase - Example: PascalCase, FirstName, LastName etc.
+     */
     case Pascal;
 
-    /** Example: `my_name_is_bond` */
+    /**
+     * snake_case - Example: snake_case, first_name, last_name etc.
+     */
     case Snake;
 
-    /** Example: `My_Name_Is_Bond` */
+    /**
+     * Ada_Case - Example: Ada_Case, First_Name, Last_Name etc.
+     */
     case Ada;
 
-    /** Example: `MY_NAME_IS_BOND` */
+    /**
+     * MACRO_CASE - Example: MACRO_CASE, FIRST_NAME, LAST_NAME etc.
+     */
     case Macro;
 
-    /** Example: `my-name-is-bond` */
+    /**
+     * kebab-case - Example: kebab-case, first-name, last-name etc.
+     */
     case Kebab;
 
-    /** Example: `My-Name-Is-Bond` */
+    /**
+     * Train-Case - Example: Train-Case, First-Name, Last-Name etc.
+     */
     case Train;
 
-    /** Example: `MY-NAME-IS-BOND` */
+    /**
+     * COBOL-CASE - Example: COBOL-CASE, FIRST-NAME, LAST-NAME etc.
+     */
     case Cobol;
 
-    /** Example: `my name is bond` */
+    /**
+     * lower case - Example: lower case, first name, last name etc.
+     *
+     * Note: This is _not_ the same as `toUpper` from `jawira/case-converter`!
+     */
     case Lower;
 
-    /** Example: `MY NAME IS BOND` */
+    /**
+     * UPPER CASE - Example: UPPER CASE, FIRST NAME, LAST NAME etc.
+     *
+     * Note: This is _not_ the same as `toUpper` from `jawira/case-converter`!
+     */
     case Upper;
 
-    /** Example: `My Name Is Bond` */
+    /**
+     * Title Case - Example: Title Case, First Name, Last Name etc.
+     */
     case Title;
 
-    /** Example: `My name is bond` */
+    /**
+     * Sentence case - Example: Sentence case, First name, Last name etc.
+     */
     case Sentence;
 
-    /** Example: `my.name.is.bond` */
+    /**
+     * dot.case - Example: dot.case, first.name, last.name etc.
+     */
     case Dot;
 
     public static function from(self|string $case): StringCase

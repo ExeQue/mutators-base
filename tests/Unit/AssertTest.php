@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
+use ArrayIterator;
 use ExeQue\Remix\Assert;
+use InvalidArgumentException;
+use stdClass;
+use Stringable;
 
 test('passes stringable', function (mixed $input) {
     Assert::stringable($input);
@@ -13,7 +17,7 @@ test('passes stringable', function (mixed $input) {
     'int'        => 1,
     'float'      => 1.1,
     'null'       => null,
-    'stringable' => new class () implements \Stringable {
+    'stringable' => new class () implements Stringable {
         public function __toString(): string
         {
             return 'foo';
@@ -23,13 +27,13 @@ test('passes stringable', function (mixed $input) {
 
 test('fails stringable', function (mixed $input) {
     Assert::stringable($input);
-})->throws(\InvalidArgumentException::class)->with([
+})->throws(InvalidArgumentException::class)->with([
     'bool'     => true,
     'array'    => fn () => [],
-    'object'   => new \stdClass(),
+    'object'   => new stdClass(),
     'callable' => fn () => function () {
     },
-    'iterable' => new \ArrayIterator(),
+    'iterable' => new ArrayIterator(),
     'resource' => fopen('php://memory', 'rb'),
 ]);
 
@@ -39,7 +43,7 @@ test('passes allStringable', function () {
         'int'        => 1,
         'float'      => 1.1,
         'null'       => null,
-        'stringable' => new class () implements \Stringable {
+        'stringable' => new class () implements Stringable {
             public function __toString(): string
             {
                 return 'foo';
@@ -52,13 +56,13 @@ test('fails allStringable', function () {
     Assert::allStringable([
         'bool'     => true,
         'array'    => [],
-        'object'   => new \stdClass(),
+        'object'   => new stdClass(),
         'callable' => function () {
         },
-        'iterable' => new \ArrayIterator(),
+        'iterable' => new ArrayIterator(),
         'resource' => fopen('php://memory', 'rb'),
     ]);
-})->throws(\InvalidArgumentException::class);
+})->throws(InvalidArgumentException::class);
 
 test('passes intOrFloat', function (mixed $input) {
     Assert::intOrFloat($input);
@@ -69,15 +73,15 @@ test('passes intOrFloat', function (mixed $input) {
 
 test('fails intOrFloat', function (mixed $input) {
     Assert::intOrFloat($input);
-})->throws(\InvalidArgumentException::class)->with([
+})->throws(InvalidArgumentException::class)->with([
     'string'   => 'foo',
     'bool'     => true,
     'null'     => null,
     'array'    => fn () => [],
-    'object'   => new \stdClass(),
+    'object'   => new stdClass(),
     'callable' => fn () => function () {
     },
-    'iterable' => new \ArrayIterator(),
+    'iterable' => new ArrayIterator(),
     'resource' => fopen('php://memory', 'rb'),
 ]);
 

@@ -5,7 +5,12 @@ declare(strict_types=1);
 namespace ExeQue\Remix\Concerns\Sanitization;
 
 use ExeQue\Remix\Data\Regexp;
+use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
 
+/**
+ * Not yet in use - Should be used for later sanitization of hex strings once implemented.
+ */
+#[CodeCoverageIgnore]
 trait SanitizesHexStrings
 {
     protected function sanitizeHexString(string $value): string

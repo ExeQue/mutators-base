@@ -47,7 +47,7 @@ class ToClass extends Mutator
         }
 
         if ($this->spread) {
-            $arrayConvert = ToArray::make();
+            $arrayConvert = To::array();
 
             $value = $arrayConvert->mutate($value);
 

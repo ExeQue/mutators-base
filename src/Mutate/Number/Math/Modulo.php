@@ -33,6 +33,6 @@ class Modulo extends NumberMutator
 
     protected function mutateNumber(float|int $value): float|int
     {
-        return $value % $this->divisor;
+        return fmod($value, $this->divisor);
     }
 }

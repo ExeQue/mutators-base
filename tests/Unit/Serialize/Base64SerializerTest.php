@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Serialize;
 
 use ExeQue\Remix\Serialize\Base64Serializer;
+
 use function Pest\Faker\fake;
 
 it('decode method decodes a base64 string', function () {

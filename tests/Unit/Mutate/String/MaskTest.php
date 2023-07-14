@@ -36,10 +36,10 @@ it('masks same length as matched pattern', function (string $pattern, string $in
     ],
 ]);
 
-it('fails if replacement character is not a single character', function () {
+it('throws an exception if replacement character is not a single character', function () {
     Mask::make('/\w+/', 'foo');
 })->throws(InvalidArgumentException::class);
 
-it('fails if replacement character is empty', function () {
+it('throws an exception if replacement character is empty', function () {
     Mask::make('/\w+/', '');
 })->throws(InvalidArgumentException::class);

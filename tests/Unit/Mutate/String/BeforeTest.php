@@ -4,39 +4,50 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Mutate\String;
 
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\String\Before;
 
-it('retrieves before first', function () {
-    $input   = 'Hello there, General Kenobi. Hello there, Mr. Anderson';
-    $mutator = Before::make('there', false);
+it('retrieves the part of the string before the occurrence of the search string', function (mixed $search, bool $last, mixed $input, mixed $expected) {
+    $mutator = Before::make($search, $last);
 
-    expect($mutator->mutate($input))->toBe('Hello ');
+    expect($mutator->mutate($input))->toBe($expected);
+})->with([
+    'first' => [
+        'search'   => 'there',
+        'last'     => false,
+        'input'    => 'Hello there, General Kenobi. Hello there, Mr. Anderson',
+        'expected' => 'Hello ',
+    ],
+    'last' => [
+        'search'   => 'there',
+        'last'     => true,
+        'input'    => 'Hello there, General Kenobi. Hello there, Mr. Anderson',
+        'expected' => 'Hello there, General Kenobi. Hello ',
+    ],
+    'not found' => [
+        'search'   => 'not found',
+        'last'     => false,
+        'input'    => 'Hello there, General Kenobi. Hello there, Mr. Anderson',
+        'expected' => 'Hello there, General Kenobi. Hello there, Mr. Anderson',
+    ],
+    'stringable input' => [
+        'search' => 'there',
+        'last'   => false,
+        'input'  => new class () {
+            public function __toString(): string
+            {
+                return 'Hello there, General Kenobi. Hello there, Mr. Anderson';
+            }
+        },
+        'expected' => 'Hello ',
+    ],
+]);
+
+test('aliases are identical to the original', function () {
+    expect(Before::first('foo'))->toEqual(Before::make('foo'))
+        ->and(Before::last('foo'))->toEqual(Before::make('foo', true));
 });
 
-it('retrieves before first using alias', function () {
-    $input   = 'Hello there, General Kenobi. Hello there, Mr. Anderson';
-    $mutator = Before::first('there');
-
-    expect($mutator->mutate($input))->toBe('Hello ');
-});
-
-it('retrieves before last', function () {
-    $input   = 'Hello there, General Kenobi. Hello there, Mr. Anderson';
-    $mutator = Before::make('there', true);
-
-    expect($mutator->mutate($input))->toBe('Hello there, General Kenobi. Hello ');
-});
-
-it('retrieves before last using alias', function () {
-    $input   = 'Hello there, General Kenobi. Hello there, Mr. Anderson';
-    $mutator = Before::last('there');
-
-    expect($mutator->mutate($input))->toBe('Hello there, General Kenobi. Hello ');
-});
-
-it('outputs input string of search is not found', function () {
-    $input   = 'Hello there, General Kenobi. Hello there, Mr. Anderson';
-    $mutator = Before::make('not found');
-
-    expect($mutator->mutate($input))->toBe($input);
-});
+it('throws an exception if given a non-stringable input', function () {
+    Before::make('foo')->mutate([]);
+})->throws(InvalidArgumentException::class);

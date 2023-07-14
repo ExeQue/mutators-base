@@ -41,28 +41,6 @@ class ReplaceFirst extends StringMutator
         return new self($search, $replace, $caseSensitive);
     }
 
-    /**
-     * Replace the first occurrence of the search string (case-sensitive) with the replacement string.
-     *
-     * @param string $search The value to search for.
-     * @param string $replace The replacement value.
-     */
-    public static function sensitive(string $search, string $replace): self
-    {
-        return new self($search, $replace, true);
-    }
-
-    /**
-     * Replace the first occurrence of the search string (case-insensitive) with the replacement string.
-     *
-     * @param string $search The value to search for.
-     * @param string $replace The replacement value.
-     */
-    public static function insensitive(string $search, string $replace): self
-    {
-        return new self($search, $replace, false);
-    }
-
     protected function mutateString(string $value): string
     {
         if ($this->search === '') {

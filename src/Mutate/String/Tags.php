@@ -35,7 +35,7 @@ class Tags extends StringMutator
     private bool $forceLowerCaseKeys;
 
     private string $pattern = '/{{\s*([^{}]+[\S])\s*}}/';
-    private mixed $removeOnMissing;
+    private mixed $removeWhenMissing;
 
     /**
      * @param array $tags The tags to replace.
@@ -84,7 +84,7 @@ class Tags extends StringMutator
 
             if ($exists) {
                 $replacement = $this->tags[$key];
-            } elseif ($this->removeOnMissing) {
+            } elseif ($this->removeWhenMissing) {
                 $replacement = '';
             } else {
                 $replacement = $matches[0];
@@ -125,12 +125,12 @@ class Tags extends StringMutator
         if (array_key_exists('throwWhenMissing', $options)) {
             Assert::boolean($options['throwWhenMissing'], 'Option throwWhenMissing must be a boolean');
         }
-        if (array_key_exists('removeOnMissing', $options)) {
-            Assert::boolean($options['removeOnMissing'], 'Option removeOnMissing must be a boolean');
+        if (array_key_exists('removeWhenMissing', $options)) {
+            Assert::boolean($options['removeWhenMissing'], 'Option removeWhenMissing must be a boolean');
         }
 
         $this->forceLowerCaseKeys = $options['forceLowerCaseKeys'] ?? false;
         $this->throwWhenMissing   = $options['throwWhenMissing'] ?? false;
-        $this->removeOnMissing    = $options['removeOnMissing'] ?? false;
+        $this->removeWhenMissing  = $options['removeWhenMissing'] ?? false;
     }
 }

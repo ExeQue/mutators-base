@@ -42,8 +42,7 @@ it('throws error if given invalid encoding', function () {
 
 function createUsesEncodingInstance(string $encoding = null): object
 {
-    return new class($encoding)
-    {
+    return new class ($encoding) {
         use UsesEncoding;
 
         public function __construct(string $encoding = null)

@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace ExeQue\Remix\Concerns;
 
-use ExeQue\Remix\Exceptions\InvalidMutatorException;
+use ExeQue\Remix\Assert;
 use ExeQue\Remix\Mutate\MutatesUsing;
 use ExeQue\Remix\Mutate\MutatorInterface;
 use ExeQue\Remix\Mutate\Sequence;
-use function get_debug_type;
 
 trait ResolvesMutators
 {
@@ -26,10 +25,7 @@ trait ResolvesMutators
             return new Sequence($mutator);
         }
 
-        throw new InvalidMutatorException(sprintf(
-            'Invalid mutator - must be a non-string callable, array or instance of MutatorInterface. Got: %s',
-            get_debug_type($mutator)
-        ));
+        Assert::report('Invalid mutator - must be a non-string callable, array or instance of MutatorInterface. Got: %s', $mutator);
     }
 
     protected function resolveMutators(array $mutators): array

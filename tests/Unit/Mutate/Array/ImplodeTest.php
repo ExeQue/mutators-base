@@ -4,32 +4,55 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Mutate\Array;
 
-// Create tests for the following classes: Implode
-
 use ArrayIterator;
+use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\Array\Implode;
 
-it('should implode an array', function () {
-    $mutator = Implode::make();
+it('implodes an array', function (string $glue, mixed $finalGlue, mixed $input, mixed $expected) {
+    $mutator = Implode::make($glue, $finalGlue);
 
-    expect($mutator->mutate(['foo', 'bar', 'baz']))->toBe('foobarbaz');
-});
+    expect($mutator->mutate($input))->toBe($expected);
+})->with([
+    'glue only' => [
+        'glue'      => ', ',
+        'finalGlue' => null,
+        'input'     => ['foo', 'bar', 'baz'],
+        'expected'  => 'foo, bar, baz',
+    ],
+    'glue and final glue' => [
+        'glue'      => ', ',
+        'finalGlue' => ' and ',
+        'input'     => ['foo', 'bar', 'baz'],
+        'expected'  => 'foo, bar and baz',
+    ],
+    'iterator' => [
+        'glue'      => ', ',
+        'finalGlue' => ' and ',
+        'input'     => new ArrayIterator(['foo', 'bar', 'baz']),
+        'expected'  => 'foo, bar and baz',
+    ],
+    'empty array' => [
+        'glue'      => ', ',
+        'finalGlue' => ' and ',
+        'input'     => [],
+        'expected'  => '',
+    ],
+    'single element array' => [
+        'glue'      => ', ',
+        'finalGlue' => ' and ',
+        'input'     => ['foo'],
+        'expected'  => 'foo',
+    ],
+    'iterable' => [
+        'glue'      => ', ',
+        'finalGlue' => ' and ',
+        'input'     => new ArrayIterator(['foo', 'bar', 'baz']),
+        'expected'  => 'foo, bar and baz',
+    ],
+]);
 
-it('should use final glue when imploding an array with more than 2 elements', function () {
-    $mutator = Implode::make(', ', ' and ');
+it('throws an exception of given a non-iterable input', function () {
+    $mutator = Implode::make(', ');
 
-    expect($mutator->mutate(['foo', 'bar', 'baz']))->toBe('foo, bar and baz');
-});
-
-it('should skip imploding when array has 0 or 1 elements', function () {
-    $mutator = Implode::make();
-
-    expect($mutator->mutate([]))->toBe('')
-        ->and($mutator->mutate(['foo']))->toBe('foo');
-});
-
-it('works with iterables', function () {
-    $mutator = Implode::make();
-
-    expect($mutator->mutate(new ArrayIterator(['foo', 'bar', 'baz'])))->toBe('foobarbaz');
-});
+    $mutator->mutate('foo');
+})->throws(InvalidArgumentException::class);

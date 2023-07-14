@@ -6,7 +6,6 @@ namespace Tests\Unit\Mutate\String;
 
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use ExeQue\Remix\Mutate\String\Hash;
-use ReflectionClass;
 
 it('hashes using built in algorithms', function (string $algorithm) {
     $mutator = Hash::make($algorithm);
@@ -20,19 +19,14 @@ it('hashes using built in algorithms with raw output', function (string $algorit
     expect($mutator->mutate('foo'))->not->toBe(hash($algorithm, 'foo'));
 })->with(hash_algos());
 
-it('fails if algorithm is not supported', function () {
+it('throws an exception if algorithm is not supported', function () {
     Hash::make('foo');
 })->throws(InvalidArgumentException::class, 'Invalid hash algorithm provided. Got: "foo"');
 
-it('matches named algorithm', function (Hash $mutator, string $algorithm) {
-    $reflector = new ReflectionClass($mutator);
-    $property  = $reflector->getProperty('algorithm');
-
-    expect($property->getValue($mutator))->toBe($algorithm);
-})->with([
-    'crc32'  => fn () => [Hash::crc32(), 'crc32'],
-    'md5'    => fn () => [Hash::md5(), 'md5'],
-    'sha1'   => fn () => [Hash::sha1(), 'sha1'],
-    'sha256' => fn () => [Hash::sha256(), 'sha256'],
-    'sha512' => fn () => [Hash::sha512(), 'sha512'],
-]);
+test('aliases are identical to the original', function () {
+    expect(Hash::md5())->toEqual(Hash::make('md5'))
+        ->and(Hash::sha1())->toEqual(Hash::make('sha1'))
+        ->and(Hash::sha256())->toEqual(Hash::make('sha256'))
+        ->and(Hash::sha512())->toEqual(Hash::make('sha512'))
+        ->and(Hash::crc32())->toEqual(Hash::make('crc32'));
+});
