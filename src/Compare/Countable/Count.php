@@ -25,8 +25,8 @@ class Count extends Comparator
      */
     public function __construct(int $min = null, int $max = null, bool $inclusive = true)
     {
-        Assert::nullOrNatural($min, 'Min must be a positive integer. Got: %s');
-        Assert::nullOrNatural($max, 'Max must be a positive integer. Got: %s');
+        Assert::nullOrNatural($min, 'Min must be a non-negative integer. Got: %s');
+        Assert::nullOrNatural($max, 'Max must be a non-negative integer. Got: %s');
 
         $this->comparator = new Number($min, $max, $inclusive);
     }

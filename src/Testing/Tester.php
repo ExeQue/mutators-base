@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ExeQue\Remix\Testing;
 
+use ExeQue\Remix\Action\ActionInterface;
 use ExeQue\Remix\Compare\ComparatorInterface;
 use ExeQue\Remix\Mutate\MutatorInterface;
 use ExeQue\Remix\Serialize\SerializerInterface;
@@ -207,25 +208,25 @@ class Tester
                 return ! $method->isStatic();
             });
 
+            $allowedBuiltIns = [
+                '__construct',
+                '__destruct',
+                '__invoke',
+            ];
+
             if ($reflector->implementsInterface(MutatorInterface::class)) {
-                $methods = array_filter($methods, function (ReflectionMethod $method) {
-                    return ! in_array($method->getName(), ['__construct', '__invoke', 'mutate'], true);
-                });
+                $methods = array_filter($methods, static fn (ReflectionMethod $method) => ! in_array($method->getName(), ['mutate', ...$allowedBuiltIns], true));
             }
 
             if ($reflector->implementsInterface(ComparatorInterface::class)) {
-                $methods = array_filter($methods, function (ReflectionMethod $method) {
-                    return ! in_array($method->getName(), ['__construct', '__invoke', 'check'], true);
-                });
+                $methods = array_filter($methods, static fn (ReflectionMethod $method) => ! in_array($method->getName(), ['check', ...$allowedBuiltIns], true));
             }
 
             if ($reflector->implementsInterface(SerializerInterface::class)) {
-                $methods = array_filter($methods, function (ReflectionMethod $method) {
-                    return ! in_array($method->getName(), ['__construct', 'encode', 'decode'], true);
-                });
+                $methods = array_filter($methods, static fn (ReflectionMethod $method) => ! in_array($method->getName(), ['encode', 'decode', ...$allowedBuiltIns], true));
             }
 
-            $methods = array_filter($methods, function (ReflectionMethod $method) {
+            $methods = array_filter($methods, static function (ReflectionMethod $method) {
                 return $method->getReturnType()?->getName() !== 'self';
             });
 
