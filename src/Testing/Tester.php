@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ExeQue\Remix\Testing;
 
-use ExeQue\Remix\Action\ActionInterface;
 use ExeQue\Remix\Compare\ComparatorInterface;
 use ExeQue\Remix\Mutate\MutatorInterface;
 use ExeQue\Remix\Serialize\SerializerInterface;
