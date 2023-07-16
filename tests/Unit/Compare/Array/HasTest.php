@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Compare\Array;
 
-// Create tests for the following class: \ExeQue\Remix\Compare\Array\KeyExists
-
 use ArrayIterator;
-use ExeQue\Remix\Compare\Array\KeyExists;
+use ExeQue\Remix\Compare\Array\Has;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
 use stdClass;
 
 test('checks if key exists', function (mixed $data, mixed $input, bool $expected) {
-    $comparator = KeyExists::make($input);
+    $comparator = Has::make($input);
 
     expect($comparator->check($data))->toBe($expected);
 })->with([
@@ -81,16 +79,28 @@ test('checks if key exists', function (mixed $data, mixed $input, bool $expected
         'input'    => 'FOO',
         'expected' => false,
     ],
+    'dotted key' => [
+        'data'     => ['foo' => ['bar' => 'baz']],
+        'input'    => 'foo.bar',
+        'expected' => true,
+    ],
+    'using object' => [
+        'data'     => (object) ['foo' => 'bar'],
+        'input'    => 'foo',
+        'expected' => true,
+    ],
+    'star is handled as a literal' => [
+        'data'     => ['*' => 'foo'],
+        'input'    => '*',
+        'expected' => true,
+    ],
 ]);
 
 it('throws an exception if input is not an array or iterable', function (mixed $input) {
-    KeyExists::make('foo')->check($input);
+    Has::make('foo')->check($input);
 })->throws(InvalidArgumentException::class)->with([
     'input is a string' => [
         'input' => 'foo',
-    ],
-    'input is an object' => [
-        'input' => new stdClass(),
     ],
     'input is an integer' => [
         'input' => 1,
