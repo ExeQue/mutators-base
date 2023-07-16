@@ -2,16 +2,15 @@
 
 declare(strict_types=1);
 
-
 namespace Tests\Unit\Mutate\Array;
 
 use ExeQue\Remix\Mutate\Array\Set;
 
-it('sets value on input', function(mixed $key, mixed $value, bool $overwrite, mixed $input, mixed $expected) {
+it('sets value on input', function (mixed $key, mixed $value, bool $overwrite, mixed $input, mixed $expected) {
     $mutator = Set::make($key, $value, $overwrite);
 
     expect($mutator->mutate($input))->toBe($expected);
-})->with(function() {
+})->with(function () {
     return [
         'empty' => [
             'key'       => 'foo',
@@ -122,14 +121,14 @@ it('sets value on input', function(mixed $key, mixed $value, bool $overwrite, mi
             'key'       => 'foo',
             'value'     => 'bar',
             'overwrite' => true,
-            'input'     => $objectInput = (object) ['foo' => 'baz'],
+            'input'     => $objectInput = (object)['foo' => 'baz'],
             'expected'  => $objectInput,
         ],
         'object input with non-existent key' => [
             'key'       => 'bar.qux',
             'value'     => 'baz',
             'overwrite' => true,
-            'input'     => $objectNonExistent = (object) ['foo' => 'bar'],
+            'input'     => $objectNonExistent = (object)['foo' => 'bar'],
             'expected'  => $objectNonExistent,
         ],
         'input not accessible' => [

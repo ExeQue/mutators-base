@@ -7,7 +7,6 @@ namespace Tests\Unit\Compare\Array;
 use ArrayIterator;
 use ExeQue\Remix\Compare\Array\Has;
 use ExeQue\Remix\Exceptions\InvalidArgumentException;
-use stdClass;
 
 test('checks if key exists', function (mixed $data, mixed $input, bool $expected) {
     $comparator = Has::make($input);
@@ -85,7 +84,7 @@ test('checks if key exists', function (mixed $data, mixed $input, bool $expected
         'expected' => true,
     ],
     'using object' => [
-        'data'     => (object) ['foo' => 'bar'],
+        'data'     => (object)['foo' => 'bar'],
         'input'    => 'foo',
         'expected' => true,
     ],

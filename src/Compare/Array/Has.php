@@ -39,11 +39,11 @@ class Has extends Comparator
 
     public function check(mixed $value): bool
     {
-        if(!is_array($value) && !is_object($value)) {
+        if(! is_array($value) && ! is_object($value)) {
             Assert::report('Value must be an array or object. Got: %s', $value);
         }
 
-        $keys = (array) $this->key;
+        $keys = (array)$this->key;
 
         if (! $value || $keys === []) {
             return false;
@@ -75,7 +75,7 @@ class Has extends Comparator
         }
 
         if (! is_int($key)) {
-            $key = (string) $key;
+            $key = (string)$key;
         }
 
         if(is_object($array)) {

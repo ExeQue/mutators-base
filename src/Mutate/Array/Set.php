@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace ExeQue\Remix\Mutate\Array;
-
 
 use ExeQue\Remix\Compare\Array\Accessible;
 use ExeQue\Remix\Compare\Array\Has;
@@ -34,8 +32,8 @@ class Set extends Mutator
      */
     public function __construct(array|int|string $key, mixed $value, bool $overwrite = true)
     {
-        $this->key = $key;
-        $this->value = $value;
+        $this->key       = $key;
+        $this->value     = $value;
         $this->overwrite = $overwrite;
     }
 

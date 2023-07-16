@@ -88,7 +88,7 @@ class Get extends Mutator
 
     private function resolveDefault()
     {
-        if (!is_string($this->default) && is_callable($this->default)) {
+        if (! is_string($this->default) && is_callable($this->default)) {
             return ($this->default)();
         }
 
